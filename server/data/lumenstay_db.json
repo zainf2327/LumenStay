@@ -1,0 +1,5784 @@
+{
+  "properties": [
+    {
+      "id": "prop_birchwood",
+      "name": "The Birchwood",
+      "slug": "the-birchwood",
+      "tagline": "Historic 1920s Alpine Lodge & Fireside Luxury",
+      "address": "410 East Hopkins Ave",
+      "city": "Aspen",
+      "state": "CO",
+      "postalCode": "81611",
+      "phone": "(970) 925-8800",
+      "email": "concierge@thebirchwoodaspen.com",
+      "heroImage": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80",
+      "description": "Built in 1926 and artfully restored, The Birchwood blends historic Gilded Age charm with ski-in mountain elegance, stone fireplaces, and an acclaimed summer courtyard for weddings.",
+      "checkInTime": "16:00",
+      "checkOutTime": "11:00",
+      "lockType": "salto",
+      "brandTheme": {
+        "primary": "#18382b",
+        "primaryLight": "#2c5e4a",
+        "primaryDark": "#0e241b",
+        "accent": "#c5a059",
+        "accentHover": "#b38e45",
+        "surface": "#17221c",
+        "surfaceSubtle": "#213128",
+        "surfaceDark": "#0d1511",
+        "headingFont": "Playfair Display",
+        "bodyFont": "Inter",
+        "mood": "Historic Alpine Heritage",
+        "tagline": "Aspen, Colorado • Est. 1926",
+        "heroBadge": "Ski-in / Ski-out & Historic Courtyard"
+      },
+      "amenities": [
+        "Ski Valet & Storage",
+        "Heated Outdoor Pool & Spa",
+        "Fireside Library Lounge",
+        "Courtyard Wedding Venue",
+        "Complimentary Apres-Ski Tasting",
+        "Tesla Destination Charging"
+      ],
+      "totalRooms": 42,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "prop_copperline",
+      "name": "Copperline Inn",
+      "slug": "copperline-inn",
+      "tagline": "Artisanal Mountain Sanctuary & Trailside Basecamp",
+      "address": "208 North Main Street",
+      "city": "Breckenridge",
+      "state": "CO",
+      "postalCode": "80424",
+      "phone": "(970) 453-2210",
+      "email": "stay@copperlineinn.com",
+      "heroImage": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80",
+      "description": "A cozy timber and slate haven just steps from Breckenridge Gondola. Designed for winter powder hounds and summer singletrack mountain bikers.",
+      "checkInTime": "15:00",
+      "checkOutTime": "11:00",
+      "lockType": "salto",
+      "brandTheme": {
+        "primary": "#8c4820",
+        "primaryLight": "#b26132",
+        "primaryDark": "#5e2e12",
+        "accent": "#e69a57",
+        "accentHover": "#d4833c",
+        "surface": "#241b17",
+        "surfaceSubtle": "#332721",
+        "surfaceDark": "#17110e",
+        "headingFont": "Playfair Display",
+        "bodyFont": "Inter",
+        "mood": "Rustic Trailside Elegance",
+        "tagline": "Breckenridge, Colorado",
+        "heroBadge": "Steps to Gondola & Singletrack"
+      },
+      "amenities": [
+        "Bike & Ski Tuning Workshop",
+        "Cedar Barrel Saunas",
+        "Artisanal Coffee Bar",
+        "Craft Beer & Whiskey Cellar",
+        "Pet Friendly Suites",
+        "Heated Boot Warmers"
+      ],
+      "totalRooms": 28,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "prop_wrenhouse",
+      "name": "The Wren House",
+      "slug": "the-wren-house",
+      "tagline": "Intimate Quiet-Luxury Hideaway in Box Canyon",
+      "address": "320 West Colorado Ave",
+      "city": "Telluride",
+      "state": "CO",
+      "postalCode": "81435",
+      "phone": "(970) 728-6640",
+      "email": "butler@thewrenhousetelluride.com",
+      "heroImage": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80",
+      "description": "Nineteen individually curated suites offering bespoke butler service, panoramic box canyon views, deep soaking tubs, and unmatched exclusivity.",
+      "checkInTime": "15:00",
+      "checkOutTime": "12:00",
+      "lockType": "salto",
+      "brandTheme": {
+        "primary": "#24252a",
+        "primaryLight": "#393b42",
+        "primaryDark": "#121316",
+        "accent": "#dfb76c",
+        "accentHover": "#cfa251",
+        "surface": "#1a1b1f",
+        "surfaceSubtle": "#282a30",
+        "surfaceDark": "#0e0f12",
+        "headingFont": "Cormorant Garamond",
+        "bodyFont": "Inter",
+        "mood": "Quiet High-ADR Luxury",
+        "tagline": "Telluride, Colorado",
+        "heroBadge": "Bespoke Butler Service & 19 Suites"
+      },
+      "amenities": [
+        "Dedicated Private Butler",
+        "In-Suite Deep Soaking Tubs",
+        "Champagne & Caviar Parlor",
+        "Custom Pillow & Scent Menu",
+        "Chauffeured Range Rover Transfers",
+        "Private Heliski Coordination"
+      ],
+      "totalRooms": 19,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "prop_sundowner",
+      "name": "Sundowner Lodge",
+      "slug": "sundowner-lodge",
+      "tagline": "Park City Premier Alpine Resort & Gathering Place",
+      "address": "1850 Sidewinder Drive",
+      "city": "Park City",
+      "state": "UT",
+      "postalCode": "84060",
+      "phone": "(435) 649-7000",
+      "email": "reservations@sundownerparkcity.com",
+      "heroImage": "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1600&q=80",
+      "description": "Lumen’s largest property features 51 rooms, expansive conference halls, farm-to-table dining at the on-site Hearth Restaurant, and effortless access to Deer Valley and Park City Mountain.",
+      "checkInTime": "16:00",
+      "checkOutTime": "11:00",
+      "lockType": "assa_abloy",
+      "brandTheme": {
+        "primary": "#a24628",
+        "primaryLight": "#c95b36",
+        "primaryDark": "#6f2d18",
+        "accent": "#f2a65a",
+        "accentHover": "#df8e3e",
+        "surface": "#241a17",
+        "surfaceSubtle": "#332521",
+        "surfaceDark": "#160f0d",
+        "headingFont": "Playfair Display",
+        "bodyFont": "Inter",
+        "mood": "Resort & Executive Mountain Gathering",
+        "tagline": "Park City, Utah",
+        "heroBadge": "51 Rooms • Hearth Restaurant & Spa"
+      },
+      "amenities": [
+        "Hearth On-Site Restaurant (Toast POS)",
+        "Full-Service Alpine Spa",
+        "Executive Boardrooms & Conference Space",
+        "Resort Shuttle to Deer Valley",
+        "Year-Round Heated Hydro Pool",
+        "Valet Parking"
+      ],
+      "totalRooms": 51,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "prop_cedarsalt",
+      "name": "Cedar & Salt",
+      "slug": "cedar-and-salt",
+      "tagline": "Desert Modern Haven Between Red Rocks & Canyons",
+      "address": "580 South Main St",
+      "city": "Moab",
+      "state": "UT",
+      "postalCode": "84532",
+      "phone": "(435) 259-4500",
+      "email": "concierge@cedarsaltmoab.com",
+      "heroImage": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80",
+      "description": "A striking minimalist desert sanctuary framed by Moab’s red rock cliffs. Offering stargazing terraces, plunge pools, and tailored private expeditions into Arches and Canyonlands.",
+      "checkInTime": "15:00",
+      "checkOutTime": "11:00",
+      "lockType": "assa_abloy",
+      "brandTheme": {
+        "primary": "#9a4732",
+        "primaryLight": "#bc5b42",
+        "primaryDark": "#6b2e1f",
+        "accent": "#5a7865",
+        "accentHover": "#466150",
+        "surface": "#251c19",
+        "surfaceSubtle": "#352824",
+        "surfaceDark": "#160f0d",
+        "headingFont": "Cormorant Garamond",
+        "bodyFont": "Inter",
+        "mood": "Desert Modern Red Rock Oasis",
+        "tagline": "Moab, Utah",
+        "heroBadge": "Stargazing Terraces & Canyon Expeditions"
+      },
+      "amenities": [
+        "Private Stargazing Roof Decks",
+        "Desert Plunge Pools",
+        "Morning Yoga & Sound Baths",
+        "Private Jeep & Canyoneering Outfitter",
+        "Cold Brew & Mezcal Bar",
+        "EV Superchargers"
+      ],
+      "totalRooms": 24,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "prop_theledger",
+      "name": "The Ledger",
+      "slug": "the-ledger",
+      "tagline": "Modern Architectural Boutique in Downtown SLC",
+      "address": "175 South West Temple",
+      "city": "Salt Lake City",
+      "state": "UT",
+      "postalCode": "84101",
+      "phone": "(801) 531-1000",
+      "email": "stay@theledgerslc.com",
+      "heroImage": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80",
+      "description": "Sophisticated downtown urban atelier combining mid-century brass aesthetic with high-speed digital amenities, rooftop cocktail lounge, and seamless airport connectivity.",
+      "checkInTime": "15:00",
+      "checkOutTime": "12:00",
+      "lockType": "assa_abloy",
+      "brandTheme": {
+        "primary": "#192638",
+        "primaryLight": "#283c57",
+        "primaryDark": "#0e1724",
+        "accent": "#d4af37",
+        "accentHover": "#be9928",
+        "surface": "#151d28",
+        "surfaceSubtle": "#202b3b",
+        "surfaceDark": "#0c1219",
+        "headingFont": "Playfair Display",
+        "bodyFont": "Inter",
+        "mood": "Urban Atelier & Business Sanctuary",
+        "tagline": "Salt Lake City, Utah",
+        "heroBadge": "Downtown Atelier & Rooftop Lounge"
+      },
+      "amenities": [
+        "The Vault Rooftop Cocktail Lounge",
+        "Acoustic Sound-Proofed Work Pods",
+        "Direct Airport Trax Link",
+        "24/7 Wellness Gym & Peloton Studio",
+        "Complimentary Fiber Wi-Fi 6",
+        "Curated Art Gallery"
+      ],
+      "totalRooms": 33,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    }
+  ],
+  "roomTypes": [
+    {
+      "id": "rt_birch_std",
+      "propertyId": "prop_birchwood",
+      "name": "Deluxe Heritage King",
+      "code": "DHK",
+      "basePrice": 380,
+      "capacityAdults": 2,
+      "capacityChildren": 1,
+      "bedConfiguration": "1 Plush King Bed",
+      "sizeSqFt": 380,
+      "description": "Handcrafted timber furnishings, gas fireplace, and plush velvet seating with serene courtyard garden views.",
+      "images": [
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Gas Fireplace",
+        "Courtyard View",
+        "Nespresso Atelier",
+        "Frette Linens",
+        "Rain Shower"
+      ],
+      "totalInventory": 20
+    },
+    {
+      "id": "rt_birch_mtn",
+      "propertyId": "prop_birchwood",
+      "name": "Mountain View King Suite",
+      "code": "MKS",
+      "basePrice": 580,
+      "capacityAdults": 3,
+      "capacityChildren": 2,
+      "bedConfiguration": "1 King Bed + Sleeper Sofa",
+      "sizeSqFt": 560,
+      "description": "Expansive private balcony facing Ajax Mountain, separate living parlor, deep clawfoot soaking tub, and dual fireplaces.",
+      "images": [
+        "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Private Balcony with Ajax Views",
+        "Clawfoot Soaking Tub",
+        "Dual Fireplaces",
+        "Bespoke Bar Cabinet"
+      ],
+      "totalInventory": 14
+    },
+    {
+      "id": "rt_birch_penthouse",
+      "propertyId": "prop_birchwood",
+      "name": "The 1926 Presidential Penthouse",
+      "code": "PNT",
+      "basePrice": 1250,
+      "capacityAdults": 4,
+      "capacityChildren": 2,
+      "bedConfiguration": "2 King Bedrooms",
+      "sizeSqFt": 1100,
+      "description": "The crowning jewel of The Birchwood. Private elevator access, vaulted beam ceilings, chef’s pantry, and private rooftop cedar hot tub.",
+      "images": [
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Private Rooftop Cedar Hot Tub",
+        "Dedicated Butler",
+        "Private Elevator Key",
+        "Full Dining Room & Wet Bar"
+      ],
+      "totalInventory": 8
+    },
+    {
+      "id": "rt_cop_queen",
+      "propertyId": "prop_copperline",
+      "name": "Alpine Double Queen",
+      "code": "ADQ",
+      "basePrice": 260,
+      "capacityAdults": 4,
+      "capacityChildren": 2,
+      "bedConfiguration": "2 Queen Beds",
+      "sizeSqFt": 420,
+      "description": "Ideal for ski groups and mountain bikers. Custom ski racks in room, heated slate bathroom floors, and gear drying closet.",
+      "images": [
+        "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "In-Room Gear Drying Locker",
+        "Heated Slate Floors",
+        "Trail Map Station"
+      ],
+      "totalInventory": 16
+    },
+    {
+      "id": "rt_cop_loft",
+      "propertyId": "prop_copperline",
+      "name": "Copperline Timber Loft",
+      "code": "CTL",
+      "basePrice": 390,
+      "capacityAdults": 3,
+      "capacityChildren": 1,
+      "bedConfiguration": "1 King Bed + Loft Daybed",
+      "sizeSqFt": 540,
+      "description": "Two-story loft with spiral staircase, wood-burning stove, and forest canopy terrace.",
+      "images": [
+        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Wood-Burning Stove",
+        "Forest Canopy Terrace",
+        "Custom Wool Blankets"
+      ],
+      "totalInventory": 12
+    },
+    {
+      "id": "rt_wren_estate",
+      "propertyId": "prop_wrenhouse",
+      "name": "San Juan Sanctuary Suite",
+      "code": "SJS",
+      "basePrice": 850,
+      "capacityAdults": 2,
+      "capacityChildren": 0,
+      "bedConfiguration": "1 Custom Hand-Stitched King Bed",
+      "sizeSqFt": 620,
+      "description": "Ultra-exclusive sanctuary. Hand-carved stone fireplace, cashmere throws, daily in-suite French breakfast, and direct canyon views.",
+      "images": [
+        "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Full White-Glove Butler",
+        "Daily Champagne Breakfast",
+        "Dyson Airwrap & Le Labo Amenities"
+      ],
+      "totalInventory": 12
+    },
+    {
+      "id": "rt_wren_chalet",
+      "propertyId": "prop_wrenhouse",
+      "name": "Telluride Box Canyon Chalet",
+      "code": "TBC",
+      "basePrice": 1600,
+      "capacityAdults": 4,
+      "capacityChildren": 2,
+      "bedConfiguration": "2 King Suites + Salon",
+      "sizeSqFt": 1350,
+      "description": "A private residential chalet with floor-to-ceiling glass framing Bridal Veil Falls, private chef service on demand, and private wine cellar.",
+      "images": [
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Private Sommelier Service",
+        "Private Chef Dining Option",
+        "Bridal Veil Falls Views"
+      ],
+      "totalInventory": 7
+    },
+    {
+      "id": "rt_sun_classic",
+      "propertyId": "prop_sundowner",
+      "name": "Sundowner Mountain King",
+      "code": "SMK",
+      "basePrice": 320,
+      "capacityAdults": 2,
+      "capacityChildren": 1,
+      "bedConfiguration": "1 King Bed",
+      "sizeSqFt": 390,
+      "description": "Warm terracotta accents, luxury bedding, work desk with mountain views, and direct elevator to the Hearth restaurant.",
+      "images": [
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Ergonomic Executive Desk",
+        "Private Balcony",
+        "Hearth Priority Reservations"
+      ],
+      "totalInventory": 30
+    },
+    {
+      "id": "rt_sun_exec",
+      "propertyId": "prop_sundowner",
+      "name": "Deer Valley Executive Suite",
+      "code": "DVE",
+      "basePrice": 520,
+      "capacityAdults": 4,
+      "capacityChildren": 2,
+      "bedConfiguration": "1 King Bed + Parlor Queen Murphy",
+      "sizeSqFt": 680,
+      "description": "Designed for corporate retreats and family vacations with conference-ready dining table and dual bathrooms.",
+      "images": [
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Conference Dining Table",
+        "Dual Full Bathrooms",
+        "Mountain Valley Views"
+      ],
+      "totalInventory": 21
+    },
+    {
+      "id": "rt_cedar_patio",
+      "propertyId": "prop_cedarsalt",
+      "name": "Red Rock Patio King",
+      "code": "RPK",
+      "basePrice": 290,
+      "capacityAdults": 2,
+      "capacityChildren": 0,
+      "bedConfiguration": "1 King Bed",
+      "sizeSqFt": 360,
+      "description": "Floor-to-ceiling glass opening onto a private sandstone terrace with firepit and panoramic views of the red cliff face.",
+      "images": [
+        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Private Sandstone Patio & Firepit",
+        "Outdoor Stargazing Shower",
+        "Artisanal Mezcal Bar"
+      ],
+      "totalInventory": 16
+    },
+    {
+      "id": "rt_cedar_stargazer",
+      "propertyId": "prop_cedarsalt",
+      "name": "The Canyons Stargazer Suite",
+      "code": "CSS",
+      "basePrice": 480,
+      "capacityAdults": 3,
+      "capacityChildren": 1,
+      "bedConfiguration": "1 King Bed + Sky Daybed",
+      "sizeSqFt": 580,
+      "description": "Features a private rooftop deck equipped with Celestron telescope and outdoor soak tub under the dark sky preserve.",
+      "images": [
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Private Rooftop Deck & Telescope",
+        "Outdoor Cedar Soaking Tub",
+        "Complimentary Jeep Trail Day Pass"
+      ],
+      "totalInventory": 8
+    },
+    {
+      "id": "rt_ledg_studio",
+      "propertyId": "prop_theledger",
+      "name": "Urban Atelier Studio",
+      "code": "UAS",
+      "basePrice": 220,
+      "capacityAdults": 2,
+      "capacityChildren": 0,
+      "bedConfiguration": "1 King Bed",
+      "sizeSqFt": 340,
+      "description": "Mid-century brass and midnight navy styling, acoustic sound dampening, workstation, and Tivoli audio system.",
+      "images": [
+        "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Acoustic Soundproofing",
+        "Tivoli Audio System",
+        "Work Desk & Fast USB-C Hub"
+      ],
+      "totalInventory": 22
+    },
+    {
+      "id": "rt_ledg_exec",
+      "propertyId": "prop_theledger",
+      "name": "Wasatch Corner Suite",
+      "code": "WCS",
+      "basePrice": 370,
+      "capacityAdults": 3,
+      "capacityChildren": 1,
+      "bedConfiguration": "1 King Bed + Executive Daybed",
+      "sizeSqFt": 520,
+      "description": "Panoramic downtown and Wasatch mountain corner views with soaking tub and private meeting salon.",
+      "images": [
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "amenities": [
+        "Wasatch Corner Views",
+        "Meeting Salon Table",
+        "Marble Deep Soaking Tub"
+      ],
+      "totalInventory": 11
+    }
+  ],
+  "rooms": [
+    {
+      "id": "rm_birch_101",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "101",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "inspected",
+      "quirks": "Lighting & Electrical: issue",
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_102",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "102",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_103",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "103",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_104",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "104",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": true,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_105",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "105",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": "Antique window latch needs gentle upward pull before sliding.",
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_106",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "106",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_107",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "107",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_108",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "108",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_109",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "109",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_110",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "110",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_111",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "111",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_112",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "112",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_113",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "113",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_114",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "114",
+      "floor": 1,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_201",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "201",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_202",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "202",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_203",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "203",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_204",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "204",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_205",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "205",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_206",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_std",
+      "roomNumber": "206",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_207",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "207",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_208",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "208",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_209",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "209",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_210",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "210",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_211",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "211",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_212",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "212",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_213",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "213",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_214",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "214",
+      "floor": 2,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": "Historic radiator requires valve bleed every 3 weeks in winter. Do not overtighten brass knob.",
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_301",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "301",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_302",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "302",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_303",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "303",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_304",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "304",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_305",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "305",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_306",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_mtn",
+      "roomNumber": "306",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_307",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_penthouse",
+      "roomNumber": "307",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_308",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_penthouse",
+      "roomNumber": "308",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_309",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_penthouse",
+      "roomNumber": "309",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_310",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_penthouse",
+      "roomNumber": "310",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_311",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_penthouse",
+      "roomNumber": "311",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_312",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_penthouse",
+      "roomNumber": "312",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_313",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_penthouse",
+      "roomNumber": "313",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_birch_314",
+      "propertyId": "prop_birchwood",
+      "roomTypeId": "rt_birch_penthouse",
+      "roomNumber": "314",
+      "floor": 3,
+      "building": "Historic Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Historic Timber",
+        "Courtyard Access"
+      ]
+    },
+    {
+      "id": "rm_cop_101",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "101",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_102",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "102",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_103",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "103",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_104",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "104",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_105",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "105",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_106",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "106",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_107",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "107",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_108",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "108",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_109",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "109",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_110",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "110",
+      "floor": 1,
+      "building": "Main Basecamp",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_201",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "201",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_202",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "202",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_203",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "203",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_204",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "204",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": "Lock deadbolt needs slight handle lift when turning key.",
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_205",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "205",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_206",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_queen",
+      "roomNumber": "206",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_207",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "207",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_208",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "208",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_209",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "209",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_210",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "210",
+      "floor": 2,
+      "building": "Main Basecamp",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_301",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "301",
+      "floor": 3,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_302",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "302",
+      "floor": 3,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_303",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "303",
+      "floor": 3,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_304",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "304",
+      "floor": 3,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_305",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "305",
+      "floor": 3,
+      "building": "Main Basecamp",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_306",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "306",
+      "floor": 3,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_307",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "307",
+      "floor": 3,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_cop_308",
+      "propertyId": "prop_copperline",
+      "roomTypeId": "rt_cop_loft",
+      "roomNumber": "308",
+      "floor": 3,
+      "building": "Main Basecamp",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Ski Lockers",
+        "Heated Slate"
+      ]
+    },
+    {
+      "id": "rm_wren_101",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "101",
+      "floor": 1,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_102",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "102",
+      "floor": 1,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_103",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "103",
+      "floor": 1,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_104",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "104",
+      "floor": 1,
+      "building": "Private Estate",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_105",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "105",
+      "floor": 1,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_106",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "106",
+      "floor": 1,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_201",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "201",
+      "floor": 2,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_202",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "202",
+      "floor": 2,
+      "building": "Private Estate",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_203",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "203",
+      "floor": 2,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_204",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "204",
+      "floor": 2,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_205",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "205",
+      "floor": 2,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_206",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_estate",
+      "roomNumber": "206",
+      "floor": 2,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_207",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_chalet",
+      "roomNumber": "207",
+      "floor": 2,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_301",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_chalet",
+      "roomNumber": "301",
+      "floor": 3,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_302",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_chalet",
+      "roomNumber": "302",
+      "floor": 3,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_303",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_chalet",
+      "roomNumber": "303",
+      "floor": 3,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_304",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_chalet",
+      "roomNumber": "304",
+      "floor": 3,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_305",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_chalet",
+      "roomNumber": "305",
+      "floor": 3,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_wren_306",
+      "propertyId": "prop_wrenhouse",
+      "roomTypeId": "rt_wren_chalet",
+      "roomNumber": "306",
+      "floor": 3,
+      "building": "Private Estate",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Butler Access",
+        "Soaking Tub"
+      ]
+    },
+    {
+      "id": "rm_sun_101",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "101",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_102",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "102",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_103",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "103",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_104",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "104",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_105",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "105",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_106",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "106",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_107",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "107",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_108",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "108",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_109",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "109",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_110",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "110",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_111",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "111",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_112",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "112",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_113",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "113",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_114",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "114",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_115",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "115",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_116",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "116",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_117",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "117",
+      "floor": 1,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_201",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "201",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_202",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "202",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_203",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "203",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_204",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "204",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_205",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "205",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_206",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "206",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_207",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "207",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_208",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "208",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_209",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "209",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_210",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "210",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_211",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "211",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_212",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "212",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_213",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_classic",
+      "roomNumber": "213",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_214",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "214",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_215",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "215",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_216",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "216",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_217",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "217",
+      "floor": 2,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_301",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "301",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_302",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "302",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_303",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "303",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_304",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "304",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_305",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "305",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_306",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "306",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_307",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "307",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_308",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "308",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_309",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "309",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_310",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "310",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_311",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "311",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_312",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "312",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": "HVAC sensor is on east wall, adjust by 1° higher for true temperature.",
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_313",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "313",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_314",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "314",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_315",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "315",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "inspected",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_316",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "316",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_sun_317",
+      "propertyId": "prop_sundowner",
+      "roomTypeId": "rt_sun_exec",
+      "roomNumber": "317",
+      "floor": 3,
+      "building": "Alpine Lodge",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Balcony",
+        "High Speed Wi-Fi"
+      ]
+    },
+    {
+      "id": "rm_cedar_101",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "101",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_102",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "102",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_103",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "103",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_104",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "104",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_105",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "105",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_106",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "106",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_107",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "107",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_108",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "108",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_109",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "109",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_110",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "110",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_111",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "111",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_112",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "112",
+      "floor": 1,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_201",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "201",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_202",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "202",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_203",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "203",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_204",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_patio",
+      "roomNumber": "204",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_205",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_stargazer",
+      "roomNumber": "205",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_206",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_stargazer",
+      "roomNumber": "206",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_207",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_stargazer",
+      "roomNumber": "207",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_208",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_stargazer",
+      "roomNumber": "208",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_209",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_stargazer",
+      "roomNumber": "209",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_210",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_stargazer",
+      "roomNumber": "210",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_211",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_stargazer",
+      "roomNumber": "211",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_cedar_212",
+      "propertyId": "prop_cedarsalt",
+      "roomTypeId": "rt_cedar_stargazer",
+      "roomNumber": "212",
+      "floor": 2,
+      "building": "Desert Pavilions",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Private Patio",
+        "Stargazer Deck"
+      ]
+    },
+    {
+      "id": "rm_ledg_101",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "101",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_102",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "102",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_103",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "103",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_104",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "104",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_105",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "105",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_106",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "106",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_107",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "107",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_108",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "108",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": "Near service elevator; keep sound-dampening door seals firmly seated.",
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_109",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "109",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_110",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "110",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_111",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "111",
+      "floor": 1,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_201",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "201",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_202",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "202",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_203",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "203",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_204",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "204",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_205",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "205",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_206",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "206",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_207",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "207",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_208",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "208",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_209",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "209",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_210",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "210",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_211",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_studio",
+      "roomNumber": "211",
+      "floor": 2,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_301",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "301",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_302",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "302",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_303",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "303",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_304",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "304",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_305",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "305",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_306",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "306",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_307",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "307",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_308",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "308",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "dirty",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_309",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "309",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_310",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "310",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    },
+    {
+      "id": "rm_ledg_311",
+      "propertyId": "prop_theledger",
+      "roomTypeId": "rt_ledg_exec",
+      "roomNumber": "311",
+      "floor": 3,
+      "building": "Urban Atelier",
+      "status": "clean",
+      "quirks": null,
+      "isOccupied": false,
+      "features": [
+        "Acoustic Soundproofing",
+        "Workstation"
+      ]
+    }
+  ],
+  "ratePlans": [
+    {
+      "id": "rp_prop_birchwood_std",
+      "propertyId": "prop_birchwood",
+      "name": "Standard Flexible Rate",
+      "code": "BAR",
+      "description": "Best available flexible rate. Free cancellation up to 48 hours prior to check-in.",
+      "priceModifier": 1,
+      "cancellationPolicy": "Free cancellation up to 48 hours before check-in",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_birchwood_nonref",
+      "propertyId": "prop_birchwood",
+      "name": "Advance Saver (Non-Refundable)",
+      "code": "ADV15",
+      "description": "Save 15% when paying in advance. Non-refundable once booked.",
+      "priceModifier": 0.85,
+      "cancellationPolicy": "Non-refundable upon booking",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_birchwood_member",
+      "propertyId": "prop_birchwood",
+      "name": "Lumen Elite Member Rate",
+      "code": "MEMBER",
+      "description": "Exclusive member perk: 10% discount plus complimentary artisanal breakfast.",
+      "priceModifier": 0.9,
+      "cancellationPolicy": "Free cancellation up to 24 hours before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": true,
+      "minLoyaltyTier": "member",
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_birchwood_promo",
+      "propertyId": "prop_birchwood",
+      "name": "Early Mountain & Desert Escape",
+      "code": "EARLYBIRD",
+      "description": "Special promotional rate with $50 property experience credit.",
+      "priceModifier": 0.8,
+      "cancellationPolicy": "Free cancellation up to 7 days before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": true,
+      "promoCode": "LUMEN2026"
+    },
+    {
+      "id": "rp_prop_copperline_std",
+      "propertyId": "prop_copperline",
+      "name": "Standard Flexible Rate",
+      "code": "BAR",
+      "description": "Best available flexible rate. Free cancellation up to 48 hours prior to check-in.",
+      "priceModifier": 1,
+      "cancellationPolicy": "Free cancellation up to 48 hours before check-in",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_copperline_nonref",
+      "propertyId": "prop_copperline",
+      "name": "Advance Saver (Non-Refundable)",
+      "code": "ADV15",
+      "description": "Save 15% when paying in advance. Non-refundable once booked.",
+      "priceModifier": 0.85,
+      "cancellationPolicy": "Non-refundable upon booking",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_copperline_member",
+      "propertyId": "prop_copperline",
+      "name": "Lumen Elite Member Rate",
+      "code": "MEMBER",
+      "description": "Exclusive member perk: 10% discount plus complimentary artisanal breakfast.",
+      "priceModifier": 0.9,
+      "cancellationPolicy": "Free cancellation up to 24 hours before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": true,
+      "minLoyaltyTier": "member",
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_copperline_promo",
+      "propertyId": "prop_copperline",
+      "name": "Early Mountain & Desert Escape",
+      "code": "EARLYBIRD",
+      "description": "Special promotional rate with $50 property experience credit.",
+      "priceModifier": 0.8,
+      "cancellationPolicy": "Free cancellation up to 7 days before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": true,
+      "promoCode": "LUMEN2026"
+    },
+    {
+      "id": "rp_prop_wrenhouse_std",
+      "propertyId": "prop_wrenhouse",
+      "name": "Standard Flexible Rate",
+      "code": "BAR",
+      "description": "Best available flexible rate. Free cancellation up to 48 hours prior to check-in.",
+      "priceModifier": 1,
+      "cancellationPolicy": "Free cancellation up to 48 hours before check-in",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_wrenhouse_nonref",
+      "propertyId": "prop_wrenhouse",
+      "name": "Advance Saver (Non-Refundable)",
+      "code": "ADV15",
+      "description": "Save 15% when paying in advance. Non-refundable once booked.",
+      "priceModifier": 0.85,
+      "cancellationPolicy": "Non-refundable upon booking",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_wrenhouse_member",
+      "propertyId": "prop_wrenhouse",
+      "name": "Lumen Elite Member Rate",
+      "code": "MEMBER",
+      "description": "Exclusive member perk: 10% discount plus complimentary artisanal breakfast.",
+      "priceModifier": 0.9,
+      "cancellationPolicy": "Free cancellation up to 24 hours before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": true,
+      "minLoyaltyTier": "member",
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_wrenhouse_promo",
+      "propertyId": "prop_wrenhouse",
+      "name": "Early Mountain & Desert Escape",
+      "code": "EARLYBIRD",
+      "description": "Special promotional rate with $50 property experience credit.",
+      "priceModifier": 0.8,
+      "cancellationPolicy": "Free cancellation up to 7 days before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": true,
+      "promoCode": "LUMEN2026"
+    },
+    {
+      "id": "rp_prop_sundowner_std",
+      "propertyId": "prop_sundowner",
+      "name": "Standard Flexible Rate",
+      "code": "BAR",
+      "description": "Best available flexible rate. Free cancellation up to 48 hours prior to check-in.",
+      "priceModifier": 1,
+      "cancellationPolicy": "Free cancellation up to 48 hours before check-in",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_sundowner_nonref",
+      "propertyId": "prop_sundowner",
+      "name": "Advance Saver (Non-Refundable)",
+      "code": "ADV15",
+      "description": "Save 15% when paying in advance. Non-refundable once booked.",
+      "priceModifier": 0.85,
+      "cancellationPolicy": "Non-refundable upon booking",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_sundowner_member",
+      "propertyId": "prop_sundowner",
+      "name": "Lumen Elite Member Rate",
+      "code": "MEMBER",
+      "description": "Exclusive member perk: 10% discount plus complimentary artisanal breakfast.",
+      "priceModifier": 0.9,
+      "cancellationPolicy": "Free cancellation up to 24 hours before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": true,
+      "minLoyaltyTier": "member",
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_sundowner_promo",
+      "propertyId": "prop_sundowner",
+      "name": "Early Mountain & Desert Escape",
+      "code": "EARLYBIRD",
+      "description": "Special promotional rate with $50 property experience credit.",
+      "priceModifier": 0.8,
+      "cancellationPolicy": "Free cancellation up to 7 days before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": true,
+      "promoCode": "LUMEN2026"
+    },
+    {
+      "id": "rp_prop_cedarsalt_std",
+      "propertyId": "prop_cedarsalt",
+      "name": "Standard Flexible Rate",
+      "code": "BAR",
+      "description": "Best available flexible rate. Free cancellation up to 48 hours prior to check-in.",
+      "priceModifier": 1,
+      "cancellationPolicy": "Free cancellation up to 48 hours before check-in",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_cedarsalt_nonref",
+      "propertyId": "prop_cedarsalt",
+      "name": "Advance Saver (Non-Refundable)",
+      "code": "ADV15",
+      "description": "Save 15% when paying in advance. Non-refundable once booked.",
+      "priceModifier": 0.85,
+      "cancellationPolicy": "Non-refundable upon booking",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_cedarsalt_member",
+      "propertyId": "prop_cedarsalt",
+      "name": "Lumen Elite Member Rate",
+      "code": "MEMBER",
+      "description": "Exclusive member perk: 10% discount plus complimentary artisanal breakfast.",
+      "priceModifier": 0.9,
+      "cancellationPolicy": "Free cancellation up to 24 hours before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": true,
+      "minLoyaltyTier": "member",
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_cedarsalt_promo",
+      "propertyId": "prop_cedarsalt",
+      "name": "Early Mountain & Desert Escape",
+      "code": "EARLYBIRD",
+      "description": "Special promotional rate with $50 property experience credit.",
+      "priceModifier": 0.8,
+      "cancellationPolicy": "Free cancellation up to 7 days before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": true,
+      "promoCode": "LUMEN2026"
+    },
+    {
+      "id": "rp_prop_theledger_std",
+      "propertyId": "prop_theledger",
+      "name": "Standard Flexible Rate",
+      "code": "BAR",
+      "description": "Best available flexible rate. Free cancellation up to 48 hours prior to check-in.",
+      "priceModifier": 1,
+      "cancellationPolicy": "Free cancellation up to 48 hours before check-in",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_theledger_nonref",
+      "propertyId": "prop_theledger",
+      "name": "Advance Saver (Non-Refundable)",
+      "code": "ADV15",
+      "description": "Save 15% when paying in advance. Non-refundable once booked.",
+      "priceModifier": 0.85,
+      "cancellationPolicy": "Non-refundable upon booking",
+      "includesBreakfast": false,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_theledger_member",
+      "propertyId": "prop_theledger",
+      "name": "Lumen Elite Member Rate",
+      "code": "MEMBER",
+      "description": "Exclusive member perk: 10% discount plus complimentary artisanal breakfast.",
+      "priceModifier": 0.9,
+      "cancellationPolicy": "Free cancellation up to 24 hours before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": true,
+      "minLoyaltyTier": "member",
+      "isPromo": false,
+      "promoCode": null
+    },
+    {
+      "id": "rp_prop_theledger_promo",
+      "propertyId": "prop_theledger",
+      "name": "Early Mountain & Desert Escape",
+      "code": "EARLYBIRD",
+      "description": "Special promotional rate with $50 property experience credit.",
+      "priceModifier": 0.8,
+      "cancellationPolicy": "Free cancellation up to 7 days before check-in",
+      "includesBreakfast": true,
+      "requiresLoyalty": false,
+      "minLoyaltyTier": null,
+      "isPromo": true,
+      "promoCode": "LUMEN2026"
+    }
+  ],
+  "guests": [
+    {
+      "id": "gst_alexandra_vance",
+      "firstName": "Alexandra",
+      "lastName": "Vance",
+      "email": "alexandra.vance@techventures.io",
+      "phone": "+1 (415) 890-4421",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA",
+      "loyaltyTier": "platinum",
+      "loyaltyPoints": 48500,
+      "idDocumentType": "Passport",
+      "idDocumentNumber": "USA-P9812401",
+      "specialPreferences": "Prefers top floor away from elevator. Feather-free hypoallergenic pillows.",
+      "notes": "Repeat VIP across Aspen and Telluride.",
+      "vipStatus": true,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "gst_marcus_sterling",
+      "firstName": "Marcus",
+      "lastName": "Sterling",
+      "email": "m.sterling@sterlingarch.com",
+      "phone": "+1 (312) 459-0012",
+      "city": "Chicago",
+      "state": "IL",
+      "country": "USA",
+      "loyaltyTier": "gold",
+      "loyaltyPoints": 24200,
+      "idDocumentType": "Passport",
+      "idDocumentNumber": "USA-P7411563",
+      "specialPreferences": "Loves corner rooms with natural lighting.",
+      "notes": "Architect enthusiast; loves The Birchwood restoration.",
+      "vipStatus": true,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "gst_elena_rostova",
+      "firstName": "Elena",
+      "lastName": "Rostova",
+      "email": "elena.rostova@montrealdesign.ca",
+      "phone": "+1 (514) 732-8891",
+      "city": "Montreal",
+      "state": "QC",
+      "country": "Canada",
+      "loyaltyTier": "silver",
+      "loyaltyPoints": 12100,
+      "idDocumentType": "Passport",
+      "idDocumentNumber": "CAN-KC492019",
+      "specialPreferences": "Late checkout requests whenever available.",
+      "notes": "Canadian frequent traveler at Utah properties.",
+      "vipStatus": false,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "gst_david_chen",
+      "firstName": "David",
+      "lastName": "Chen",
+      "email": "dchen@summitadvisors.com",
+      "phone": "+1 (206) 555-0199",
+      "city": "Seattle",
+      "state": "WA",
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 3500,
+      "idDocumentType": "Drivers License",
+      "idDocumentNumber": "WA-WDL98234B",
+      "specialPreferences": "Fast Wi-Fi priority for executive Zoom calls.",
+      "notes": "First time guest booking directly.",
+      "vipStatus": false,
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "gst_1788170825489_14f15",
+      "firstName": "Jonathan",
+      "lastName": "Harper",
+      "email": "jharper@luxurytravel.com",
+      "phone": "(303) 555-9012",
+      "city": null,
+      "state": null,
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 13818,
+      "specialPreferences": null,
+      "notes": "Direct website booking",
+      "vipStatus": false,
+      "createdAt": "2026-08-31T10:07:05.490Z",
+      "idDocumentType": "Passport",
+      "idDocumentNumber": "USA-P99881122"
+    },
+    {
+      "id": "gst_1788171882016_hk5w0",
+      "firstName": "Elena",
+      "lastName": "Moreau",
+      "email": "elena.moreau@v1test.com",
+      "phone": "(970) 555-8822",
+      "city": "Denver",
+      "state": "CO",
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 41454,
+      "vipStatus": false,
+      "createdAt": "2026-08-31T10:24:42.016Z",
+      "idDocumentType": "Passport",
+      "idDocumentNumber": "USA-P1293810"
+    },
+    {
+      "id": "gst_usr_1788177346087_t7j0",
+      "firstName": "Eleanor",
+      "lastName": "Vance",
+      "email": "traveler_1788177345937@alpineluxury.com",
+      "phone": "+1 (303) 892-1920",
+      "city": "Denver",
+      "state": "CO",
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 500,
+      "idDocumentType": null,
+      "idDocumentNumber": null,
+      "specialPreferences": null,
+      "notes": "Self-registered guest account",
+      "vipStatus": false,
+      "createdAt": "2026-08-31T11:55:46.087Z"
+    },
+    {
+      "id": "gst_usr_1788177689231_5gs2",
+      "firstName": "Eleanor",
+      "lastName": "Vance",
+      "email": "traveler_1788177689069@alpineluxury.com",
+      "phone": "+1 (303) 892-1920",
+      "city": "Denver",
+      "state": "CO",
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 500,
+      "idDocumentType": null,
+      "idDocumentNumber": null,
+      "specialPreferences": null,
+      "notes": "Self-registered guest account",
+      "vipStatus": false,
+      "createdAt": "2026-08-31T12:01:29.231Z"
+    },
+    {
+      "id": "gst_usr_1788247153106_dilk",
+      "firstName": "Muhammad",
+      "lastName": "Zain",
+      "email": "zainchoudery786@gmail.com",
+      "phone": "+92 3414102367",
+      "city": "Denver",
+      "state": "CO",
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 31544,
+      "idDocumentType": "Driver's License",
+      "idDocumentNumber": "USA-P8922781",
+      "specialPreferences": null,
+      "notes": "Self-registered guest account",
+      "vipStatus": false,
+      "createdAt": "2026-09-01T07:19:13.106Z"
+    },
+    {
+      "id": "gst_usr_1788334928305_1qb5",
+      "firstName": "Zain",
+      "lastName": "Guest",
+      "email": "zain3219235@gmail.com",
+      "phone": "+1 (555) 000-0000",
+      "city": "Denver",
+      "state": "CO",
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 13041,
+      "idDocumentType": "Passport",
+      "idDocumentNumber": "USA-P6931006",
+      "specialPreferences": null,
+      "notes": "Self-registered guest account",
+      "vipStatus": false,
+      "createdAt": "2026-09-02T07:42:08.305Z"
+    },
+    {
+      "id": "gst_usr_1788335127432_jimn",
+      "firstName": "Zain",
+      "lastName": "Guest",
+      "email": "guest@lumerstay.com",
+      "phone": "+1 (555) 000-0000",
+      "city": "Denver",
+      "state": "CO",
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 500,
+      "idDocumentType": null,
+      "idDocumentNumber": null,
+      "specialPreferences": null,
+      "notes": "Self-registered guest account",
+      "vipStatus": false,
+      "createdAt": "2026-09-02T07:45:27.432Z"
+    },
+    {
+      "id": "gst_1788348527361_6ebud",
+      "firstName": "Alexandra",
+      "lastName": "Vance (Guest)",
+      "email": "guest@lumenstay.com",
+      "phone": "+1 (555) 019-2831",
+      "city": null,
+      "state": null,
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 28174,
+      "vipStatus": false,
+      "createdAt": "2026-09-02T11:28:47.362Z",
+      "idDocumentType": "Passport",
+      "idDocumentNumber": "USA-P7128401"
+    },
+    {
+      "id": "gst_1788434095792_grrvq",
+      "firstName": "Marcus",
+      "lastName": "Sterling",
+      "email": "delivered@resend.dev",
+      "phone": "+1-555-0199",
+      "city": null,
+      "state": null,
+      "country": "USA",
+      "loyaltyTier": "member",
+      "loyaltyPoints": 13818,
+      "vipStatus": false,
+      "createdAt": "2026-09-03T11:14:55.792Z"
+    }
+  ],
+  "reservations": [
+    {
+      "id": "res_birch_inhouse_1",
+      "confirmationCode": "LMN-BW-8921",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_alexandra_vance",
+      "roomTypeId": "rt_birch_mtn",
+      "assignedRoomId": "rm_birch_201",
+      "ratePlanId": "rp_prop_birchwood_member",
+      "status": "checked_out",
+      "checkInDate": "2026-09-01",
+      "checkOutDate": "2026-09-05",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 4,
+      "nightlyRate": 522,
+      "taxAmount": 250.56,
+      "resortFee": 140,
+      "totalAmount": 2478.56,
+      "paidAmount": 2478.56,
+      "paymentStatus": "paid",
+      "specialRequests": "Celebration bottle of vintage champagne on ice at arrival.",
+      "estimatedArrival": "15:30",
+      "checkedInAt": "2026-09-01T15:45:00Z",
+      "checkedOutAt": "2026-09-02T11:33:17.764Z",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-09-01",
+      "updatedAt": "2026-09-02T11:33:17.764Z"
+    },
+    {
+      "id": "res_birch_arrival_1",
+      "confirmationCode": "LMN-BW-9402",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_marcus_sterling",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_102",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "checked_out",
+      "checkInDate": "2026-09-02",
+      "checkOutDate": "2026-09-03",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 1,
+      "nightlyRate": 380,
+      "taxAmount": 45.6,
+      "resortFee": 35,
+      "totalAmount": 460.6,
+      "paidAmount": 460.6,
+      "paymentStatus": "authorized",
+      "specialRequests": "High floor if possible.",
+      "estimatedArrival": "16:00",
+      "checkedInAt": "2026-09-03T09:27:38.118Z",
+      "checkedOutAt": "2026-09-03T09:28:21.667Z",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-09-01",
+      "updatedAt": "2026-09-03T09:28:21.667Z"
+    },
+    {
+      "id": "res_birch_depart_1",
+      "confirmationCode": "LMN-BW-7731",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_david_chen",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_104",
+      "ratePlanId": "rp_prop_birchwood_nonref",
+      "status": "checked_in",
+      "checkInDate": "2026-08-30",
+      "checkOutDate": "2026-09-02",
+      "adultCount": 1,
+      "childCount": 0,
+      "totalNights": 3,
+      "nightlyRate": 323,
+      "taxAmount": 116.28,
+      "resortFee": 105,
+      "totalAmount": 1190.28,
+      "paidAmount": 1190.28,
+      "paymentStatus": "paid",
+      "specialRequests": "Quiet room for business calls.",
+      "estimatedArrival": "14:00",
+      "checkedInAt": "2026-08-30T14:15:00Z",
+      "checkedOutAt": null,
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-08-23",
+      "updatedAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "res_cop_future_1",
+      "confirmationCode": "LMN-CP-5520",
+      "propertyId": "prop_copperline",
+      "guestId": "gst_elena_rostova",
+      "roomTypeId": "rt_cop_loft",
+      "assignedRoomId": "rm_cop_201",
+      "ratePlanId": "rp_prop_copperline_member",
+      "status": "confirmed",
+      "checkInDate": "2026-09-05",
+      "checkOutDate": "2026-09-07",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 2,
+      "nightlyRate": 351,
+      "taxAmount": 84.24,
+      "resortFee": 60,
+      "totalAmount": 846.24,
+      "paidAmount": 846.24,
+      "paymentStatus": "authorized",
+      "specialRequests": "Interested in fat-tire bike rentals.",
+      "estimatedArrival": "15:00",
+      "checkedInAt": null,
+      "checkedOutAt": null,
+      "digitalKeyIssued": false,
+      "source": "direct",
+      "createdAt": "2026-09-02T10:59:37.904Z",
+      "updatedAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "res_1788170825491_bwuc8",
+      "confirmationCode": "LMN-BI-6661",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_1788170825489_14f15",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_101",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "checked_in",
+      "checkInDate": "2026-09-10",
+      "checkOutDate": "2026-09-13",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 3,
+      "nightlyRate": 380,
+      "taxAmount": 136.8,
+      "resortFee": 105,
+      "totalAmount": 1381.8,
+      "paidAmount": 1466.8,
+      "paymentStatus": "paid",
+      "specialRequests": "Late check-in requested.",
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-08-31T10:07:05.491Z",
+      "updatedAt": "2026-08-31T10:07:05.521Z",
+      "checkedInAt": "2026-08-31T10:07:05.521Z"
+    },
+    {
+      "id": "res_1788171882019_bpcbj",
+      "confirmationCode": "LMN-BI-1884",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_1788171882016_hk5w0",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_106",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "checked_in",
+      "checkInDate": "2026-09-15",
+      "checkOutDate": "2026-09-18",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 3,
+      "nightlyRate": 380,
+      "taxAmount": 136.8,
+      "resortFee": 105,
+      "totalAmount": 1381.8,
+      "paidAmount": 1576.8,
+      "paymentStatus": "paid",
+      "specialRequests": "High floor preferred, arriving late evening.",
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-08-31T10:24:42.019Z",
+      "updatedAt": "2026-08-31T10:24:42.059Z",
+      "checkedInAt": "2026-08-31T10:24:42.059Z"
+    },
+    {
+      "id": "res_1788172004696_s5y5y",
+      "confirmationCode": "LMN-BI-7270",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_1788171882016_hk5w0",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_106",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "checked_in",
+      "checkInDate": "2026-09-15",
+      "checkOutDate": "2026-09-18",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 3,
+      "nightlyRate": 380,
+      "taxAmount": 136.8,
+      "resortFee": 105,
+      "totalAmount": 1381.8,
+      "paidAmount": 1576.8,
+      "paymentStatus": "paid",
+      "specialRequests": "High floor preferred, arriving late evening.",
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-08-31T10:26:44.696Z",
+      "updatedAt": "2026-08-31T10:26:44.730Z",
+      "checkedInAt": "2026-08-31T10:26:44.730Z"
+    },
+    {
+      "id": "res_1788172478652_x0gtv",
+      "confirmationCode": "LMN-BI-8933",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_1788171882016_hk5w0",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_106",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "checked_in",
+      "checkInDate": "2026-09-15",
+      "checkOutDate": "2026-09-18",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 3,
+      "nightlyRate": 380,
+      "taxAmount": 136.8,
+      "resortFee": 105,
+      "totalAmount": 1381.8,
+      "paidAmount": 1576.8,
+      "paymentStatus": "paid",
+      "specialRequests": "High floor preferred, arriving late evening.",
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-08-31T10:34:38.652Z",
+      "updatedAt": "2026-08-31T10:34:38.693Z",
+      "checkedInAt": "2026-08-31T10:34:38.693Z"
+    },
+    {
+      "id": "res_1788249545693_20av9",
+      "confirmationCode": "LMN-CO-3205",
+      "propertyId": "prop_copperline",
+      "guestId": "gst_usr_1788247153106_dilk",
+      "roomTypeId": "rt_cop_loft",
+      "assignedRoomId": "rm_cop_207",
+      "ratePlanId": "rp_prop_copperline_std",
+      "status": "confirmed",
+      "checkInDate": "2026-09-01",
+      "checkOutDate": "2026-09-03",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 2,
+      "nightlyRate": 390,
+      "taxAmount": 93.6,
+      "resortFee": 70,
+      "totalAmount": 943.6,
+      "paidAmount": 943.6,
+      "paymentStatus": "paid",
+      "specialRequests": null,
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": false,
+      "source": "direct",
+      "createdAt": "2026-09-01T07:59:05.693Z",
+      "updatedAt": "2026-09-01T07:59:05.693Z"
+    },
+    {
+      "id": "res_1788251864802_9fyjn",
+      "confirmationCode": "LMN-CO-2086",
+      "propertyId": "prop_copperline",
+      "guestId": "gst_usr_1788247153106_dilk",
+      "roomTypeId": "rt_cop_queen",
+      "assignedRoomId": "rm_cop_101",
+      "ratePlanId": "rp_prop_copperline_std",
+      "status": "confirmed",
+      "checkInDate": "2026-09-01",
+      "checkOutDate": "2026-09-03",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 2,
+      "nightlyRate": 260,
+      "taxAmount": 62.4,
+      "resortFee": 70,
+      "totalAmount": 652.4,
+      "paidAmount": 652.4,
+      "paymentStatus": "paid",
+      "specialRequests": null,
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": false,
+      "source": "direct",
+      "createdAt": "2026-09-01T08:37:44.802Z",
+      "updatedAt": "2026-09-01T08:37:44.802Z"
+    },
+    {
+      "id": "res_1788258289997_att10",
+      "confirmationCode": "LMN-BI-4841",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_usr_1788247153106_dilk",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_101",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "checked_in",
+      "checkInDate": "2026-09-01",
+      "checkOutDate": "2026-09-03",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 2,
+      "nightlyRate": 380,
+      "taxAmount": 91.2,
+      "resortFee": 70,
+      "totalAmount": 921.2,
+      "paidAmount": 921.2,
+      "paymentStatus": "paid",
+      "specialRequests": null,
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-09-01T10:24:49.997Z",
+      "updatedAt": "2026-09-01T11:17:09.264Z",
+      "checkedInAt": "2026-09-01T11:17:09.264Z"
+    },
+    {
+      "id": "res_1788259296284_9w6o4",
+      "confirmationCode": "LMN-BI-6567",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_usr_1788247153106_dilk",
+      "roomTypeId": "rt_birch_mtn",
+      "assignedRoomId": "rm_birch_207",
+      "ratePlanId": "rp_prop_birchwood_nonref",
+      "status": "checked_in",
+      "checkInDate": "2026-09-10",
+      "checkOutDate": "2026-09-11",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 1,
+      "nightlyRate": 493,
+      "taxAmount": 59.16,
+      "resortFee": 35,
+      "totalAmount": 587.16,
+      "paidAmount": 587.16,
+      "paymentStatus": "paid",
+      "specialRequests": null,
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-09-01T10:41:36.284Z",
+      "updatedAt": "2026-09-02T12:13:27.719Z",
+      "checkedInAt": "2026-09-02T12:13:27.719Z"
+    },
+    {
+      "id": "res_1788335182298_q3o5g",
+      "confirmationCode": "LMN-BI-7216",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_usr_1788334928305_1qb5",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_102",
+      "ratePlanId": "rp_prop_birchwood_nonref",
+      "status": "checked_in",
+      "checkInDate": "2026-09-02",
+      "checkOutDate": "2026-09-04",
+      "adultCount": 5,
+      "childCount": 2,
+      "totalNights": 2,
+      "nightlyRate": 323,
+      "taxAmount": 77.52,
+      "resortFee": 70,
+      "totalAmount": 793.52,
+      "paidAmount": 793.52,
+      "paymentStatus": "paid",
+      "specialRequests": null,
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-09-02T07:46:22.298Z",
+      "updatedAt": "2026-09-02T12:15:50.699Z",
+      "checkedInAt": "2026-09-02T12:15:50.699Z"
+    },
+    {
+      "id": "res_1788348527372_mqr20",
+      "confirmationCode": "LMN-BI-5535",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_1788348527361_6ebud",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_103",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "checked_out",
+      "checkInDate": "2026-09-02",
+      "checkOutDate": "2026-09-05",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 3,
+      "nightlyRate": 380,
+      "taxAmount": 136.8,
+      "resortFee": 105,
+      "totalAmount": 1381.8,
+      "paidAmount": 1381.8,
+      "paymentStatus": "paid",
+      "specialRequests": null,
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-09-02T11:28:47.372Z",
+      "updatedAt": "2026-09-03T12:55:06.342Z",
+      "checkedInAt": "2026-09-03T12:54:29.547Z",
+      "checkedOutAt": "2026-09-03T12:55:06.342Z"
+    },
+    {
+      "id": "res_1788426874129_imc4q",
+      "confirmationCode": "LMN-BI-4493",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_1788348527361_6ebud",
+      "roomTypeId": "rt_birch_mtn",
+      "assignedRoomId": "rm_birch_207",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "checked_out",
+      "checkInDate": "2026-09-03",
+      "checkOutDate": "2026-09-04",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 1,
+      "nightlyRate": 580,
+      "taxAmount": 69.6,
+      "resortFee": 35,
+      "totalAmount": 684.6,
+      "paidAmount": 684.6,
+      "paymentStatus": "paid",
+      "specialRequests": null,
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": true,
+      "source": "direct",
+      "createdAt": "2026-09-03T09:14:34.129Z",
+      "updatedAt": "2026-09-03T09:16:39.013Z",
+      "checkedInAt": "2026-09-03T09:15:59.778Z",
+      "checkedOutAt": "2026-09-03T09:16:39.013Z"
+    },
+    {
+      "id": "res_1788429149738_y00kz",
+      "confirmationCode": "LMN-BI-5140",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_usr_1788334928305_1qb5",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_104",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "confirmed",
+      "checkInDate": "2026-09-03",
+      "checkOutDate": "2026-09-04",
+      "adultCount": 1,
+      "childCount": 0,
+      "totalNights": 1,
+      "nightlyRate": 380,
+      "taxAmount": 45.6,
+      "resortFee": 35,
+      "totalAmount": 460.6,
+      "paidAmount": 460.6,
+      "paymentStatus": "paid",
+      "specialRequests": null,
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": false,
+      "source": "direct",
+      "createdAt": "2026-09-03T09:52:29.738Z",
+      "updatedAt": "2026-09-03T09:52:29.738Z"
+    },
+    {
+      "id": "res_1788434095800_mj4kt",
+      "confirmationCode": "LMN-BI-2808",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_1788434095792_grrvq",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_102",
+      "ratePlanId": "rp_prop_birchwood_std",
+      "status": "confirmed",
+      "checkInDate": "2026-09-15",
+      "checkOutDate": "2026-09-18",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 3,
+      "nightlyRate": 380,
+      "taxAmount": 136.8,
+      "resortFee": 105,
+      "totalAmount": 1381.8,
+      "paidAmount": 1381.8,
+      "paymentStatus": "paid",
+      "specialRequests": "Courtyard view requested",
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": false,
+      "source": "direct",
+      "createdAt": "2026-09-03T11:14:55.800Z",
+      "updatedAt": "2026-09-03T11:14:55.800Z"
+    },
+    {
+      "id": "res_1788439996758_c7idq",
+      "confirmationCode": "LMN-BI-1940",
+      "propertyId": "prop_birchwood",
+      "guestId": "gst_1788348527361_6ebud",
+      "roomTypeId": "rt_birch_std",
+      "assignedRoomId": "rm_birch_105",
+      "ratePlanId": "rp_prop_birchwood_promo",
+      "status": "confirmed",
+      "checkInDate": "2026-09-03",
+      "checkOutDate": "2026-09-05",
+      "adultCount": 2,
+      "childCount": 0,
+      "totalNights": 2,
+      "nightlyRate": 304,
+      "taxAmount": 72.96,
+      "resortFee": 70,
+      "totalAmount": 750.96,
+      "paidAmount": 750.96,
+      "paymentStatus": "paid",
+      "specialRequests": null,
+      "estimatedArrival": "15:00",
+      "digitalKeyIssued": false,
+      "source": "direct",
+      "createdAt": "2026-09-03T12:53:16.758Z",
+      "updatedAt": "2026-09-03T12:53:16.758Z"
+    }
+  ],
+  "folioCharges": [
+    {
+      "id": "fol_1",
+      "reservationId": "res_birch_inhouse_1",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge - Mountain View Suite (4 Nights)",
+      "amount": 2088,
+      "status": "posted",
+      "postedBy": "System Night Audit",
+      "createdAt": "2026-09-01"
+    },
+    {
+      "id": "fol_2",
+      "reservationId": "res_birch_inhouse_1",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 250.56,
+      "status": "posted",
+      "postedBy": "System Night Audit",
+      "createdAt": "2026-09-01"
+    },
+    {
+      "id": "fol_3",
+      "reservationId": "res_birch_inhouse_1",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Historic Aspen Ski & Resort Fee",
+      "amount": 140,
+      "status": "posted",
+      "postedBy": "System Night Audit",
+      "createdAt": "2026-09-01"
+    },
+    {
+      "id": "fol_4",
+      "reservationId": "res_birch_inhouse_1",
+      "propertyId": "prop_birchwood",
+      "category": "minibar",
+      "description": "Domaine Serene Pinot Noir & Artisanal Truffles",
+      "amount": 115,
+      "status": "posted",
+      "postedBy": "Minibar Restock Staff",
+      "createdAt": "2026-09-01T20:30:00Z"
+    },
+    {
+      "id": "fol_5",
+      "reservationId": "res_birch_inhouse_1",
+      "propertyId": "prop_birchwood",
+      "category": "dining",
+      "description": "Courtyard Fireside Dining & Cocktails",
+      "amount": 184.5,
+      "status": "posted",
+      "postedBy": "Fireside POS Bridge",
+      "createdAt": "2026-09-01T21:45:00Z"
+    },
+    {
+      "id": "fol_6",
+      "reservationId": "res_birch_inhouse_1",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Initial Deposit Authorized (Square Token)",
+      "amount": -2478.56,
+      "status": "paid",
+      "postedBy": "Front Desk",
+      "paymentMethod": "Credit Card (Square Token)",
+      "paymentRef": "sq_auth_98129031",
+      "createdAt": "2026-09-01"
+    },
+    {
+      "id": "fol_1788170825493_1",
+      "reservationId": "res_1788170825491_bwuc8",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Rate (3 nights @ $380/nt)",
+      "amount": 1140,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:07:05.491Z"
+    },
+    {
+      "id": "fol_1788170825493_2",
+      "reservationId": "res_1788170825491_bwuc8",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 136.8,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:07:05.491Z"
+    },
+    {
+      "id": "fol_1788170825493_3",
+      "reservationId": "res_1788170825491_bwuc8",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Boutique Property Resort Amenity Fee",
+      "amount": 105,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:07:05.491Z"
+    },
+    {
+      "id": "fol_1788170825493_4",
+      "reservationId": "res_1788170825491_bwuc8",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Prepaid Online - Card ending in 4242",
+      "amount": -1381.8,
+      "status": "paid",
+      "postedBy": "Square Gateway",
+      "paymentMethod": "Credit Card (Visa ending in 4242)",
+      "paymentRef": "txn_square_voamtgc3f",
+      "createdAt": "2026-08-31T10:07:05.491Z"
+    },
+    {
+      "id": "fol_1788170825505_2vdn",
+      "reservationId": "res_1788170825491_bwuc8",
+      "propertyId": "prop_birchwood",
+      "category": "minibar",
+      "description": "Champagne & Artisanal Chocolates",
+      "amount": 85,
+      "status": "posted",
+      "postedBy": "Minibar Restock Staff",
+      "createdAt": "2026-08-31T10:07:05.505Z"
+    },
+    {
+      "id": "fol_pay_1788170825512",
+      "reservationId": "res_1788170825491_bwuc8",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Settlement Payment - Visa ending in 4242",
+      "amount": -85,
+      "status": "paid",
+      "postedBy": "Front Desk",
+      "paymentMethod": "Credit Card (Square Token)",
+      "paymentRef": "txn_square_daui7r37h",
+      "createdAt": "2026-08-31T10:07:05.512Z"
+    },
+    {
+      "id": "fol_1788171882020_1",
+      "reservationId": "res_1788171882019_bpcbj",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (3 nts @ $380/nt)",
+      "amount": 1140,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:24:42.019Z"
+    },
+    {
+      "id": "fol_1788171882020_2",
+      "reservationId": "res_1788171882019_bpcbj",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 136.8,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:24:42.019Z"
+    },
+    {
+      "id": "fol_1788171882020_3",
+      "reservationId": "res_1788171882019_bpcbj",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 105,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:24:42.019Z"
+    },
+    {
+      "id": "fol_1788171882020_4",
+      "reservationId": "res_1788171882019_bpcbj",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Prepaid Online - Card ending in 4242",
+      "amount": -1381.8,
+      "status": "paid",
+      "postedBy": "Square Gateway",
+      "paymentMethod": "Credit Card (Visa ending in 4242)",
+      "paymentRef": "txn_square_v2d0ew427",
+      "createdAt": "2026-08-31T10:24:42.019Z"
+    },
+    {
+      "id": "fol_1788171882039_00ks",
+      "reservationId": "res_1788171882019_bpcbj",
+      "propertyId": "prop_birchwood",
+      "category": "spa",
+      "description": "Alpine Deep Tissue Massage & Cedar Steam",
+      "amount": 195,
+      "status": "posted",
+      "postedBy": "The Birchwood Spa Concierge",
+      "createdAt": "2026-08-31T10:24:42.039Z"
+    },
+    {
+      "id": "fol_pay_1788171882048",
+      "reservationId": "res_1788171882019_bpcbj",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Settlement Payment - Visa ending in 4242",
+      "amount": -195,
+      "status": "paid",
+      "postedBy": "Front Desk",
+      "paymentMethod": "Credit Card (Square Token)",
+      "paymentRef": "txn_square_b2j7dcl2w",
+      "createdAt": "2026-08-31T10:24:42.048Z"
+    },
+    {
+      "id": "fol_1788172004697_1",
+      "reservationId": "res_1788172004696_s5y5y",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (3 nts @ $380/nt)",
+      "amount": 1140,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:26:44.696Z"
+    },
+    {
+      "id": "fol_1788172004697_2",
+      "reservationId": "res_1788172004696_s5y5y",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 136.8,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:26:44.696Z"
+    },
+    {
+      "id": "fol_1788172004697_3",
+      "reservationId": "res_1788172004696_s5y5y",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 105,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:26:44.696Z"
+    },
+    {
+      "id": "fol_1788172004697_4",
+      "reservationId": "res_1788172004696_s5y5y",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Prepaid Online - Card ending in 4242",
+      "amount": -1381.8,
+      "status": "paid",
+      "postedBy": "Square Gateway",
+      "paymentMethod": "Credit Card (Visa ending in 4242)",
+      "paymentRef": "txn_square_ntwlu3gsp",
+      "createdAt": "2026-08-31T10:26:44.696Z"
+    },
+    {
+      "id": "fol_1788172004712_4xj8",
+      "reservationId": "res_1788172004696_s5y5y",
+      "propertyId": "prop_birchwood",
+      "category": "spa",
+      "description": "Alpine Deep Tissue Massage & Cedar Steam",
+      "amount": 195,
+      "status": "posted",
+      "postedBy": "The Birchwood Spa Concierge",
+      "createdAt": "2026-08-31T10:26:44.712Z"
+    },
+    {
+      "id": "fol_pay_1788172004720",
+      "reservationId": "res_1788172004696_s5y5y",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Settlement Payment - Visa ending in 4242",
+      "amount": -195,
+      "status": "paid",
+      "postedBy": "Front Desk",
+      "paymentMethod": "Credit Card (Square Token)",
+      "paymentRef": "txn_square_vnvg6z4uh",
+      "createdAt": "2026-08-31T10:26:44.720Z"
+    },
+    {
+      "id": "fol_1788172478654_1",
+      "reservationId": "res_1788172478652_x0gtv",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (3 nts @ $380/nt)",
+      "amount": 1140,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:34:38.652Z"
+    },
+    {
+      "id": "fol_1788172478654_2",
+      "reservationId": "res_1788172478652_x0gtv",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 136.8,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:34:38.652Z"
+    },
+    {
+      "id": "fol_1788172478654_3",
+      "reservationId": "res_1788172478652_x0gtv",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 105,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-08-31T10:34:38.652Z"
+    },
+    {
+      "id": "fol_1788172478654_4",
+      "reservationId": "res_1788172478652_x0gtv",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Prepaid Online - Card ending in 4242",
+      "amount": -1381.8,
+      "status": "paid",
+      "postedBy": "Square Gateway",
+      "paymentMethod": "Credit Card (Visa ending in 4242)",
+      "paymentRef": "txn_square_872mcr9hw",
+      "createdAt": "2026-08-31T10:34:38.652Z"
+    },
+    {
+      "id": "fol_1788172478674_dd0i",
+      "reservationId": "res_1788172478652_x0gtv",
+      "propertyId": "prop_birchwood",
+      "category": "spa",
+      "description": "Alpine Deep Tissue Massage & Cedar Steam",
+      "amount": 195,
+      "status": "posted",
+      "postedBy": "The Birchwood Spa Concierge",
+      "createdAt": "2026-08-31T10:34:38.674Z"
+    },
+    {
+      "id": "fol_pay_1788172478684",
+      "reservationId": "res_1788172478652_x0gtv",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Settlement Payment - Visa ending in 4242",
+      "amount": -195,
+      "status": "paid",
+      "postedBy": "Front Desk",
+      "paymentMethod": "Credit Card (Square Token)",
+      "paymentRef": "txn_square_61u3qow8o",
+      "createdAt": "2026-08-31T10:34:38.684Z"
+    },
+    {
+      "id": "fol_1788249545697_1",
+      "reservationId": "res_1788249545693_20av9",
+      "propertyId": "prop_copperline",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (2 nts @ $390/nt)",
+      "amount": 780,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T07:59:05.693Z"
+    },
+    {
+      "id": "fol_1788249545697_2",
+      "reservationId": "res_1788249545693_20av9",
+      "propertyId": "prop_copperline",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 93.6,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T07:59:05.693Z"
+    },
+    {
+      "id": "fol_1788249545697_3",
+      "reservationId": "res_1788249545693_20av9",
+      "propertyId": "prop_copperline",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 70,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T07:59:05.693Z"
+    },
+    {
+      "id": "fol_1788249545697_4",
+      "reservationId": "res_1788249545693_20av9",
+      "propertyId": "prop_copperline",
+      "category": "payment",
+      "description": "Stripe Live Payment (pi_3UAmaxLMJQxu2egl0nnW7bc9) - Card ending in 4242",
+      "amount": -943.6,
+      "status": "paid",
+      "postedBy": "Stripe Sandbox",
+      "paymentMethod": "Credit Card (Visa ending in 4242)",
+      "paymentRef": "ch_3UAmaxLMJQxu2egl0owKhgQQ",
+      "createdAt": "2026-09-01T07:59:05.693Z"
+    },
+    {
+      "id": "fol_1788251864812_1",
+      "reservationId": "res_1788251864802_9fyjn",
+      "propertyId": "prop_copperline",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (2 nts @ $260/nt)",
+      "amount": 520,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T08:37:44.802Z"
+    },
+    {
+      "id": "fol_1788251864812_2",
+      "reservationId": "res_1788251864802_9fyjn",
+      "propertyId": "prop_copperline",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 62.4,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T08:37:44.802Z"
+    },
+    {
+      "id": "fol_1788251864812_3",
+      "reservationId": "res_1788251864802_9fyjn",
+      "propertyId": "prop_copperline",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 70,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T08:37:44.802Z"
+    },
+    {
+      "id": "fol_1788251864812_4",
+      "reservationId": "res_1788251864802_9fyjn",
+      "propertyId": "prop_copperline",
+      "category": "payment",
+      "description": "Stripe Live Payment (pi_3UAnCNLMJQxu2egl14sjLOCL) - Card ending in 4242",
+      "amount": -652.4,
+      "status": "paid",
+      "postedBy": "Stripe Sandbox",
+      "paymentMethod": "Credit Card (Visa ending in 4242)",
+      "paymentRef": "ch_3UAnCNLMJQxu2egl1lGkq8cz",
+      "createdAt": "2026-09-01T08:37:44.802Z"
+    },
+    {
+      "id": "fol_1788258290000_1",
+      "reservationId": "res_1788258289997_att10",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (2 nts @ $380/nt)",
+      "amount": 760,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T10:24:49.997Z"
+    },
+    {
+      "id": "fol_1788258290000_2",
+      "reservationId": "res_1788258289997_att10",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 91.2,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T10:24:49.997Z"
+    },
+    {
+      "id": "fol_1788258290000_3",
+      "reservationId": "res_1788258289997_att10",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 70,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T10:24:49.997Z"
+    },
+    {
+      "id": "fol_1788258290000_4",
+      "reservationId": "res_1788258289997_att10",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Stripe Live Payment (pi_3UAos0LMJQxu2egl1dYakKJd) - Card ending in 4242",
+      "amount": -921.2,
+      "status": "paid",
+      "postedBy": "Stripe Sandbox",
+      "paymentMethod": "Credit Card (Visa ending in 4242)",
+      "paymentRef": "ch_3UAos0LMJQxu2egl1m8LWeyE",
+      "createdAt": "2026-09-01T10:24:49.997Z"
+    },
+    {
+      "id": "fol_1788259296288_1",
+      "reservationId": "res_1788259296284_9w6o4",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (1 nts @ $493/nt)",
+      "amount": 493,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T10:41:36.284Z"
+    },
+    {
+      "id": "fol_1788259296288_2",
+      "reservationId": "res_1788259296284_9w6o4",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 59.16,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T10:41:36.284Z"
+    },
+    {
+      "id": "fol_1788259296288_3",
+      "reservationId": "res_1788259296284_9w6o4",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 35,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-01T10:41:36.284Z"
+    },
+    {
+      "id": "fol_1788259296288_4",
+      "reservationId": "res_1788259296284_9w6o4",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Stripe Live Payment (pi_3UAp8ELMJQxu2egl11C55M2i) - Card ending in 4242",
+      "amount": -587.16,
+      "status": "paid",
+      "postedBy": "Stripe Sandbox",
+      "paymentMethod": "Credit Card (Visa ending in 4242)",
+      "paymentRef": "ch_3UAp8ELMJQxu2egl13Q8mshv",
+      "createdAt": "2026-09-01T10:41:36.284Z"
+    },
+    {
+      "id": "fol_1788335182309_1",
+      "reservationId": "res_1788335182298_q3o5g",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (2 nts @ $323/nt)",
+      "amount": 646,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-02T07:46:22.298Z"
+    },
+    {
+      "id": "fol_1788335182309_2",
+      "reservationId": "res_1788335182298_q3o5g",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 77.52,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-02T07:46:22.298Z"
+    },
+    {
+      "id": "fol_1788335182309_3",
+      "reservationId": "res_1788335182298_q3o5g",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 70,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-02T07:46:22.298Z"
+    },
+    {
+      "id": "fol_1788335182309_4",
+      "reservationId": "res_1788335182298_q3o5g",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Stripe Live Payment (pi_3UB8sCLMJQxu2egl1KQIirF7) - Card ending in 4242",
+      "amount": -793.52,
+      "status": "paid",
+      "postedBy": "Stripe Sandbox",
+      "paymentMethod": "Credit Card (Visa ending in 4242)",
+      "paymentRef": "ch_3UB8sCLMJQxu2egl1vSMVMyD",
+      "createdAt": "2026-09-02T07:46:22.298Z"
+    },
+    {
+      "id": "fol_1788348527382_1",
+      "reservationId": "res_1788348527372_mqr20",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (3 nts @ $380/nt)",
+      "amount": 1140,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-02T11:28:47.372Z"
+    },
+    {
+      "id": "fol_1788348527382_2",
+      "reservationId": "res_1788348527372_mqr20",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 136.8,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-02T11:28:47.372Z"
+    },
+    {
+      "id": "fol_1788348527382_3",
+      "reservationId": "res_1788348527372_mqr20",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 105,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-02T11:28:47.372Z"
+    },
+    {
+      "id": "fol_1788348527382_4",
+      "reservationId": "res_1788348527372_mqr20",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Payment Received — Card ending in 4242",
+      "amount": -1381.8,
+      "status": "paid",
+      "postedBy": "Online Prepayment",
+      "paymentMethod": "Card ending in 4242",
+      "paymentRef": "AUTH-4242",
+      "createdAt": "2026-09-02T11:28:47.372Z"
+    },
+    {
+      "id": "fol_1788348786698_wfjv",
+      "reservationId": "res_birch_inhouse_1",
+      "propertyId": "prop_birchwood",
+      "category": "dining",
+      "description": "In-Room Dining — Artisan Dinner",
+      "amount": 65,
+      "status": "posted",
+      "postedBy": "Front Desk Concierge",
+      "createdAt": "2026-09-02T11:33:06.698Z"
+    },
+    {
+      "id": "fol_1788351411027_vf8a",
+      "reservationId": "res_1788335182298_q3o5g",
+      "propertyId": "prop_birchwood",
+      "category": "minibar",
+      "description": "Premium Minibar Re-stock (Champagne & Artisan Snacks)",
+      "amount": 48,
+      "status": "posted",
+      "postedBy": "Front Desk Concierge",
+      "createdAt": "2026-09-02T12:16:51.027Z"
+    },
+    {
+      "id": "fol_1788426874140_1",
+      "reservationId": "res_1788426874129_imc4q",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (1 nts @ $580/nt)",
+      "amount": 580,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T09:14:34.129Z"
+    },
+    {
+      "id": "fol_1788426874140_2",
+      "reservationId": "res_1788426874129_imc4q",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 69.6,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T09:14:34.129Z"
+    },
+    {
+      "id": "fol_1788426874140_3",
+      "reservationId": "res_1788426874129_imc4q",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 35,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T09:14:34.129Z"
+    },
+    {
+      "id": "fol_1788426874140_4",
+      "reservationId": "res_1788426874129_imc4q",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Payment Received — Card ending in 4242",
+      "amount": -684.6,
+      "status": "paid",
+      "postedBy": "Online Prepayment",
+      "paymentMethod": "Card ending in 4242",
+      "paymentRef": "AUTH-4242",
+      "createdAt": "2026-09-03T09:14:34.129Z"
+    },
+    {
+      "id": "fol_1788429149746_1",
+      "reservationId": "res_1788429149738_y00kz",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (1 nts @ $380/nt)",
+      "amount": 380,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T09:52:29.738Z"
+    },
+    {
+      "id": "fol_1788429149746_2",
+      "reservationId": "res_1788429149738_y00kz",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 45.6,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T09:52:29.738Z"
+    },
+    {
+      "id": "fol_1788429149746_3",
+      "reservationId": "res_1788429149738_y00kz",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 35,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T09:52:29.738Z"
+    },
+    {
+      "id": "fol_1788429149746_4",
+      "reservationId": "res_1788429149738_y00kz",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Payment Received — Card ending in 4242",
+      "amount": -460.6,
+      "status": "paid",
+      "postedBy": "Online Prepayment",
+      "paymentMethod": "Card ending in 4242",
+      "paymentRef": "AUTH-4242",
+      "createdAt": "2026-09-03T09:52:29.738Z"
+    },
+    {
+      "id": "fol_1788434095806_1",
+      "reservationId": "res_1788434095800_mj4kt",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (3 nts @ $380/nt)",
+      "amount": 1140,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T11:14:55.800Z"
+    },
+    {
+      "id": "fol_1788434095807_2",
+      "reservationId": "res_1788434095800_mj4kt",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 136.8,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T11:14:55.800Z"
+    },
+    {
+      "id": "fol_1788434095807_3",
+      "reservationId": "res_1788434095800_mj4kt",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 105,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T11:14:55.800Z"
+    },
+    {
+      "id": "fol_1788434095807_4",
+      "reservationId": "res_1788434095800_mj4kt",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Payment Received — Card ending in 4242",
+      "amount": -1381.8,
+      "status": "paid",
+      "postedBy": "Online Prepayment",
+      "paymentMethod": "Card ending in 4242",
+      "paymentRef": "AUTH-4242",
+      "createdAt": "2026-09-03T11:14:55.800Z"
+    },
+    {
+      "id": "fol_1788439996768_1",
+      "reservationId": "res_1788439996758_c7idq",
+      "propertyId": "prop_birchwood",
+      "category": "room_rate",
+      "description": "Nightly Room Charge (2 nts @ $304/nt)",
+      "amount": 608,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T12:53:16.758Z"
+    },
+    {
+      "id": "fol_1788439996768_2",
+      "reservationId": "res_1788439996758_c7idq",
+      "propertyId": "prop_birchwood",
+      "category": "tax",
+      "description": "State & Lodging Taxes (12%)",
+      "amount": 72.96,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T12:53:16.758Z"
+    },
+    {
+      "id": "fol_1788439996768_3",
+      "reservationId": "res_1788439996758_c7idq",
+      "propertyId": "prop_birchwood",
+      "category": "resort_fee",
+      "description": "Property Resort & Amenity Fee",
+      "amount": 70,
+      "status": "posted",
+      "postedBy": "Booking Engine",
+      "createdAt": "2026-09-03T12:53:16.758Z"
+    },
+    {
+      "id": "fol_1788439996768_4",
+      "reservationId": "res_1788439996758_c7idq",
+      "propertyId": "prop_birchwood",
+      "category": "payment",
+      "description": "Payment Received — Card ending in 4242",
+      "amount": -750.96,
+      "status": "paid",
+      "postedBy": "Online Prepayment",
+      "paymentMethod": "Card ending in 4242",
+      "paymentRef": "AUTH-4242",
+      "createdAt": "2026-09-03T12:53:16.758Z"
+    },
+    {
+      "id": "fol_1788440093800_i7ha",
+      "reservationId": "res_1788348527372_mqr20",
+      "propertyId": "prop_birchwood",
+      "category": "dining",
+      "description": "In-Room Dining — Artisan Dinner",
+      "amount": 65,
+      "status": "posted",
+      "postedBy": "Front Desk Concierge",
+      "createdAt": "2026-09-03T12:54:53.800Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "usr_marcus",
+      "email": "marcus@lumenhospitality.co",
+      "name": "Marcus Weil",
+      "role": "owner",
+      "propertyId": null,
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-08-31T12:03:15.010Z",
+      "passwordHash": "$2b$10$tFIrEOVxToaAp412eno7eu3PrcWCRUtchBQ12AKzhk/Yb.9haeyRm"
+    },
+    {
+      "id": "usr_gm_birchwood",
+      "email": "sarah.jenkins@thebirchwoodaspen.com",
+      "name": "Sarah Jenkins (GM)",
+      "role": "gm",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-08-31T12:03:15.010Z",
+      "passwordHash": "$2b$10$iRKxJUkpQQztyfeSfJo26eaWOp/yYtH5zicfd38YiBIQk9714UKFe"
+    },
+    {
+      "id": "usr_fd_birchwood",
+      "email": "liam.callahan@thebirchwoodaspen.com",
+      "name": "Liam Callahan (Front Desk)",
+      "role": "front_desk",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-08-31T12:03:15.010Z",
+      "passwordHash": "$2b$10$siF5mRLRSdTFoj9uHYd.Le.LYQ52i68BrAKDlXqFC89h6Xqqn2FXm"
+    },
+    {
+      "id": "usr_hk_rosa",
+      "email": "rosa.mendez@thebirchwoodaspen.com",
+      "name": "Rosa Mendez (Housekeeping Supervisor)",
+      "role": "housekeeping",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "es",
+      "createdAt": "2026-08-31T12:03:15.010Z",
+      "passwordHash": "$2b$10$bKYH4erhJOQ/5KmlxfJGKO5bZf76M.PJN1LvT8Q44dHx3Hzn1fCg6"
+    },
+    {
+      "id": "usr_maint_pete",
+      "email": "pete.kovacs@thebirchwoodaspen.com",
+      "name": "Pete Kovacs (Lead Engineer)",
+      "role": "maintenance",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-08-31T12:03:15.010Z",
+      "passwordHash": "$2b$10$uiNzO0/P8LC.4aiqWDuMBOjA6IHb4CZdLNHvaG5L/1c7YaptqGqD6"
+    },
+    {
+      "id": "usr_rev_claire",
+      "email": "claire.dubois@lumenhospitality.co",
+      "name": "Claire Dubois (Revenue Manager)",
+      "role": "revenue_manager",
+      "propertyId": null,
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-08-31T12:03:15.010Z",
+      "passwordHash": "$2b$10$.fdWDilnDJGbrzdCKa55JuQX7J0aRMHYj0Ujoa8HrWMGOi88HYwuG"
+    },
+    {
+      "id": "usr_guest_alexandra",
+      "email": "alexandra.vance@techventures.io",
+      "passwordHash": "$2b$10$lgg.OtRQIHx5c.wFpu.UgeeBnyh6T99v.vVm5TUJGa.azj3Dnekh2",
+      "name": "Alexandra Vance (VIP Guest)",
+      "role": "guest",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-08-31T12:03:15.010Z"
+    },
+    {
+      "id": "usr_1788177346087_t7j0",
+      "email": "traveler_1788177345937@alpineluxury.com",
+      "passwordHash": "$2b$10$SbHp7FOwGxGMQEF6gjH3S.2w/039vf7yH.HNJlpYK5ZCZYPMPOVgi",
+      "name": "Eleanor Vance",
+      "role": "guest",
+      "propertyId": null,
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-08-31T11:55:46.087Z"
+    },
+    {
+      "id": "usr_1788177689231_5gs2",
+      "email": "traveler_1788177689069@alpineluxury.com",
+      "passwordHash": "$2b$10$jtEipQlmppvMh44Ck2rrN.sGHe89q/jPypQFksf3a49GHH8ZEupG6",
+      "name": "Eleanor Vance",
+      "role": "guest",
+      "propertyId": null,
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-08-31T12:01:29.231Z"
+    },
+    {
+      "id": "usr_1788247153106_dilk",
+      "email": "zainchoudery786@gmail.com",
+      "passwordHash": "$2b$10$qLg3Wg2dQTJuibE22MUb/e1a9fPQ4j.F8xxkPcZnwUiUadQ/Ymtii",
+      "name": "Muhammad Zain",
+      "role": "guest",
+      "propertyId": null,
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-01T07:19:13.106Z"
+    },
+    {
+      "id": "usr_1788334928305_1qb5",
+      "email": "zain3219235@gmail.com",
+      "passwordHash": "$2b$10$akzUJ6oczeh.AhMBThlspOjVoPZbD.dYXuiIAYFMv7M8ky6TH6CKq",
+      "name": "Zain",
+      "role": "guest",
+      "propertyId": null,
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T07:42:08.305Z"
+    },
+    {
+      "id": "usr_1788335127432_jimn",
+      "email": "guest@lumerstay.com",
+      "passwordHash": "$2b$10$dcDsGHo210Irr.PXXPW9G.xT.eyk./WJgcUp.3XRqJe5FA3xecDja",
+      "name": "Zain",
+      "role": "guest",
+      "propertyId": null,
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T07:45:27.432Z"
+    },
+    {
+      "id": "usr_owner",
+      "email": "owner@lumenstay.com",
+      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "name": "Marcus Weil (Owner)",
+      "role": "owner",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "usr_gm",
+      "email": "gm@lumenstay.com",
+      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "name": "Sarah Jenkins (General Manager)",
+      "role": "gm",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "usr_frontdesk",
+      "email": "frontdesk@lumenstay.com",
+      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "name": "Liam Callahan (Front Desk)",
+      "role": "front_desk",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "usr_supervisor",
+      "email": "supervisor@lumenstay.com",
+      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "name": "Rosa Mendez (HK Supervisor)",
+      "role": "housekeeping_supervisor",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "usr_housekeeper",
+      "email": "housekeeper@lumenstay.com",
+      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "name": "Elena Ramos (Room Attendant)",
+      "role": "housekeeping",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "usr_maintenance",
+      "email": "maintenance@lumenstay.com",
+      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "name": "Pete Kovacs (Lead Engineer)",
+      "role": "maintenance",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "usr_revenue",
+      "email": "revenue@lumenstay.com",
+      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "name": "Claire Dubois (Revenue Manager)",
+      "role": "revenue_manager",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    },
+    {
+      "id": "usr_guest",
+      "email": "guest@lumenstay.com",
+      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "name": "Alexandra Vance (Guest)",
+      "role": "guest",
+      "propertyId": "prop_birchwood",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "preferredLanguage": "en",
+      "createdAt": "2026-09-02T10:59:37.904Z"
+    }
+  ],
+  "maintenanceTickets": [
+    {
+      "id": "tkt_1",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_214",
+      "title": "Radiator Valve Scheduled Bleeding (Room 214 Quirk)",
+      "description": "Room 214 historic cast-iron radiator requires periodic bleeding to prevent whistling before weekend guest check-in.",
+      "priority": "medium",
+      "status": "open",
+      "category": "HVAC / Heating",
+      "photoUrl": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80",
+      "reportedBy": "Sarah Jenkins (GM)",
+      "assignedTo": "Pete Kovacs (Lead Engineer)",
+      "notes": "Use standard 1/8\" brass bleeder key in engineer box. Bleed until steady heat stream.",
+      "resolvedAt": null,
+      "createdAt": "2026-08-31T10:06:11.227Z"
+    },
+    {
+      "id": "tkt_2",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_105",
+      "title": "Antique Window Sash Inspection",
+      "description": "Courtyard-facing antique window latch needs tightening before high-wind forecast.",
+      "priority": "low",
+      "status": "in_progress",
+      "category": "Carpentry / Fixtures",
+      "photoUrl": null,
+      "reportedBy": "Liam Callahan (Front Desk)",
+      "assignedTo": "Pete Kovacs (Lead Engineer)",
+      "notes": null,
+      "resolvedAt": null,
+      "createdAt": "2026-08-30"
+    },
+    {
+      "id": "tkt_1788428273965_2j1e",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_102",
+      "title": "Lighting & Electrical: Suite #102",
+      "description": "ff",
+      "priority": "medium",
+      "status": "resolved",
+      "category": "Lighting & Electrical",
+      "reportedBy": "Housekeeping Attendant",
+      "notes": "Repairs completed by on-duty engineering",
+      "resolvedAt": "2026-09-03T09:39:00.818Z",
+      "createdAt": "2026-09-03T09:37:53.965Z"
+    },
+    {
+      "id": "tkt_1788428414712_japa",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_101",
+      "title": "HVAC & Climate Control: Suite #101",
+      "description": "bfbfds",
+      "priority": "medium",
+      "status": "open",
+      "category": "HVAC & Climate Control",
+      "reportedBy": "Housekeeping Attendant",
+      "notes": null,
+      "resolvedAt": null,
+      "createdAt": "2026-09-03T09:40:14.713Z"
+    },
+    {
+      "id": "tkt_1788440213438_huyr",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_101",
+      "title": "Lighting & Electrical: Suite #101",
+      "description": "issue",
+      "priority": "medium",
+      "status": "resolved",
+      "category": "Lighting & Electrical",
+      "reportedBy": "Housekeeping Attendant",
+      "notes": "Repairs completed by on-duty engineering",
+      "resolvedAt": "2026-09-03T12:57:14.503Z",
+      "createdAt": "2026-09-03T12:56:53.438Z"
+    }
+  ],
+  "housekeepingTasks": [
+    {
+      "id": "tsk_1",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_104",
+      "assignedTo": "usr_hk_rosa",
+      "taskType": "checkout_clean",
+      "status": "pending",
+      "priority": "vip",
+      "notes": "Guest departing today at 11:00 AM. Next guest arriving 16:00.",
+      "completedAt": null,
+      "createdAt": "2026-08-31T10:06:11.227Z"
+    },
+    {
+      "id": "tsk_2",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_201",
+      "assignedTo": "usr_hk_rosa",
+      "taskType": "stayover",
+      "status": "in_progress",
+      "priority": "vip",
+      "notes": "Alexandra Vance in-house VIP. Replenish sparkling water and fresh linens.",
+      "completedAt": null,
+      "createdAt": "2026-08-31T10:06:11.227Z"
+    },
+    {
+      "id": "tsk_3",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_102",
+      "assignedTo": "usr_hk_rosa",
+      "taskType": "touchup",
+      "status": "completed",
+      "priority": "normal",
+      "notes": "Inspected for today 16:00 arrival Marcus Sterling.",
+      "completedAt": "2026-08-31T10:30:00Z",
+      "createdAt": "2026-08-30"
+    },
+    {
+      "id": "tsk_1788348797770",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_201",
+      "taskType": "checkout_clean",
+      "status": "pending",
+      "priority": "normal",
+      "notes": "Guest checkout turnover clean",
+      "createdAt": "2026-09-02T11:33:17.764Z"
+    },
+    {
+      "id": "tsk_1788426999027",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_207",
+      "taskType": "checkout_clean",
+      "status": "pending",
+      "priority": "normal",
+      "notes": "Guest checkout turnover clean",
+      "createdAt": "2026-09-03T09:16:39.013Z"
+    },
+    {
+      "id": "tsk_1788427701681",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_102",
+      "taskType": "checkout_clean",
+      "status": "pending",
+      "priority": "normal",
+      "notes": "Guest checkout turnover clean",
+      "createdAt": "2026-09-03T09:28:21.667Z"
+    },
+    {
+      "id": "tsk_1788440106372",
+      "propertyId": "prop_birchwood",
+      "roomId": "rm_birch_103",
+      "taskType": "checkout_clean",
+      "status": "pending",
+      "priority": "normal",
+      "notes": "Guest checkout turnover clean",
+      "createdAt": "2026-09-03T12:55:06.342Z"
+    }
+  ]
+}

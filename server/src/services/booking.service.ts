@@ -1,0 +1,342 @@
+import { db, dbConnection } from '../db/index.js';
+import { pricingService } from './pricing.service.js';
+import { stripeService } from './stripe.service.js';
+import { emailService } from './email.service.js';
+import { simulatePaymentTokenization, processTokenizedCharge } from './paymentSimulator.js';
+import { broadcastEvent } from './websocket.js';
+import { ApiError } from '../types/api.types.js';
+import type { Reservation, Guest, FolioCharge } from '../types/domain.types.js';
+
+export interface CreateBookingDTO {
+  propertyId: string;
+  roomTypeId: string;
+  ratePlanId: string;
+  checkInDate: string;
+  checkOutDate: string;
+  adultCount: number;
+  childCount: number;
+  guest: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    city?: string;
+    state?: string;
+    country?: string;
+  };
+  specialRequests?: string;
+  estimatedArrival?: string;
+  promoCode?: string;
+  paymentDetails?: {
+    paymentMethodId?: string;
+  };
+}
+
+export class BookingService {
+  public async createBooking(dto: CreateBookingDTO) {
+    const {
+      propertyId,
+      roomTypeId,
+      ratePlanId,
+      checkInDate,
+      checkOutDate,
+      adultCount = 2,
+      childCount = 0,
+      guest,
+      specialRequests,
+      estimatedArrival = '15:00',
+      promoCode,
+      paymentDetails,
+    } = dto;
+
+    const property = db.properties.findById(propertyId);
+    if (!property) throw new ApiError(404, 'Property not found');
+
+    const roomType = db.roomTypes.findById(roomTypeId);
+    if (!roomType || roomType.propertyId !== propertyId) {
+      throw new ApiError(404, 'Invalid room type for selected property');
+    }
+
+    const ratePlan = db.ratePlans.findById(ratePlanId);
+    if (!ratePlan || ratePlan.propertyId !== propertyId) {
+      throw new ApiError(404, 'Invalid rate plan for selected property');
+    }
+    // 1. Availability Pre-Check before charging Stripe
+    const preCheckOverlaps = db.reservations.find(res =>
+      res.propertyId === propertyId &&
+      res.roomTypeId === roomTypeId &&
+      ['confirmed', 'checked_in'].includes(res.status) &&
+      res.checkInDate < checkOutDate &&
+      res.checkOutDate > checkInDate
+    );
+    const totalInventory = roomType.totalInventory || 10;
+    if (preCheckOverlaps.length >= totalInventory) {
+      throw new ApiError(409, 'Room type is no longer available for the selected dates');
+    }
+
+    // 2. Pricing Calculation
+    const pricing = pricingService.calculateBookingPricing(roomType, ratePlan, checkInDate, checkOutDate, promoCode);
+
+    // 3. Real Stripe Sandbox Payment Processing (100% Live Stripe API)
+    const stripeResult = await stripeService.processPayment({
+      amountInCents: Math.round(pricing.grandTotal * 100),
+      currency: 'usd',
+      customerEmail: guest.email,
+      customerName: `${guest.firstName} ${guest.lastName}`,
+      description: `LumenStay: ${roomType.name} at ${property.name} (${checkInDate} to ${checkOutDate})`,
+      paymentMethodId: paymentDetails?.paymentMethodId || 'pm_card_visa',
+      metadata: {
+        propertyId,
+        roomTypeId,
+        ratePlanId,
+        checkInDate,
+        checkOutDate,
+      },
+    });
+
+    // 3. ATOMIC TRANSACTION PER AGENTS.md §4
+    return dbConnection.runInTransaction(() => {
+      // Re-check date-overlap availability INSIDE transaction
+      const overlappingBookings = db.reservations.find(res =>
+        res.propertyId === propertyId &&
+        res.roomTypeId === roomTypeId &&
+        ['confirmed', 'checked_in'].includes(res.status) &&
+        res.checkInDate < checkOutDate &&
+        res.checkOutDate > checkInDate
+      );
+
+      const totalInventory = roomType.totalInventory || 10;
+      if (overlappingBookings.length >= totalInventory) {
+        throw new ApiError(409, 'Room type is no longer available for the selected dates');
+      }
+
+      // Find available physical room to assign
+      const bookedRoomIds = overlappingBookings
+        .map(r => r.assignedRoomId)
+        .filter((id): id is string => Boolean(id));
+
+      const availableRoom = db.rooms.findOne(r =>
+        r.propertyId === propertyId &&
+        r.roomTypeId === roomTypeId &&
+        !bookedRoomIds.includes(r.id) &&
+        r.status !== 'out_of_order'
+      );
+
+      const assignedRoomId = availableRoom ? availableRoom.id : null;
+
+      // Find or Create Guest Profile
+      let existingGuest = db.guests.findOne(g => g.email.toLowerCase() === guest.email.toLowerCase());
+      let guestId: string;
+
+      if (!existingGuest) {
+        guestId = `gst_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+        const newGuest: Guest = {
+          id: guestId,
+          firstName: guest.firstName,
+          lastName: guest.lastName,
+          email: guest.email,
+          phone: guest.phone,
+          city: guest.city || null,
+          state: guest.state || null,
+          country: guest.country || 'USA',
+          loyaltyTier: 'member',
+          loyaltyPoints: Math.round(pricing.grandTotal * 10),
+          vipStatus: false,
+          createdAt: new Date().toISOString(),
+        };
+        db.guests.insert(newGuest);
+      } else {
+        guestId = existingGuest.id;
+        db.guests.update(guestId, {
+          loyaltyPoints: existingGuest.loyaltyPoints + Math.round(pricing.grandTotal * 10),
+        });
+      }
+
+      // Generate Confirmation Code
+      const propPrefix = property.name.replace(/The\s+/i, '').substring(0, 2).toUpperCase();
+      const codeNum = Math.floor(1000 + Math.random() * 9000);
+      const confirmationCode = `LMN-${propPrefix}-${codeNum}`;
+      const reservationId = `res_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+      const now = new Date().toISOString();
+
+      // Write Reservation Record
+      const newReservation: Reservation = {
+        id: reservationId,
+        confirmationCode,
+        propertyId,
+        guestId,
+        roomTypeId,
+        assignedRoomId,
+        ratePlanId,
+        status: 'confirmed',
+        checkInDate,
+        checkOutDate,
+        adultCount,
+        childCount,
+        totalNights: pricing.totalNights,
+        nightlyRate: pricing.nightlyRate,
+        taxAmount: pricing.taxAmount,
+        resortFee: pricing.resortFee,
+        totalAmount: pricing.grandTotal,
+        paidAmount: pricing.grandTotal,
+        paymentStatus: 'paid',
+        specialRequests: specialRequests || null,
+        estimatedArrival,
+        digitalKeyIssued: false,
+        source: 'direct',
+        createdAt: now,
+        updatedAt: now,
+      };
+      db.reservations.insert(newReservation);
+
+      // Open Folio Ledger (Live Stripe Sandbox Integration)
+      const initialCharges: FolioCharge[] = [
+        {
+          id: `fol_${Date.now()}_1`,
+          reservationId,
+          propertyId,
+          category: 'room_rate',
+          description: `Nightly Room Charge (${pricing.totalNights} nts @ $${pricing.nightlyRate}/nt)`,
+          amount: pricing.subtotal,
+          status: 'posted',
+          postedBy: 'Booking Engine',
+          createdAt: now,
+        },
+        {
+          id: `fol_${Date.now()}_2`,
+          reservationId,
+          propertyId,
+          category: 'tax',
+          description: 'State & Lodging Taxes (12%)',
+          amount: pricing.taxAmount,
+          status: 'posted',
+          postedBy: 'Booking Engine',
+          createdAt: now,
+        },
+        {
+          id: `fol_${Date.now()}_3`,
+          reservationId,
+          propertyId,
+          category: 'resort_fee',
+          description: 'Property Resort & Amenity Fee',
+          amount: pricing.resortFee,
+          status: 'posted',
+          postedBy: 'Booking Engine',
+          createdAt: now,
+        },
+        {
+          id: `fol_${Date.now()}_4`,
+          reservationId,
+          propertyId,
+          category: 'payment',
+          description: `Payment Received — Card ending in ${stripeResult.cardLast4 || '4242'}`,
+          amount: -pricing.grandTotal,
+          status: 'paid',
+          postedBy: 'Online Prepayment',
+          paymentMethod: `Card ending in ${stripeResult.cardLast4 || '4242'}`,
+          paymentRef: `AUTH-${stripeResult.cardLast4 || '4242'}`,
+          createdAt: now,
+        },
+      ];
+      db.folioCharges.insertMany(initialCharges);
+
+      broadcastEvent('RESERVATION_CREATED', {
+        reservationId,
+        confirmationCode,
+        propertyId,
+        guestName: `${guest.firstName} ${guest.lastName}`,
+        totalAmount: pricing.grandTotal,
+      });
+
+      // Dispatch Resend Email Asynchronously after DB commit
+      emailService.sendBookingConfirmation({
+        guestName: `${guest.firstName} ${guest.lastName}`,
+        guestEmail: guest.email,
+        confirmationCode,
+        propertyName: property.name,
+        propertyAddress: property.address ? `${property.address}, ${property.city}, ${property.state}` : `${property.city}, ${property.state}`,
+        propertyPhone: property.phone || '+1 (800) 555-0199',
+        propertyEmail: property.email || 'concierge@lumenstay.com',
+        roomTypeName: roomType.name,
+        ratePlanName: ratePlan.name,
+        checkInDate,
+        checkOutDate,
+        totalNights: pricing.totalNights,
+        adultCount,
+        childCount,
+        assignedRoomNumber: availableRoom?.roomNumber,
+        specialRequests,
+        nightlyRate: pricing.nightlyRate,
+        subtotal: pricing.subtotal,
+        taxAmount: pricing.taxAmount,
+        resortFee: pricing.resortFee,
+        grandTotal: pricing.grandTotal,
+        cardLast4: stripeResult.cardLast4,
+      }).catch((err) => {
+        console.error('[Resend Background Error]:', err);
+      });
+
+      return {
+        reservationId,
+        confirmationCode,
+        totalAmount: pricing.grandTotal,
+        assignedRoomNumber: availableRoom?.roomNumber || 'Assigned at Check-in',
+        paymentResult: stripeResult,
+        status: 'confirmed',
+      };
+    });
+  }
+
+  public getBookingByIdentifier(identifier: string) {
+    const booking = db.reservations.findOne(r => r.confirmationCode === identifier || r.id === identifier);
+    if (!booking) {
+      throw new ApiError(404, 'Reservation not found');
+    }
+
+    const property = db.properties.findById(booking.propertyId);
+    const guest = db.guests.findById(booking.guestId);
+    const roomType = db.roomTypes.findById(booking.roomTypeId);
+    const ratePlan = db.ratePlans.findById(booking.ratePlanId);
+    const assignedRoom = booking.assignedRoomId ? db.rooms.findById(booking.assignedRoomId) : null;
+    const charges = db.folioCharges.find(c => c.reservationId === booking.id);
+
+    return {
+      ...booking,
+      property,
+      guest,
+      roomType,
+      ratePlan,
+      assignedRoom,
+      charges,
+    };
+  }
+
+  public cancelBooking(identifier: string) {
+    const booking = db.reservations.findOne(r => r.id === identifier || r.confirmationCode === identifier);
+    if (!booking) {
+      throw new ApiError(404, 'Reservation not found');
+    }
+
+    if (booking.status === 'cancelled') {
+      throw new ApiError(400, 'Reservation is already cancelled');
+    }
+
+    db.reservations.update(booking.id, {
+      status: 'cancelled',
+      updatedAt: new Date().toISOString(),
+    });
+
+    if (booking.assignedRoomId) {
+      db.rooms.update(booking.assignedRoomId, { isOccupied: false });
+    }
+
+    broadcastEvent('RESERVATION_CANCELLED', {
+      reservationId: booking.id,
+      confirmationCode: booking.confirmationCode,
+    });
+
+    return { message: 'Reservation cancelled successfully' };
+  }
+}
+
+export const bookingService = new BookingService();

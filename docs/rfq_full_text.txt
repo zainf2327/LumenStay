@@ -1,0 +1,263 @@
+Lumen Hospitality Group — Guest Experience Platform RFQ
+Table of Contents
+TOC \o "1-2" \h \z \u
+LUMEN HOSPITALITY GROUP
+Request for Quote — Guest Experience & Revenue Platform (“LumenStay”)
+Field
+Detail
+Prepared by
+Marcus Weil, Founder/CEO
+Company
+Lumen Hospitality Group LLC
+Date
+August 2026
+Property count
+6 boutique hotels currently, “10-15 by next year hopefully”
+Contact
+marcus@lumenhospitality.co or just call/text my cell
+Hey everyone — thanks for taking a look at this. We’re a boutique hotel group and we’ve outgrown our current booking/PMS setup and want something custom built that actually fits how we operate. Below is basically everything we’re thinking for the platform. Some of it’s firmed up, some of it is still rough, so use your judgment and flag anything that doesn’t make sense. We’re calling it LumenStay internally for now (marketing might rename it “GlowStay” later, TBD, don’t worry about that).
+We need this live for six of our properties by the start of ski season this year, and honestly if you can do it faster that’s even better. We know that’s tight but we’ve heard other groups spin up similar systems fast so we’re hoping a good team can make it work.
+1. Company Background
+Lumen Hospitality Group operates six boutique hotels across two states (Colorado and Utah), each with its own personality/branding but shared back-of-house operations. We currently use a patchwork of a legacy PMS (property management system), a separate booking widget embedded on our Squarespace sites, a spreadsheet for housekeeping assignments, and a lot of manual phone/email coordination between front desk and revenue management.
+1.1 Our properties (for context)
+We figured it’d help to give you a quick rundown of the six properties, since they’re pretty different from each other and that probably matters for how flexible the system needs to be:
+The Birchwood (Aspen, CO) — 42 rooms, our original property, heavy ski-season demand, does a lot of destination weddings in summer/fall. Runs on our oldest PMS install.
+Copperline Inn (Breckenridge, CO) — 28 rooms, very seasonal (ski + summer mountain biking), smallest front-desk team (2-3 people on a shift).
+The Wren House (Telluride, CO) — 19 rooms, our “quiet luxury” property, high ADR, low volume, guests expect a lot of white-glove service.
+Sundowner Lodge (Park City, UT) — 51 rooms, our biggest property, closest thing we have to a “normal” hotel operation, does corporate/conference business in shoulder season.
+Cedar & Salt (Moab, UT) — 24 rooms, desert/adventure-tourism guests, very different seasonality than the ski properties (busiest spring/fall, slow in winter).
+The Ledger (Salt Lake City, UT) — 33 rooms, our only true “urban” property, mostly business travelers and airport layovers, least brand-differentiated of the six.
+We mention all this because we suspect a system tuned only for ski-resort seasonality won’t work great for Moab or Salt Lake, and we want whoever builds this to actually think about that rather than assume one seasonal pattern fits everyone.
+1.2 Why we’re doing this now
+Our current legacy PMS vendor told us in the spring that they’re sunsetting the product we’re on (some kind of platform migration on their end) and we have “about a year” before we’re forced onto their new system, which we’ve looked at and don’t love — it’s expensive per-property and still doesn’t solve our multi-property visibility problem. That’s part of why the timeline in §7 feels urgent to us, even though we recognize it might not be a realistic engineering timeline. We’d rather hear the truth about what’s achievable than get a timeline that sounds good and then slips.
+We want one platform that our front desk staff, housekeeping, revenue managers, and eventually our guests can all use. We’re a small but ambitious group and we think there’s a real opportunity to build something that could eventually be licensed to other boutique hotel groups too — so build it with that kind of extensibility in mind, though that’s not the primary goal right now.
+Our current tech stack knowledge internally is limited — we don’t have an in-house engineering team, just a part-time IT contractor who manages our Wi-Fi and POS terminals. Whoever we pick will essentially be our engineering department for this project.
+2. What We’re Trying to Build
+At a high level:
+A reservation and booking engine that replaces our current widget and connects to a central inventory across all properties.
+A property-management core: room status, housekeeping, maintenance tickets, guest profiles.
+A revenue management piece: dynamic pricing suggestions, competitor rate tracking, and channel management to OTAs (Expedia, Booking.com, Airbnb).
+A guest-facing mobile app for check-in, digital key, and requesting services (extra towels, late checkout, etc.) — actually, on second thought, we might not need a native app if a really good mobile web experience can do all of this; we’ll leave that to your recommendation, but assume the guest experience must feel like a native app either way.
+Loyalty and repeat-guest perks, ideally something guests would find comparable to what they get from Marriott Bonvoy or Hilton Honors, so they feel like staying with us is just as rewarding.
+A staff-facing operations app for housekeeping and maintenance, usable on shared tablets at each property.
+Basic reporting for ownership — occupancy, ADR, RevPAR, that kind of thing.
+We don’t need this to be a “platform for the whole hotel industry” — Marriott/Hilton scale is not what we’re going for — but we do want it built properly, not duct-taped together, since we’re planning to grow.
+2.1 A few things we go back and forth on
+We want to be upfront that we haven’t fully made up our minds on a few things, and we’d rather tell you that than pretend we have a fixed spec:
+Whether the loyalty program (§3.6) is a phase-1 must-have or something we could soft-launch a few months after everything else. Marcus (CEO) thinks it’s essential for differentiation; our revenue manager thinks it’s a distraction from getting the booking engine and channel manager right first.
+Whether we build our own digital-key/mobile-check-in flow now or wait until we’ve standardized on one lock vendor across all six properties (currently split between Salto and Assa Abloy, see §4). Ripping out locks at three properties is its own project and budget we haven’t started.
+Whether the “staff operations app” (§3.7) needs to be a separate installable app or can just be a responsive web view on the shared tablets. We lean toward whatever is cheaper/faster to build well.
+How much of the revenue-management / dynamic-pricing piece (§3.4) needs to exist on day one versus whether we keep doing pricing manually in a spreadsheet for a while longer and just feed final rates into the new system. Our revenue manager has opinions here that we haven’t fully captured in this document.
+We’re telling you this so you don’t assume we have more internal alignment than we do. Part of what we’re hoping a good vendor can do is help us make some of these calls with real tradeoffs in front of us, not just build whatever we describe most confidently.
+3. Functional Areas
+3.1 Reservations & Booking Engine
+Direct booking widget embeddable on our existing Squarespace sites (and eventually a standalone booking site).
+Real-time room-type availability across all properties from one inventory.
+Rate plans: standard, non-refundable, member rate (see loyalty, §3.6), and property-specific promo codes.
+Multi-room, multi-night booking with a cart-like flow.
+Guest account creation at time of booking (optional — allow guest checkout too).
+Booking modification and cancellation self-service, subject to rate-plan rules.
+Group booking / block booking for weddings and events (at least 2 of our properties do a lot of wedding business).
+3.2 Property Management Core
+Room inventory per property: room types, room numbers, floor/building, features (view, accessibility, pet-friendly).
+Reservation-to-room assignment, with manual override by front desk.
+Room status board: clean/dirty/inspected/out-of-order, updated by housekeeping in real time.
+Guest profile: stay history across all properties, preferences, notes, ID/passport capture for check-in compliance.
+Front-desk check-in/check-out flow, including incidental charges (minibar, parking, resort fee).
+Folio management and basic billing; we’ll keep our existing payment processor (see §4) rather than build new payment rails.
+3.3 Housekeeping & Maintenance
+Daily housekeeping assignment board, drag-and-drop by room, assignable to specific staff.
+Mobile-friendly status updates from housekeeping staff (clean/dirty/inspected) from a shared tablet or their own phone.
+Maintenance ticket creation (by any staff role) with photo attachment, priority, and assignment.
+Preventive maintenance scheduling (HVAC filters, fire extinguisher checks, etc.) — this can be basic to start.
+3.3a A bit more on maintenance, since we glossed over it
+Thinking about this more, maintenance is actually a bigger deal for us operationally than the earlier bullet points suggest. Our properties range from a historic building (The Birchwood, built in the 1920s and renovated twice) to a much newer build (Sundowner Lodge). The older buildings generate a lot more maintenance tickets, and there’s institutional knowledge among long-tenured maintenance staff about quirks in specific rooms (room 214 at The Birchwood has a radiator that needs to be bled every few weeks, that kind of thing) that currently lives entirely in people’s heads. We’d love for the system to eventually be a place where that kind of tribal knowledge gets captured against specific rooms/assets, even if that’s a phase 2 or phase 3 idea rather than something for initial launch.
+3.4 Revenue Management
+Dynamic pricing suggestions based on occupancy pace, day-of-week, and historical demand.
+Competitor rate visibility (we’ll want to discuss how — we don’t currently have a rate-shopping tool, open to your recommendation).
+Channel manager to push rates/availability to OTAs (Expedia, Booking.com, Airbnb, and Google Hotel Ads) and pull back reservations from them into the same inventory.
+Reporting: occupancy, ADR, RevPAR, pace-vs-last-year, by property and consolidated.
+3.5 Guest Mobile Experience
+Mobile check-in (skip the front desk) with ID verification.
+Digital room key (this might require hardware — we’re open to your recommendation on lock vendors; we currently have a mix of two different lock brands across properties, sorry).
+In-stay service requests: housekeeping requests, maintenance issues, concierge questions, late checkout.
+Push notifications for offers, local recommendations, and pre-arrival messaging.
+We want this to feel “as good as” what guests get from major hotel brand apps.
+3.6 Loyalty Program
+Point accrual per stay, redeemable for free nights or upgrades.
+Tiering (e.g., silver/gold/platinum) with perks like early check-in, late checkout, welcome amenity.
+Member-only rate visible in the booking engine once logged in.
+We’d like this to feel comparable to major hotel loyalty programs so guests don’t feel like they’re settling for less by staying with us instead of a big chain. We are not looking to reproduce anyone else’s program exactly — just build something in that spirit that’s ours.
+3.7 Staff Operations App
+Shared-tablet-friendly interface for housekeeping and maintenance at each property.
+Role-based views: housekeeping sees their assignment board; maintenance sees ticket queue; front desk sees reservations/room status; general manager sees everything for their property; ownership sees consolidated view across all properties.
+3.7a A note on roles and who does what
+Since we don’t have a formal org chart written down anywhere, here’s roughly who’s who across the group, in case it helps you think about the staff-facing side of things:
+General Managers (one per property) — day-to-day operations, staffing, guest escalations. Comfortable with tech but not power users of anything complicated.
+Front desk agents — check-in/out, folio questions, phone reservations. High turnover role, so whatever they use needs to be learnable in a single shift of training.
+Housekeeping supervisors and staff — room status updates, assignment boards. At three properties, several housekeeping staff are more comfortable in Spanish than English, so some amount of bilingual support in the interface would be appreciated, though we haven’t scoped exactly what that means.
+Maintenance/engineering staff — shared across properties in some cases (e.g., one maintenance lead covers both Copperline and The Wren House since they’re close together).
+Revenue manager — one person, covers all six properties, currently does pricing in a spreadsheet and manually updates OTA extranets by hand (yes, really).
+Marcus (CEO/Founder) and a small ownership/finance team — want the consolidated reporting view, don’t need day-to-day operational access.
+3.8 Reporting & Analytics
+Ownership dashboard: occupancy, ADR, RevPAR, booking pace, channel mix, loyalty enrollment.
+Exportable reports (CSV at minimum).
+We’d love AI-generated summaries eventually — like a weekly digest that tells ownership what happened and why — but that can be a phase 2 thing, or phase 1 if it’s not too much extra effort.
+4. Integrations We Want
+Our existing payment processor (we use Square across most properties, and one property still has an older Elavon setup we haven’t migrated yet).
+OTA channel connections: Expedia, Booking.com, Airbnb, Google Hotel Ads.
+Door lock systems — we have Salto locks at three properties and Assa Abloy at the other three.
+Email/SMS provider for guest communications (no preference, your recommendation).
+Accounting handoff to QuickBooks Online (we don’t need full accounting built in, just an export/sync).
+Our part-time IT contractor mentioned something about “channel manager APIs” being a whole category of vendor we might need in the middle of this (like SiteMinder) — not sure if that changes your approach, wanted to flag it.
+4a. More on Integrations (things we thought of after writing §4)
+A few more integration-adjacent things came up as we were finishing this document, adding them here rather than renumbering everything:
+We currently send booking confirmations through whatever our legacy PMS does by default — we don’t have a real handle on what email deliverability looks like today, so if that’s something you’d assess as part of discovery, that would be helpful.
+Two properties (Sundowner Lodge and The Ledger) have on-site restaurants with their own separate POS systems (Toast at Sundowner, Square at The Ledger — different Square account than the hotel-charges Square account, which is its own small mess). We don’t think we need deep POS integration right away, but guests do sometimes want restaurant charges on their room folio, so there’s probably some level of connection needed eventually.
+We use a group SMS tool (not sure of the name, our marketing person handles it) for promotional texts today and would probably want to fold that into whatever guest-communication tooling gets built, though we’re open to switching tools if there’s a better option.
+Our website analytics currently run through Squarespace’s built-in analytics plus a Google Analytics tag someone added years ago that may or may not still be configured correctly.
+5. Design & Brand
+Each of our six properties has distinct branding (different names, colors, logos) but we want the underlying platform to be one system. The guest-facing booking engine and mobile experience should be able to reflect each property’s individual brand look while the staff-facing tools can look more uniform/utilitarian across properties. We don’t have formal brand guidelines written down for all six yet — three of them do, three don’t. We can get you what we have.
+6. Technical Preferences
+We don’t have a strong opinion on the tech stack — we want you to recommend what’s right for the scope, team you have available, and what will be maintainable by a small team going forward (remember, we don’t have in-house engineers, so whatever you build, either you or a firm like you will likely be maintaining it for the foreseeable future).
+Things we do care about:
+It needs to be reliable — front desk can’t be down during a Friday afternoon check-in rush.
+We’d like it hosted somewhere reputable (AWS, Google Cloud, Azure — no preference).
+Data should be secure, obviously — we handle guest payment info and ID documents.
+We’d like to own our own data and not be locked into a system where we can’t get our data out if we ever switch vendors.
+We haven’t thought much about testing, staging environments, or CI/CD — if that’s something you normally include, let us know what you’d propose.
+5a. A Few More Design Thoughts
+Marcus has fairly strong opinions about design (he came from a hospitality-adjacent background before founding Lumen, not software, so bear with us on the terminology). A few things he’s mentioned wanting, in his own words from an email he sent our part-time IT contractor that we’re pasting in here because it’s easier than rewriting it:
+“I don’t want this to feel like a cheap software product. I want it to feel like it belongs in a nice hotel — warm, a little tactile, not sterile SaaS-blue-and-white like every generic booking tool out there. Think more like the feeling you get opening a nice hotel’s own app, not a third-party OTA. I know that’s vague, sorry, but it matters to me a lot and I’d rather say it now than be disappointed at the end.”
+We recognize “warm, a little tactile” isn’t exactly a design spec, and we’re relying on whoever we hire to translate that into something concrete, probably through some early mockups/prototypes we can react to before a lot of engineering time is spent.
+6a. Data We’d Want to Keep Long-Term
+Since we mentioned wanting to own our data (§11), here’s a rough sense of what we’d consider “ours” and want portable regardless of what platform we’re on in the future:
+Guest profiles and stay history (including whatever’s migrated from the legacy PMS)
+Reservation records, rate history, and folio/billing history
+Loyalty point balances and tier history
+Housekeeping and maintenance records (mostly for liability/insurance reasons — if a guest ever claims an issue wasn’t addressed, we want a record)
+Channel manager transaction logs (which OTA a booking came from, commission owed, etc.)
+Any guest communications sent through the platform, for a reasonable retention window
+We don’t have a retention policy written down and would appreciate guidance on what’s reasonable, especially for ID/passport images captured at check-in (§3.2) — we assume there are rules about how long we can/should keep that kind of thing but we honestly don’t know them.
+6b. Environments and Change Management
+We’ve never operated a “real” software product before (our current systems are all off-the-shelf, so someone else handles this for us), so we don’t have existing habits around staging environments, release processes, or how changes get tested before they go live. If you have a standard approach you’d recommend for a company at our size and sophistication level, we’d like to hear it as part of your response rather than assuming we already know what we want here. Whatever the process is, it needs to account for the fact that front-desk staff at six properties can’t tolerate much disruption — a bad deploy during a Friday check-in rush would be a real problem for us, not just an inconvenience.
+We’d also like to understand, in plain language, what “downtime” would look like if it happened — can front desk staff still check guests in manually if the system is down, or does everything grind to a halt? We assume some kind of manual fallback process is standard in this industry but we don’t know what that typically looks like from a software standpoint.
+7. Timeline
+We’d like to be live at all six properties before the start of ski season. Realistically we’re hoping for something like 8-10 weeks from kickoff, since that’s the kind of timeline we’ve heard thrown around for “no-code” hotel platforms, though we understand a fully custom build might take longer — let us know what’s realistic and what would need to be cut to hit that window versus what should just take the time it takes.
+If a shorter timeline means starting with fewer properties or fewer features, that’s fine — just tell us what the tradeoffs are.
+7.1 A note on why we mentioned “ski season” without a date
+We realize we haven’t actually given you a specific date, which in hindsight seems like an important thing to include in a document about a deadline. Different properties think of “ski season” slightly differently — Aspen and Breckenridge both have events and early-season bookings that start ramping up well before the slopes technically open, and our reservations team has already been fielding calls for the upcoming season. We can get you an actual hard date, but wanted to flag that it’s not in this version of the document and that “ski season” may mean slightly different things depending on which property you ask.
+7.2 Parallel workstreams we haven’t accounted for
+We also realize, writing this section, that a few things would need to happen in parallel with software development that we haven’t built into any timeline thinking at all: staff training across six properties (all with different shift patterns), migrating or re-entering existing reservation data, deciding on the lock-vendor question (§2.1), and getting updated brand guidelines for the three properties that don’t have them yet. We don’t have a plan for any of this and would welcome your thoughts on how it should factor into a realistic schedule.
+8. What We Need From You
+Please send us:
+A description of how you’d approach this and what you’d build first.
+Your take on the functional areas above — anything that seems like it doesn’t belong together, anything you’d push to a later phase, anything we’re missing.
+Your recommended tech stack and why.
+A rough timeline broken into phases, with what’s realistic for the ski-season deadline.
+Examples of similar systems you’ve built (hospitality experience is a plus but not required if you’ve done comparable multi-property/multi-tenant systems).
+Who would actually be on the team.
+How you’d handle support after launch — we’re going to need help for a while since we won’t have in-house engineers.
+Feel free to ask us questions — we know this document isn’t perfectly buttoned up, we’ve never done an RFQ before and honestly wrote most of this ourselves. We’ll take questions by email or just hop on a call if that’s easier.
+9. Team & Experience
+We’re a small company and haven’t run a formal vendor evaluation process before, so if you can help us understand what things we should be comparing across vendors (in addition to whatever you’d normally propose), that would be useful.
+We’d like to know:
+Company size and how long you’ve been doing this kind of work.
+A couple of references we could call.
+Whether you’d propose a fixed team or pull from a pool of people.
+8a. Questions We’d Like You to Answer, Even If Unprompted
+Beyond what’s listed in §8, a few specific questions we’d genuinely like answered somewhere in your response, because we don’t know the answers ourselves and suspect they matter:
+Given everything in §2.1 that we haven’t decided, would you rather we make those calls before you scope anything, or would you rather scope multiple paths and help us decide as part of your proposal?
+Is six properties with meaningfully different seasonality (§1.1) a “normal” amount of complexity for a system like this, or does it meaningfully change the shape of the build compared to, say, a single large property or a fully uniform chain?
+Realistically, how many people from our side need to be involved during the build, and for roughly how much of their time? We want to plan for that but don’t know what “normal” looks like.
+If we had to cut something to hit a tighter timeline, what would you cut first, and does that match what we guessed in §12a?
+Is there anything in this document that, if we insist on it as written, would be a mistake? We’d rather hear that now.
+9a. How We’d Imagine Working Together
+We haven’t run a process like this before, so we don’t have a fixed cadence in mind for check-ins, demos, or status updates — but we’d want enough visibility to feel like we know what’s happening without needing to micromanage, since none of us can evaluate code directly. If you have a standard rhythm you use with clients who aren’t technical, we’d like to hear about it as part of your response. We’d also want to understand, honestly, how decisions get made when something in this document turns out to be harder or more expensive than it sounds — do we get flagged early, do you just make a judgment call and tell us later, something in between?
+We’re also curious whether you’d want a single point of contact on our side (probably Marcus, or possibly our revenue manager for anything pricing/channel-related) or whether it’s more useful for you to have some direct access to GMs and front-desk staff for requirements clarification. We can go either way but wanted to raise it since we haven’t decided.
+10. Support After Launch
+We’ll need ongoing support — bug fixes, small feature requests, and just general “keep the lights on” help — since we don’t have engineers on staff. We’re open to whatever support model you typically offer (retainer, ticket-based, etc.) — tell us what you’d recommend for a company our size.
+A few specific things we’d want to understand about support, since we don’t have prior experience to compare against:
+What counts as a “bug we broke by using the system wrong” versus a “bug you need to fix at no charge” — we assume there’s a normal way vendors think about this, but we don’t know it.
+Whether front-desk-level issues (like “the room status board seems stuck”) get a different response time than something like “the booking engine is down and we can’t take reservations.”
+Whether you’d expect us to have any kind of internal first-line support person eventually, or whether small companies like us typically just route everything to the vendor.
+What happens if we want to part ways with you down the road — how much notice, how does transition/handover typically work, and how quickly could we reasonably expect to get a competent replacement team up to speed given how custom this system would be.
+11. Legal Stuff
+We haven’t worked with a lawyer on this yet, so this section is thin — apologies in advance. A few things we do know we want:
+We want to own our guest data and reservation data outright.
+We’re comfortable with a standard vendor agreement/MSA if you have one — happy to review whatever you typically use.
+We’ll figure out IP ownership of the actual code as part of contract negotiation; we haven’t landed on a firm position, but our instinct is that we’d want to own it since it’s custom-built for us — let us know how you typically handle that with clients.
+We handle guest payment and identity information, so if there’s anything special we need to know about compliance (PCI, state privacy laws, etc.) we’d appreciate you flagging it, since we honestly aren’t sure what applies to us.
+We operate in two states (Colorado and Utah) and have Canadian guests fairly regularly at our Utah properties (§12 appendix mentions this too) — if that creates any legal wrinkles around data handling or consumer protection we should know about, please raise it.
+We don’t currently have a written information-security policy, incident-response plan, or data-retention policy of any kind. We recognize that’s a gap and are open to guidance on what a company our size should reasonably have in place, especially once we’re running guest payment and ID data through a custom system instead of an established off-the-shelf vendor’s platform.
+None of us have been through contract negotiation for something like this before, so if there are standard terms in this kind of engagement that founders in our position typically get wrong or overlook, we’d genuinely appreciate you telling us — even though you’re the vendor being evaluated here, we’d rather have an honest heads-up than find out the hard way later.
+12. Things Other Vendors Have Asked Us (In Case It’s Useful)
+We circulated an earlier, shorter version of this document informally to a couple of other shops before deciding to put together a real RFQ process. A few questions came up repeatedly that we figured we’d answer here preemptively:
+“Do you need PCI compliance handled by the platform, or will you keep using your existing payment processor’s hosted fields?” — Our instinct is the latter (keep Square/Elavon’s hosted payment flows so we’re not handling raw card data ourselves), but we’re not sure that’s compatible with everything we’ve described (like folio management in §3.2), so please push back if it isn’t.
+“Is this one codebase serving six branded front-ends, or six separate sites?” — We think it should be one system with per-property theming, per §5, but we’re open to being told that’s not the right mental model.
+“Are you expecting this vendor to also do ongoing revenue-management consulting, or just build the software?” — Just the software. We have a revenue manager on staff; we just want better tools for her.
+“What happens to your existing legacy PMS data?” — We have about 4 years of reservation history in the current system and would like it migrated if reasonably possible, but we don’t have a clean export from them yet — that’s on our list to sort out and we recognize it may not be fully resolved by the time you’d start.
+“Who’s the actual decision-maker?” — Marcus (CEO) makes the final call, but our GM council (the six property GMs) will be consulted, and our revenue manager has a strong voice on anything touching pricing/channels.
+12b. A Rough Glossary (Since We Use Some Terms Loosely)
+We probably use some of these terms inconsistently throughout this document, so here’s roughly what we mean by each, in case it helps:
+Term
+What we mean by it
+PMS
+Property management system — the core system for reservations, room status, folios.
+Channel manager
+Software that syncs rates/availability between our inventory and OTAs.
+OTA
+Online travel agency (Expedia, Booking.com, Airbnb, etc.)
+Folio
+A guest’s running bill during their stay.
+Rate plan
+A pricing rule (refundable, non-refundable, member rate, promo).
+ADR
+Average daily rate.
+RevPAR
+Revenue per available room.
+Pace
+How current bookings compare to the same point in time last year/period.
+Walk
+Industry term for relocating a guest to another hotel due to overbooking.
+Digital key
+Using a phone (or similar) to unlock a room instead of a physical keycard.
+We’re including this mostly because we noticed, re-reading this document before sending it, that we use some of these terms without ever defining them, and we’d rather over-explain than have you guess wrong about what we mean.
+13. Appendix — Rough Feature List
+This is a running list we’ve been keeping internally, in no particular order — some of these overlap with sections above, some are new. Treat this as “things we’ve thought of” rather than a formal spec.
+Guest can text the front desk instead of calling
+Automatic upsell offers during booking (room upgrade, early check-in)
+Weather-based dynamic pricing (ski season storms = higher demand?)
+A “local guide” content section in the app (restaurant recs, trail conditions)
+Corporate/travel-agent rate codes
+Waitlist for sold-out dates
+Group email to all housekeeping when a VIP guest checks in
+Some kind of “smart thermostat pre-cooling/heating before arrival” thing — we have smart thermostats at 2 properties already
+Multi-currency display for international guests (mostly Canadian guests at our Utah properties)
+A referral program where existing guests get perks for referring friends
+Print-friendly folio/receipt formatting for guests who want a paper copy
+Basic accessibility considerations for guests with disabilities (we know this matters, just haven’t specified what “basic” means yet — appreciate your guidance)
+Something to help us handle overbooking gracefully (walks happen a few times a year)
+A way for the general manager at each property to send a broadcast message to all staff at that property
+Long term, maybe a version of this we could sell/license to other small hotel groups — not now, but don’t paint us into a corner
+A “do not disturb” digital sign toggle guests can set from the app instead of the physical door hanger
+Some way to track which guests are celebrating something (anniversary, birthday) so front desk can do a small gesture
+A lost-and-found log that housekeeping can add to and guests can check
+Automatic detection of long-staying guests who might qualify for a discounted extended-stay rate
+A “quiet hours” flag on certain room blocks near events (mostly relevant for The Birchwood’s wedding business)
+Some kind of simple task list / checklist tool for GMs to use during shift changes
+A way to note which rooms have connecting doors, for families booking multiple rooms
+Integration with local activity/tour operators for a referral/booking commission relationship — very early idea, not scoped
+A simple survey sent after checkout, with results rolling up into the ownership dashboard
+Some way for us to push a “sold out” banner to the booking widget without it looking broken when a specific room type sells out but others are still available
+12a. General notes on priorities
+If we had to rank things loosely (and we admit this could change after talking with you):
+Reliable core reservations + PMS across all six properties — this is non-negotiable table stakes.
+Channel manager / OTA sync — we’re losing money and staff time to manual rate updates today.
+Mobile guest experience (whatever form that takes) — nice-to-have but not launch-blocking if it slips slightly.
+Loyalty program — see §2.1, genuinely unresolved internally.
+Advanced revenue management / dynamic pricing — would love it, could live without full sophistication at launch.
+Everything in this appendix — genuinely “someday” ideas, not commitments.
+If anything above conflicts with something earlier in this document, our actual intent is whatever makes the most operational sense — call it out and we’ll clarify.
+Thanks again for taking a look at this. We’re excited about the possibility of working together and are happy to answer any questions.
+— Marcus

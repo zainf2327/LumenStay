@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LumenStay — Technical Design Document (TDD)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Mermaid.js for live client-side diagram rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        darkMode: true,
+        background: '#121820',
+        primaryColor: '#c5a059',
+        primaryTextColor: '#f7f4ee',
+        primaryBorderColor: '#8a6d3b',
+        lineColor: '#c5a059',
+        secondaryColor: '#1e293b',
+        tertiaryColor: '#0f172a'
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg-primary: #0b0f17;
+      --bg-secondary: #121824;
+      --bg-card: #182234;
+      --bg-code: #0d131f;
+      --border-color: rgba(197, 160, 89, 0.2);
+      --border-hover: rgba(197, 160, 89, 0.45);
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-dark: #aa820a;
+      --emerald-accent: #2d6a4f;
+      --terracotta-accent: #c85a32;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-bright: #ffffff;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-serif: 'Cinzel', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.65;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar Navigation */
+    #sidebar {
+      width: 300px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .brand-header {
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold-primary);
+      margin-top: 0.25rem;
+    }
+
+    .doc-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .doc-meta div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
+    }
+
+    .doc-meta span.val {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    nav.toc {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .toc-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toc-link:hover, .toc-link.active {
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--gold-light);
+      transform: translateX(4px);
+    }
+
+    .toc-link span.num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--gold-primary);
+    }
+
+    /* Main Content Area */
+    #main-content {
+      margin-left: 300px;
+      padding: 3rem 4rem 6rem;
+      max-width: 1200px;
+      width: calc(100% - 300px);
+    }
+
+    /* Header Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(24, 34, 52, 0.9), rgba(18, 24, 36, 0.95));
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100%;
+      background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    h1.doc-title {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+      letter-spacing: 1px;
+    }
+
+    p.lead-text {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 800px;
+    }
+
+    /* Section Styling */
+    section {
+      margin-bottom: 4rem;
+      scroll-margin-top: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.75rem;
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    h2.section-title {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      color: var(--gold-light);
+      letter-spacing: 0.5px;
+    }
+
+    h3.sub-title {
+      font-size: 1.25rem;
+      color: var(--text-bright);
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    /* Cards & Containers */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .diagram-container {
+      background: #0d131f;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      text-align: center;
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      margin: 1.5rem 0;
+      background: var(--bg-card);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    th {
+      background: #111a28;
+      color: var(--gold-light);
+      padding: 0.9rem 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 0.85rem 1.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+    }
+
+    tr:hover td {
+      background: rgba(212, 175, 55, 0.04);
+    }
+
+    /* Badges & Tags */
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+
+    .badge-get { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid #3b82f6; }
+    .badge-post { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
+    .badge-patch { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid #eab308; }
+    .badge-del { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+    .badge-pk { background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border: 1px solid var(--gold-primary); }
+    .badge-fk { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid #64748b; }
+
+    /* Code Blocks */
+    pre code {
+      display: block;
+      background: var(--bg-code);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      line-height: 1.5;
+      margin: 1rem 0;
+    }
+
+    .code-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Interactive Accordion for Endpoints */
+    details.endpoint-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    details.endpoint-card[open] {
+      border-color: var(--gold-primary);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    summary.endpoint-summary {
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    summary.endpoint-summary:hover {
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    .endpoint-header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .endpoint-path {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-bright);
+    }
+
+    .endpoint-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .endpoint-body {
+      padding: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      background: #111722;
+    }
+
+    /* Formula Box */
+    .formula-box {
+      background: #0f172a;
+      border-left: 4px solid var(--gold-primary);
+      padding: 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--gold-light);
+    }
+
+    @media (max-width: 1024px) {
+      #sidebar { display: none; }
+      #main-content { margin-left: 0; width: 100%; padding: 2rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside id="sidebar">
+    <div class="brand-header">
+      <div class="brand-logo">✦ LUMENSTAY</div>
+      <div class="brand-subtitle">Technical Specification</div>
+    </div>
+
+    <div class="doc-meta">
+      <div><span>Version</span><span class="val">1.0.0 (POC)</span></div>
+      <div><span>Architecture</span><span class="val">Modular REST</span></div>
+      <div><span>Database</span><span class="val">PostgreSQL / Supabase</span></div>
+      <div><span>Adapter</span><span class="val">SQLite (Local)</span></div>
+    </div>
+
+    <nav class="toc">
+      <a href="#overview" class="toc-link"><span class="num">01.</span> System Architecture</a>
+      <a href="#erd" class="toc-link"><span class="num">02.</span> Entity Relationship (ERD)</a>
+      <a href="#schema" class="toc-link"><span class="num">03.</span> Database Schema DDL</a>
+      <a href="#concurrency" class="toc-link"><span class="num">04.</span> Concurrency & Overlap Engine</a>
+      <a href="#api-spec" class="toc-link"><span class="num">05.</span> REST API Specification</a>
+      <a href="#rbac" class="toc-link"><span class="num">06.</span> Security & RBAC Matrix</a>
+      <a href="#performance" class="toc-link"><span class="num">07.</span> SLAs & Non-Functional Specs</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main id="main-content">
+    
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <div class="badge-pill">Enterprise Technical Design Document</div>
+      <h1 class="doc-title">LumenStay Engineering Architecture</h1>
+      <p class="lead-text">
+        Multi-property guest experience, real-time property management system (PMS), and automated revenue platform designed for Lumen Hospitality Group LLC.
+      </p>
+    </div>
+
+    <!-- 01. System Architecture -->
+    <section id="overview">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">System Architecture & Component Diagram</h2>
+      </div>
+
+      <p>
+        LumenStay implements a strictly-typed, decoupled full-stack architecture. The frontend is powered by <strong>React 18 + Vite</strong> with Tailwind CSS and Framer Motion micro-animations. The backend is an <strong>Express + TypeScript</strong> API Gateway enforcing unified JSON envelopes, centralized error trapping, and atomic database transactions.
+      </p>
+
+      <div class="diagram-container">
+        <div class="mermaid">
+graph TD
+    subgraph Client ["Client Layer (React 18 + Vite + TypeScript)"]
+        UI_Guest["Direct Booking Engine & Guest Portal"]
+        UI_PMS["Front Desk PMS Core (Room Grid & Folio)"]
+        UI_Ops["Housekeeping & Maintenance Board (EN/ES)"]
+        UI_Exec["Ownership Analytics & Executive Dashboard"]
+    end
+
+    subgraph Gateway ["API Gateway & Security Layer"]
+        ExpressApp["Express Router (/api/v1/*)"]
+        ValidateMW["Zod Validation Middleware"]
+        AsyncMW["Async Error Interceptor"]
+        RBAC_MW["Role-Based Access Guard"]
+    end
+
+    subgraph Core ["Service & Domain Logic Layer"]
+        AvailSvc["Availability & Inventory Engine"]
+        BookingSvc["Transactional Booking Engine"]
+        FolioSvc["Folio Billing & Settlement Service"]
+        OpsSvc["Housekeeping & Maintenance Service"]
+        SyncSvc["OTA Channel Sync Simulator"]
+    end
+
+    subgraph Data ["Data & Integration Layer"]
+        DB_Target[("PostgreSQL / Supabase (Production)")]
+        DB_Adapter[("SQLite / WAL Mode (Local POC)")]
+        BLE_Sim["BLE Key Simulator (Salto / Assa Abloy)"]
+        OTA_Sim["2-Way OTA Simulator (Expedia / Booking.com)"]
+    end
+
+    Client --> ExpressApp
+    ExpressApp --> ValidateMW --> RBAC_MW --> AsyncMW
+    AsyncMW --> AvailSvc & BookingSvc & FolioSvc & OpsSvc & SyncSvc
+    BookingSvc & FolioSvc & OpsSvc & AvailSvc --> DB_Target & DB_Adapter
+    OpsSvc --> BLE_Sim
+    SyncSvc --> OTA_Sim
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Frontend Core Technologies</div>
+          <ul style="padding-left: 1.2rem; color: var(--text-muted); font-size: 0.9rem;">
+            <li><strong>React 18.3+ & TypeScript:</strong> Strict typing across props and API contracts.</li>
+            <li><strong>Vite:</strong> Ultra-fast HMR and optimized production bundling.</li>
+            <li><strong>Tailwind CSS & Tokens:</strong> Custom luxury palettes for all 6 properties.</li>
+            <li><strong>Lucide React & Framer Motion:</strong> Smooth 60fps micro-interactions.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Backend & Integration Engine</div>
+          <ul style="padding-left: 1.2rem; color: var(--text-muted); font-size: 0.9rem;">
+            <li><strong>Node.js + Express:</strong> Structured modular service/controller pattern.</li>
+            <li><strong>Zod Schemas:</strong> Strict runtime validation on all inputs.</li>
+            <li><strong>Atomic Transactions:</strong> Overbooking-safe concurrency engine.</li>
+            <li><strong>Hardware Adapters:</strong> Simulators for Salto locks and OTA channel sync.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. ERD -->
+    <section id="erd">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Enterprise Entity Relationship Diagram (ERD)</h2>
+      </div>
+
+      <p>
+        The relational data model enforces strict referential integrity across properties, room types, physical rooms, rate plans, guests, reservations, and itemized folios.
+      </p>
+
+      <div class="diagram-container">
+        <div class="mermaid">
+erDiagram
+    PROPERTIES ||--o{ ROOM_TYPES : "configures"
+    PROPERTIES ||--o{ ROOMS : "contains"
+    PROPERTIES ||--o{ RATE_PLANS : "offers"
+    PROPERTIES ||--o{ RESERVATIONS : "hosts"
+    PROPERTIES ||--o{ HOUSEKEEPING_TASKS : "manages"
+    PROPERTIES ||--o{ MAINTENANCE_TICKETS : "tracks"
+    PROPERTIES ||--o{ USERS : "employs"
+
+    ROOM_TYPES ||--o{ ROOMS : "instantiates"
+    ROOM_TYPES ||--o{ RESERVATIONS : "books"
+
+    ROOMS ||--o{ RESERVATIONS : "assigned_to"
+    ROOMS ||--o{ HOUSEKEEPING_TASKS : "requires"
+    ROOMS ||--o{ MAINTENANCE_TICKETS : "reports"
+
+    RATE_PLANS ||--o{ RESERVATIONS : "prices"
+    GUESTS ||--o{ RESERVATIONS : "places"
+    RESERVATIONS ||--o{ FOLIO_CHARGES : "accrues"
+
+    USERS ||--o{ HOUSEKEEPING_TASKS : "assigned_cleaner"
+    USERS ||--o{ MAINTENANCE_TICKETS : "assigned_technician"
+
+    PROPERTIES {
+        text id PK
+        text name
+        text slug UK
+        jsonb brand_theme
+        integer total_rooms
+    }
+    ROOM_TYPES {
+        text id PK
+        text property_id FK
+        text name
+        numeric base_price
+        integer total_inventory
+    }
+    ROOMS {
+        text id PK
+        text property_id FK
+        text room_type_id FK
+        text room_number
+        text status
+        text quirks
+        boolean is_occupied
+    }
+    RESERVATIONS {
+        text id PK
+        text confirmation_code UK
+        text property_id FK
+        text guest_id FK
+        text room_type_id FK
+        text assigned_room_id FK
+        date check_in_date
+        date check_out_date
+        numeric total_amount
+        text status
+    }
+    FOLIO_CHARGES {
+        text id PK
+        text reservation_id FK
+        text category
+        numeric amount
+        text status
+    }
+    GUESTS {
+        text id PK
+        text email UK
+        text first_name
+        text last_name
+        text loyalty_tier
+        integer loyalty_points
+    }
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. Database Schema DDL -->
+    <section id="schema">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Database Schema & Data Dictionary</h2>
+      </div>
+
+      <p>Target PostgreSQL DDL definitions with check constraints, foreign keys, and indexes:</p>
+
+      <div class="code-title">PostgreSQL / Supabase Schema Definition</div>
+      <pre><code>-- Core Schema with Referential Integrity
+CREATE TABLE properties (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
+  tagline TEXT NOT NULL,
+  city TEXT NOT NULL,
+  state TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  email TEXT NOT NULL,
+  brand_theme JSONB NOT NULL,
+  amenities JSONB NOT NULL DEFAULT '[]'::jsonb,
+  total_rooms INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE room_types (
+  id TEXT PRIMARY KEY,
+  property_id TEXT NOT NULL REFERENCES properties(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  code TEXT NOT NULL,
+  base_price NUMERIC(10, 2) NOT NULL,
+  capacity_adults INTEGER NOT NULL DEFAULT 2,
+  bed_configuration TEXT NOT NULL,
+  size_sq_ft INTEGER NOT NULL,
+  total_inventory INTEGER NOT NULL DEFAULT 1
+);
+
+CREATE TABLE rooms (
+  id TEXT PRIMARY KEY,
+  property_id TEXT NOT NULL REFERENCES properties(id) ON DELETE CASCADE,
+  room_type_id TEXT NOT NULL REFERENCES room_types(id) ON DELETE CASCADE,
+  room_number TEXT NOT NULL,
+  floor INTEGER NOT NULL DEFAULT 1,
+  building TEXT NOT NULL DEFAULT 'Main Lodge',
+  status TEXT NOT NULL DEFAULT 'clean' CHECK (status IN ('clean', 'dirty', 'inspected', 'out_of_order')),
+  quirks TEXT,
+  is_occupied BOOLEAN NOT NULL DEFAULT FALSE,
+  UNIQUE (property_id, room_number)
+);
+
+CREATE TABLE reservations (
+  id TEXT PRIMARY KEY,
+  confirmation_code TEXT NOT NULL UNIQUE,
+  property_id TEXT NOT NULL REFERENCES properties(id),
+  guest_id TEXT NOT NULL REFERENCES guests(id),
+  room_type_id TEXT NOT NULL REFERENCES room_types(id),
+  assigned_room_id TEXT REFERENCES rooms(id),
+  rate_plan_id TEXT NOT NULL REFERENCES rate_plans(id),
+  status TEXT NOT NULL DEFAULT 'confirmed' CHECK (status IN ('confirmed', 'checked_in', 'checked_out', 'cancelled', 'no_show')),
+  check_in_date DATE NOT NULL,
+  check_out_date DATE NOT NULL,
+  total_amount NUMERIC(10, 2) NOT NULL,
+  paid_amount NUMERIC(10, 2) NOT NULL DEFAULT 0,
+  digital_key_issued BOOLEAN NOT NULL DEFAULT FALSE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE folio_charges (
+  id TEXT PRIMARY KEY,
+  reservation_id TEXT NOT NULL REFERENCES reservations(id) ON DELETE CASCADE,
+  property_id TEXT NOT NULL REFERENCES properties(id),
+  category TEXT NOT NULL CHECK (category IN ('room_rate', 'tax', 'resort_fee', 'minibar', 'dining', 'spa', 'parking', 'late_checkout', 'adjustment', 'payment')),
+  description TEXT NOT NULL,
+  amount NUMERIC(10, 2) NOT NULL,
+  status TEXT NOT NULL DEFAULT 'posted' CHECK (status IN ('posted', 'void', 'paid')),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- B-Tree Performance Indexes
+CREATE INDEX idx_reservations_dates ON reservations (property_id, room_type_id, status, check_in_date, check_out_date);
+CREATE INDEX idx_rooms_lookup ON rooms (property_id, room_type_id, status);
+CREATE INDEX idx_folio_res_id ON folio_charges (reservation_id);</code></pre>
+    </section>
+
+    <!-- 04. Concurrency & Overlap Engine -->
+    <section id="concurrency">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Transactional Booking & Concurrency Model</h2>
+      </div>
+
+      <p>
+        To prevent double bookings during simultaneous checkout requests, the booking engine executes availability checks and inventory writes within an atomic transaction.
+      </p>
+
+      <div class="formula-box">
+        <strong>Date-Range Overlap Condition:</strong><br/>
+        Overlap = (Existing.CheckIn &lt; Requested.CheckOut) AND (Existing.CheckOut &gt; Requested.CheckIn)
+      </div>
+
+      <div class="diagram-container">
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as Guest / Channel Feed
+    participant Controller as Booking Controller
+    participant Service as Booking Service
+    participant DB as Relational Database
+
+    User->>Controller: POST /api/v1/bookings
+    Controller->>Service: createBooking(params)
+    Service->>DB: BEGIN IMMEDIATE TRANSACTION
+    
+    Service->>DB: SELECT COUNT(*) FROM reservations WHERE property_id = $1<br/>AND room_type_id = $2<br/>AND status IN ('confirmed', 'checked_in')<br/>AND (check_in_date < $checkOut AND check_out_date > $checkIn)
+    DB-->>Service: bookedCount = N
+    
+    Service->>DB: SELECT total_inventory FROM room_types WHERE id = $2
+    DB-->>Service: totalInventory = M
+    
+    alt bookedCount >= totalInventory
+        Service->>DB: ROLLBACK TRANSACTION
+        Service-->>Controller: Throw ApiError(409, "Fully Booked")
+        Controller-->>User: 409 Conflict Response
+    else bookedCount < totalInventory
+        Service->>DB: INSERT INTO guests (...) ON CONFLICT DO UPDATE
+        Service->>DB: INSERT INTO reservations (...)
+        Service->>DB: INSERT INTO folio_charges (...)
+        Service->>DB: COMMIT TRANSACTION
+        Service-->>Controller: return Reservation
+        Controller-->>User: 201 Created ApiResponse
+    end
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. REST API Specification -->
+    <section id="api-spec">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Comprehensive REST API Endpoint Catalog</h2>
+      </div>
+
+      <p>
+        All endpoints are versioned under <code>/api/v1/</code> and return a standardized JSON envelope:
+      </p>
+
+      <!-- Standard Envelope Code Block -->
+      <pre><code>// Unified API Response Envelope
+{
+  "success": true,
+  "message": "Operation completed successfully",
+  "data": { ... }
+}</code></pre>
+
+      <h3 class="sub-title">1. Availability & Booking Endpoints</h3>
+
+      <!-- Endpoint 1 -->
+      <details class="endpoint-card" open>
+        <summary class="endpoint-summary">
+          <div class="endpoint-header-left">
+            <span class="badge badge-get">GET</span>
+            <span class="endpoint-path">/api/v1/availability</span>
+          </div>
+          <span class="endpoint-desc">Search real-time inventory & calculated rates</span>
+        </summary>
+        <div class="endpoint-body">
+          <p><strong>Query Parameters:</strong> <code>propertyId</code> (req), <code>checkIn</code> (req), <code>checkOut</code> (req), <code>adults</code> (opt)</p>
+          <div class="code-title">Sample Response Payload</div>
+          <pre><code>{
+  "success": true,
+  "message": "Availability retrieved",
+  "data": [
+    {
+      "roomTypeId": "rt-birch-01",
+      "roomTypeName": "Deluxe Mountain King",
+      "basePrice": 389.00,
+      "availableCount": 5,
+      "totalInventory": 12,
+      "ratePlans": [
+        {
+          "ratePlanId": "rp-standard",
+          "name": "Standard Flexible",
+          "calculatedNightlyRate": 389.00,
+          "totalStayAmount": 1167.00
+        }
+      ]
+    }
+  ]
+}</code></pre>
+        </div>
+      </details>
+
+      <!-- Endpoint 2 -->
+      <details class="endpoint-card">
+        <summary class="endpoint-summary">
+          <div class="endpoint-header-left">
+            <span class="badge badge-post">POST</span>
+            <span class="endpoint-path">/api/v1/bookings</span>
+          </div>
+          <span class="endpoint-desc">Create atomic guest reservation</span>
+        </summary>
+        <div class="endpoint-body">
+          <div class="code-title">Request Body (Zod Validated)</div>
+          <pre><code>{
+  "propertyId": "prop-birchwood",
+  "roomTypeId": "rt-birch-01",
+  "ratePlanId": "rp-standard",
+  "checkInDate": "2026-10-15",
+  "checkOutDate": "2026-10-18",
+  "adultCount": 2,
+  "childCount": 0,
+  "guest": {
+    "firstName": "Jonathan",
+    "lastName": "Vance",
+    "email": "j.vance@example.com",
+    "phone": "+1 (555) 382-9912"
+  },
+  "paymentToken": "tok_simulated_visa_4242"
+}</code></pre>
+        </div>
+      </details>
+
+      <h3 class="sub-title">2. Front Desk PMS & Folio Endpoints</h3>
+
+      <!-- Endpoint 3 -->
+      <details class="endpoint-card">
+        <summary class="endpoint-summary">
+          <div class="endpoint-header-left">
+            <span class="badge badge-get">GET</span>
+            <span class="endpoint-path">/api/v1/rooms</span>
+          </div>
+          <span class="endpoint-desc">Get live physical room grid with cleaning badges</span>
+        </summary>
+        <div class="endpoint-body">
+          <p><strong>Query Parameters:</strong> <code>propertyId</code> (req), <code>status</code> (opt)</p>
+        </div>
+      </details>
+
+      <!-- Endpoint 4 -->
+      <details class="endpoint-card">
+        <summary class="endpoint-summary">
+          <div class="endpoint-header-left">
+            <span class="badge badge-post">POST</span>
+            <span class="endpoint-path">/api/v1/bookings/:id/check-in</span>
+          </div>
+          <span class="endpoint-desc">Front desk 3-click rapid check-in & key allocation</span>
+        </summary>
+        <div class="endpoint-body">
+          <pre><code>{
+  "assignedRoomId": "room-birch-101",
+  "idDocumentType": "passport",
+  "idDocumentNumber": "X1948201"
+}</code></pre>
+        </div>
+      </details>
+
+      <!-- Endpoint 5 -->
+      <details class="endpoint-card">
+        <summary class="endpoint-summary">
+          <div class="endpoint-header-left">
+            <span class="badge badge-post">POST</span>
+            <span class="endpoint-path">/api/v1/folios/:reservationId/charges</span>
+          </div>
+          <span class="endpoint-desc">Post itemized charge (minibar, dining, parking) to live folio</span>
+        </summary>
+        <div class="endpoint-body">
+          <pre><code>{
+  "category": "minibar",
+  "description": "Artisan Whiskey Selection",
+  "amount": 45.00
+}</code></pre>
+        </div>
+      </details>
+    </section>
+
+    <!-- 06. Security & RBAC Matrix -->
+    <section id="rbac">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Security & Role-Based Access Control (RBAC)</h2>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Functional Domain</th>
+              <th>Guest</th>
+              <th>Housekeeping</th>
+              <th>Maintenance</th>
+              <th>Front Desk</th>
+              <th>General Manager</th>
+              <th>Ownership / Exec</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Direct Booking & Search</strong></td>
+              <td>Full Access</td>
+              <td>Read</td>
+              <td>Read</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+            </tr>
+            <tr>
+              <td><strong>Front Desk Grid & Check-In</strong></td>
+              <td>—</td>
+              <td>Read</td>
+              <td>Read</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+            </tr>
+            <tr>
+              <td><strong>Folio Billing & Settlement</strong></td>
+              <td>Read (Own)</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+            </tr>
+            <tr>
+              <td><strong>Housekeeping Task Board</strong></td>
+              <td>—</td>
+              <td>Full Access</td>
+              <td>Read</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+            </tr>
+            <tr>
+              <td><strong>Maintenance & Room Quirks</strong></td>
+              <td>—</td>
+              <td>Create</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+              <td>Full Access</td>
+            </tr>
+            <tr>
+              <td><strong>Group Executive BI Analytics</strong></td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Property Only</td>
+              <td>Full Portfolio</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 07. Performance & Non-Functional Specs -->
+    <section id="performance">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2 class="section-title">Performance SLAs & Operational Guarantees</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="stat-box">
+          <div class="stat-num">&lt; 100ms</div>
+          <div class="stat-label">Availability & Room Grid Search Latency</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">100% ACID</div>
+          <div class="stat-label">Zero Overbooking Concurrency Guarantee</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

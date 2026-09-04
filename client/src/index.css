@@ -1,0 +1,364 @@
+@import "tailwindcss";
+
+:root {
+  /* Modern Astra Luminous Gallery Stone & Mineral Tokens */
+  --theme-canvas: #F8F9FA;
+  --theme-surface: #FFFFFF;
+  --theme-surface-subtle: #F3F4F6;
+  --theme-surface-hover: #E5E7EB;
+  
+  --theme-border: #E5E7EB;
+  --theme-border-strong: #D1D5DB;
+  
+  --theme-text-primary: #0F172A;
+  --theme-text-secondary: #334155;
+  --theme-text-muted: #64748B;
+  --theme-text-faint: #94A3B8;
+  
+  /* Modern Champagne Gold & Warm Mineral Accents */
+  --theme-accent-gold: #C5A059;
+  --theme-accent-gold-hover: #A88642;
+  --theme-accent-brass: #B08D57;
+  --theme-accent-brass-hover: #967543;
+  --theme-accent-teal: #0D9488;
+  --theme-accent-teal-hover: #0F766E;
+  --theme-accent-dark: #0F172A;
+  --theme-accent-forest: #059669;
+  --theme-accent-terracotta: #E11D48;
+  --theme-accent-copper: #D97706;
+  --theme-accent-navy: #0284C7;
+  
+  /* Status Colors */
+  --status-clean-bg: #ECFDF5;
+  --status-clean-text: #047857;
+  --status-clean-border: #A7F3D0;
+  
+  --status-dirty-bg: #FFF1F2;
+  --status-dirty-text: #BE123C;
+  --status-dirty-border: #FECDD3;
+  
+  --status-inspected-bg: #FFFBEB;
+  --status-inspected-text: #B45309;
+  --status-inspected-border: #FDE68A;
+  
+  --status-ooo-bg: #F1F5F9;
+  --status-ooo-text: #475569;
+  --status-ooo-border: #CBD5E1;
+
+  /* Typography: Clean Geometric Modern Sans (No flourish, no script) */
+  --theme-font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --theme-font-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--theme-canvas);
+  color: var(--theme-text-primary);
+  font-family: var(--theme-font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading, .font-serif {
+  font-family: var(--theme-font-heading);
+  letter-spacing: -0.025em;
+}
+
+select, option {
+  background-color: #FFFFFF;
+  color: var(--theme-text-primary);
+}
+
+/* Custom Refined Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: #DDD7CD;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B08D57;
+}
+
+/* Hide scrollbars completely where applied */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* ==============================================================================
+   Editorial Component Classes
+   ============================================================================== */
+
+/* Pure White Card with Delicate Mineral Stone Border & Soft Shadow */
+.editorial-card, .glass-card, .glass-panel {
+  background: #FFFFFF;
+  border: 1px solid var(--theme-border);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 10px 25px -5px rgba(15, 23, 42, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-card-hover:hover {
+  border-color: var(--theme-border-strong);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06), 0 20px 40px -10px rgba(15, 23, 42, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Frosted Mineral Glass */
+.stone-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+}
+
+.stone-glass-dark {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Primary Razor-Sharp Modern Carbon Button */
+.editorial-btn-primary, .gold-btn, .astra-btn-primary {
+  background-color: #0F172A;
+  color: #FFFFFF;
+  font-weight: 500;
+  border: 1px solid #0F172A;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-btn-primary:hover, .gold-btn:hover, .astra-btn-primary:hover {
+  background-color: #1E293B;
+  border-color: #1E293B;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.editorial-btn-primary:active, .gold-btn:active, .astra-btn-primary:active {
+  background-color: #020617;
+  transform: translateY(0);
+}
+
+/* Champagne Gold Luxury Button */
+.astra-btn-gold {
+  background-color: #C5A059;
+  color: #FFFFFF;
+  font-weight: 600;
+  border: 1px solid #C5A059;
+  box-shadow: 0 2px 8px rgba(197, 160, 89, 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.astra-btn-gold:hover {
+  background-color: #B08D57;
+  border-color: #B08D57;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(197, 160, 89, 0.35);
+}
+
+/* Secondary Clean Stone Button */
+.editorial-btn-secondary, .astra-btn-secondary {
+  background-color: #FFFFFF;
+  color: #0F172A;
+  font-weight: 500;
+  border: 1px solid var(--theme-border);
+  transition: all 0.2s ease-in-out;
+}
+
+.editorial-btn-secondary:hover, .astra-btn-secondary:hover {
+  background-color: #F8F9FA;
+  border-color: var(--theme-border-strong);
+  color: #0F172A;
+}
+
+/* Editorial Form Inputs */
+.editorial-input, .luxury-input {
+  background-color: #FFFFFF;
+  border: 1px solid var(--theme-border-strong);
+  color: var(--theme-text-primary);
+  border-radius: 6px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.editorial-input:focus, .luxury-input:focus {
+  outline: none;
+  border-color: var(--theme-accent-brass);
+  box-shadow: 0 0 0 1px var(--theme-accent-brass);
+}
+
+/* Property Badges & Tag Hues */
+.badge-clean {
+  background-color: var(--status-clean-bg);
+  color: var(--status-clean-text);
+  border: 1px solid var(--status-clean-border);
+}
+
+.badge-dirty {
+  background-color: var(--status-dirty-bg);
+  color: var(--status-dirty-text);
+  border: 1px solid var(--status-dirty-border);
+}
+
+.badge-inspected {
+  background-color: var(--status-inspected-bg);
+  color: var(--status-inspected-text);
+  border: 1px solid var(--status-inspected-border);
+}
+
+.badge-ooo {
+  background-color: var(--status-ooo-bg);
+  color: var(--status-ooo-text);
+  border: 1px solid var(--status-ooo-border);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==============================================================================
+   Print Stylesheet — Clean Luxury Hotel Invoice & Folio Voucher
+   ============================================================================== */
+@media print {
+  @page {
+    size: letter portrait;
+    margin: 12mm 15mm;
+  }
+
+  *, *::before, *::after {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body, html {
+    background: #FFFFFF !important;
+    color: #111111 !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Hide app navigational elements, backdrops, buttons, toolbars */
+  header, footer, nav, aside, .no-print, button, input, select, .sidebar, .topbar {
+    display: none !important;
+  }
+
+  /* Reset modal dialog layout to flow as a clean document */
+  .fixed, .inset-0, .backdrop-blur-sm, .backdrop-blur-md, .overflow-y-auto, .overflow-hidden {
+    position: static !important;
+    inset: auto !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #FFFFFF !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .printable-folio-invoice {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    border: none !important;
+    color: #111111 !important;
+  }
+
+  .printable-folio-invoice table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .printable-folio-invoice th {
+    background-color: #F5F3EE !important;
+    color: #111111 !important;
+    font-weight: 700 !important;
+    border: 1px solid #CCCCCC !important;
+    padding: 6px 10px !important;
+    font-size: 9pt !important;
+  }
+
+  .printable-folio-invoice td {
+    border: 1px solid #E0DCD6 !important;
+    padding: 6px 10px !important;
+    font-size: 9pt !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* ==============================================================================
+   Modern Astra Aesthetic Aliases for Legacy Vintage Classes
+   Ensures all operational dashboard tabs, sub-features, and modals seamlessly
+   render in luminous stone & crisp carbon.
+   ============================================================================== */
+.bg-\[\#F7F4EE\], .bg-\[\#FAF8F5\], .bg-\[\#FAF6EE\] {
+  background-color: #F8F9FA !important;
+}
+
+.bg-\[\#F4EFE6\], .bg-\[\#EAE4D8\] {
+  background-color: #FFFFFF !important;
+}
+
+.text-\[\#1C1815\] {
+  color: #0F172A !important;
+}
+
+.text-\[\#736B63\], .text-\[\#4A433D\] {
+  color: #64748B !important;
+}
+
+.border-\[\#DDD7CD\], .border-\[\#E2DCD2\], .border-\[\#ECE2CE\], .border-\[\#E5E0D8\] {
+  border-color: #E5E7EB !important;
+}
+
+.bg-\[\#1C1815\] {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+}
+
+.hover\:bg-\[\#2C2622\]:hover, .hover\:bg-\[\#2C2621\]:hover {
+  background-color: #1E293B !important;
+}
+
+.text-\[\#F7F4EE\] {
+  color: #FFFFFF !important;
+}
+

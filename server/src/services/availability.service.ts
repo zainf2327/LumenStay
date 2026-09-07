@@ -18,54 +18,55 @@ export interface RoomAvailabilityResponse {
 }
 
 export class AvailabilityService {
-  public getAvailability(
+  public async getAvailability(
     propertyId: string,
     checkIn: string,
     checkOut: string,
     promoCode?: string
   ) {
-    const property = db.properties.findById(propertyId);
+    const property = await db.properties.findById(propertyId);
     if (!property) {
       throw new ApiError(404, 'Property not found');
     }
 
     const totalNights = pricingService.calculateNights(checkIn, checkOut);
-    const roomTypes = db.roomTypes.find(rt => rt.propertyId === propertyId);
-    const ratePlans = db.ratePlans.find(rp => rp.propertyId === propertyId);
+    const roomTypes = await db.roomTypes.findByPropertyId(propertyId);
+    const ratePlans = await db.ratePlans.findByPropertyId(propertyId);
 
-    const results: RoomAvailabilityResponse[] = roomTypes.map((rt) => {
-      // OVERLAP QUERY LOGIC per AGENTS.md §6:
-      // existing.check_in < requested.check_out AND existing.check_out > requested.check_in
-      const overlappingBookings = db.reservations.find(res =>
-        res.propertyId === propertyId &&
-        res.roomTypeId === rt.id &&
-        ['confirmed', 'checked_in'].includes(res.status) &&
-        res.checkInDate < checkOut &&
-        res.checkOutDate > checkIn
-      );
+    const results: RoomAvailabilityResponse[] = await Promise.all(
+      roomTypes.map(async (rt) => {
+        // OVERLAP QUERY LOGIC per AGENTS.md §6:
+        // existing.check_in < requested.check_out AND existing.check_out > requested.check_in
+        const overlappingBookings = await db.reservations.findOverlapping(
+          propertyId,
+          rt.id,
+          checkIn,
+          checkOut
+        );
 
-      const totalInventory = rt.totalInventory || 10;
-      const availableCount = Math.max(0, totalInventory - overlappingBookings.length);
+        const totalInventory = rt.totalInventory || 10;
+        const availableCount = Math.max(0, totalInventory - overlappingBookings.length);
 
-      const nightlyRates = ratePlans.map((rp) => {
-        const pricing = pricingService.calculateBookingPricing(rt, rp, checkIn, checkOut, promoCode);
+        const nightlyRates = ratePlans.map((rp) => {
+          const pricing = pricingService.calculateBookingPricing(rt, rp, checkIn, checkOut, promoCode);
+          return {
+            ratePlan: rp,
+            calculatedNightlyPrice: pricing.nightlyRate,
+            calculatedTotalPrice: pricing.subtotal,
+            taxAmount: pricing.taxAmount,
+            resortFee: pricing.resortFee,
+            grandTotal: pricing.grandTotal,
+          };
+        });
+
         return {
-          ratePlan: rp,
-          calculatedNightlyPrice: pricing.nightlyRate,
-          calculatedTotalPrice: pricing.subtotal,
-          taxAmount: pricing.taxAmount,
-          resortFee: pricing.resortFee,
-          grandTotal: pricing.grandTotal,
+          roomType: rt,
+          availableCount,
+          totalInventory,
+          nightlyRates,
         };
-      });
-
-      return {
-        roomType: rt,
-        availableCount,
-        totalInventory,
-        nightlyRates,
-      };
-    });
+      })
+    );
 
     return {
       propertyId,
@@ -79,3 +80,4 @@ export class AvailabilityService {
 }
 
 export const availabilityService = new AvailabilityService();
+

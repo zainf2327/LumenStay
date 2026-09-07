@@ -79,15 +79,16 @@ export class AuthService {
   }
 
   // 5. Real Login with Bcrypt Password Hash Verification & Fallback
-  public login(email: string, password: string): AuthSession {
+  public async login(email: string, password: string): Promise<AuthSession> {
     if (!email || !password) {
       throw new ApiError(400, 'Email and password are required');
     }
 
     const cleanEmail = email.trim().toLowerCase();
-    const user = db.users.findOne(u => u.email?.trim().toLowerCase() === cleanEmail);
+    const user = await db.users.findByEmail(cleanEmail);
     if (!user) {
-      console.warn(`[AUTH] Login failed: No user found for "${cleanEmail}". Total users in DB: ${db.users.count()}`);
+      const count = await db.users.count();
+      console.warn(`[AUTH] Login failed: No user found for "${cleanEmail}". Total users in DB: ${count}`);
       throw new ApiError(401, 'Invalid email or password');
     }
 
@@ -121,8 +122,8 @@ export class AuthService {
   }
 
   // 6. Real User Registration with Bcrypt Hashing
-  public register(input: RegisterInput): AuthSession {
-    const existing = db.users.findOne(u => u.email.toLowerCase() === input.email.toLowerCase());
+  public async register(input: RegisterInput): Promise<AuthSession> {
+    const existing = await db.users.findByEmail(input.email);
     if (existing) {
       throw new ApiError(409, 'An account with this email address already exists.');
     }
@@ -143,7 +144,7 @@ export class AuthService {
       createdAt: now,
     };
 
-    db.users.insert(newUser);
+    await db.users.insert(newUser);
 
     // If guest role, also create/link Guest CRM profile
     if (newUser.role === 'guest') {
@@ -151,7 +152,7 @@ export class AuthService {
       const firstName = nameParts[0] || 'Valued';
       const lastName = nameParts.slice(1).join(' ') || 'Guest';
 
-      db.guests.insert({
+      await db.guests.insert({
         id: `gst_${userId}`,
         firstName,
         lastName,
@@ -179,9 +180,9 @@ export class AuthService {
   }
 
   // 7. Token Refresh Rotation
-  public refresh(refreshToken: string): AuthSession {
+  public async refresh(refreshToken: string): Promise<AuthSession> {
     const payload = this.verifyRefreshToken(refreshToken);
-    const user = this.getCurrentUser(payload.id);
+    const user = await this.getCurrentUser(payload.id);
 
     const newAccessToken = this.generateAccessToken(user);
     const newRefreshToken = this.generateRefreshToken(user);
@@ -194,8 +195,8 @@ export class AuthService {
     };
   }
 
-  public getCurrentUser(userId: string): User {
-    const user = db.users.findById(userId);
+  public async getCurrentUser(userId: string): Promise<User> {
+    const user = await db.users.findById(userId);
     if (!user) {
       throw new ApiError(404, 'User profile not found');
     }

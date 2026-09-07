@@ -5,21 +5,17 @@ import { ApiError } from '../types/api.types.js';
 import type { RoomStatus } from '../types/domain.types.js';
 
 export class RoomService {
-  public getRoomsForProperty(propertyId: string) {
+  public async getRoomsForProperty(propertyId: string) {
     const today = format(new Date(), 'yyyy-MM-dd');
-    const roomList = db.rooms.find(r => r.propertyId === propertyId);
-
-    const activeRes = db.reservations.find(res =>
-      res.propertyId === propertyId &&
-      ['confirmed', 'checked_in'].includes(res.status) &&
-      res.checkInDate <= today &&
-      res.checkOutDate >= today &&
-      Boolean(res.assignedRoomId)
-    );
+    const roomList = await db.rooms.findByPropertyId(propertyId);
+    const activeRes = (await db.reservations.findActiveByPropertyId(propertyId, today)).filter(r => Boolean(r.assignedRoomId));
+    const roomTypes = await db.roomTypes.findByPropertyId(propertyId);
+    const roomTypeMap = new Map(roomTypes.map(rt => [rt.id, rt]));
 
     const resMap = new Map();
     for (const r of activeRes) {
-      const g = db.guests.findById(r.guestId);
+      if (!r.assignedRoomId) continue;
+      const g = await db.guests.findById(r.guestId);
       resMap.set(r.assignedRoomId, {
         reservationId: r.id,
         confirmationCode: r.confirmationCode,
@@ -33,7 +29,7 @@ export class RoomService {
     }
 
     return roomList.map((rm) => {
-      const roomType = db.roomTypes.findById(rm.roomTypeId);
+      const roomType = roomTypeMap.get(rm.roomTypeId);
       const activeBooking = resMap.get(rm.id);
       return {
         ...rm,
@@ -46,11 +42,11 @@ export class RoomService {
     });
   }
 
-  public updateRoomStatus(roomId: string, status: RoomStatus, quirks?: string) {
+  public async updateRoomStatus(roomId: string, status: RoomStatus, quirks?: string) {
     const updates: any = { status };
     if (quirks !== undefined) updates.quirks = quirks;
 
-    const updatedRoom = db.rooms.update(roomId, updates);
+    const updatedRoom = await db.rooms.update(roomId, updates);
     if (!updatedRoom) {
       throw new ApiError(404, 'Room not found');
     }
@@ -66,18 +62,20 @@ export class RoomService {
     return updatedRoom;
   }
 
-  public getDashboardMetrics(propertyId: string) {
+  public async getDashboardMetrics(propertyId: string) {
     const today = format(new Date(), 'yyyy-MM-dd');
-    const propertyRooms = db.rooms.find(r => r.propertyId === propertyId);
+    const propertyRooms = await db.rooms.findByPropertyId(propertyId);
     const totalRooms = propertyRooms.length;
     const cleanRooms = propertyRooms.filter(r => r.status === 'clean').length;
     const dirtyRooms = propertyRooms.filter(r => r.status === 'dirty').length;
     const inspectedRooms = propertyRooms.filter(r => r.status === 'inspected').length;
     const oooRooms = propertyRooms.filter(r => r.status === 'out_of_order').length;
 
-    const arrivalsToday = db.reservations.count(r => r.propertyId === propertyId && r.checkInDate === today && r.status === 'confirmed');
-    const inHouse = db.reservations.count(r => r.propertyId === propertyId && r.status === 'checked_in');
-    const departuresToday = db.reservations.count(r => r.propertyId === propertyId && r.checkOutDate === today && r.status === 'checked_in');
+    const resList = await db.reservations.findByPropertyId(propertyId);
+
+    const arrivalsToday = resList.filter(r => r.checkInDate === today && r.status === 'confirmed').length;
+    const inHouse = resList.filter(r => r.status === 'checked_in').length;
+    const departuresToday = resList.filter(r => r.checkOutDate === today && r.status === 'checked_in').length;
 
     const occupancyRate = totalRooms > 0 ? Math.round((inHouse / totalRooms) * 100) : 0;
 
@@ -94,9 +92,9 @@ export class RoomService {
     };
   }
 
-  public getReservationsForQueue(propertyId: string, filter?: string) {
+  public async getReservationsForQueue(propertyId: string, filter?: string) {
     const today = format(new Date(), 'yyyy-MM-dd');
-    let resList = db.reservations.find(r => r.propertyId === propertyId);
+    let resList = await db.reservations.findByPropertyId(propertyId);
 
     if (filter === 'arrivals') {
       resList = resList.filter(r => r.checkInDate === today && r.status === 'confirmed');
@@ -106,26 +104,35 @@ export class RoomService {
       resList = resList.filter(r => r.checkOutDate === today && r.status === 'checked_in');
     }
 
-    return resList.map((r) => {
-      const guest = db.guests.findById(r.guestId);
-      const roomType = db.roomTypes.findById(r.roomTypeId);
-      const room = r.assignedRoomId ? db.rooms.findById(r.assignedRoomId) : null;
-      return {
-        ...r,
-        guestName: guest ? `${guest.firstName} ${guest.lastName}` : 'Guest',
-        guestEmail: guest?.email,
-        guestPhone: guest?.phone,
-        loyaltyTier: guest?.loyaltyTier || 'member',
-        vipStatus: guest?.vipStatus || false,
-        roomTypeName: roomType?.name || 'Suite',
-        roomTypeCode: roomType?.code || 'RM',
-        assignedRoomNumber: room?.roomNumber || null,
-      };
-    });
+    const roomTypes = await db.roomTypes.findByPropertyId(propertyId);
+    const roomTypeMap = new Map(roomTypes.map(rt => [rt.id, rt]));
+    const rooms = await db.rooms.findByPropertyId(propertyId);
+    const roomMap = new Map(rooms.map(r => [r.id, r]));
+
+    const enriched = await Promise.all(
+      resList.map(async (r) => {
+        const guest = await db.guests.findById(r.guestId);
+        const roomType = roomTypeMap.get(r.roomTypeId);
+        const room = r.assignedRoomId ? roomMap.get(r.assignedRoomId) : null;
+        return {
+          ...r,
+          guestName: guest ? `${guest.firstName} ${guest.lastName}` : 'Guest',
+          guestEmail: guest?.email,
+          guestPhone: guest?.phone,
+          loyaltyTier: guest?.loyaltyTier || 'member',
+          vipStatus: guest?.vipStatus || false,
+          roomTypeName: roomType?.name || 'Suite',
+          roomTypeCode: roomType?.code || 'RM',
+          assignedRoomNumber: room?.roomNumber || null,
+        };
+      })
+    );
+
+    return enriched;
   }
 
-  public checkInGuest(reservationId: string, assignedRoomId?: string, idType?: string, idNumber?: string) {
-    const reservation = db.reservations.findById(reservationId);
+  public async checkInGuest(reservationId: string, assignedRoomId?: string, idType?: string, idNumber?: string) {
+    const reservation = await db.reservations.findById(reservationId);
     if (!reservation) {
       throw new ApiError(404, 'Reservation not found');
     }
@@ -136,18 +143,16 @@ export class RoomService {
     }
 
     const now = new Date().toISOString();
-    db.reservations.update(reservationId, {
+    await db.reservations.update(reservationId, {
       status: 'checked_in',
       assignedRoomId: finalRoomId,
       checkedInAt: now,
-      digitalKeyIssued: true,
-      updatedAt: now,
     });
 
-    db.rooms.update(finalRoomId, { isOccupied: true });
+    await db.rooms.update(finalRoomId, { isOccupied: true });
 
     if (idType && idNumber) {
-      db.guests.update(reservation.guestId, {
+      await db.guests.update(reservation.guestId, {
         idDocumentType: idType,
         idDocumentNumber: idNumber,
       });
@@ -162,26 +167,25 @@ export class RoomService {
     return { checkInTime: now, assignedRoomId: finalRoomId };
   }
 
-  public checkOutGuest(reservationId: string) {
-    const reservation = db.reservations.findById(reservationId);
+  public async checkOutGuest(reservationId: string) {
+    const reservation = await db.reservations.findById(reservationId);
     if (!reservation) {
       throw new ApiError(404, 'Reservation not found');
     }
 
     const now = new Date().toISOString();
-    db.reservations.update(reservationId, {
+    await db.reservations.update(reservationId, {
       status: 'checked_out',
       checkedOutAt: now,
-      updatedAt: now,
     });
 
     if (reservation.assignedRoomId) {
-      db.rooms.update(reservation.assignedRoomId, {
+      await db.rooms.update(reservation.assignedRoomId, {
         isOccupied: false,
         status: 'dirty',
       });
 
-      db.housekeepingTasks.insert({
+      await db.housekeepingTasks.insert({
         id: `tsk_${Date.now()}`,
         propertyId: reservation.propertyId,
         roomId: reservation.assignedRoomId,
@@ -204,3 +208,4 @@ export class RoomService {
 }
 
 export const roomService = new RoomService();
+

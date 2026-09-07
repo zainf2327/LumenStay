@@ -2,18 +2,21 @@ import { db } from '../db/index.js';
 import { ApiError } from '../types/api.types.js';
 
 export class PropertyService {
-  public getAllProperties() {
-    return db.properties.find();
+  public async getAllProperties() {
+    return await db.properties.find();
   }
 
-  public getPropertyByIdOrSlug(idOrSlug: string) {
-    const property = db.properties.findOne(p => p.id === idOrSlug || p.slug === idOrSlug);
+  public async getPropertyByIdOrSlug(idOrSlug: string) {
+    let property = await db.properties.findById(idOrSlug);
+    if (!property) {
+      property = await db.properties.findBySlug(idOrSlug);
+    }
     if (!property) {
       throw new ApiError(404, 'Property not found');
     }
 
-    const roomTypes = db.roomTypes.find(rt => rt.propertyId === property.id);
-    const ratePlans = db.ratePlans.find(rp => rp.propertyId === property.id);
+    const roomTypes = await db.roomTypes.findByPropertyId(property.id);
+    const ratePlans = await db.ratePlans.findByPropertyId(property.id);
 
     return {
       ...property,
@@ -24,3 +27,4 @@ export class PropertyService {
 }
 
 export const propertyService = new PropertyService();
+

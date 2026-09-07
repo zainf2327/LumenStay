@@ -4,23 +4,25 @@ import { ApiError } from '../types/api.types.js';
 import type { MaintenanceTicket } from '../types/domain.types.js';
 
 export class MaintenanceService {
-  public getTicketsForProperty(propertyId?: string) {
-    const tickets = propertyId
-      ? db.maintenanceTickets.find((t) => t.propertyId === propertyId)
-      : db.maintenanceTickets.find();
+  public async getTicketsForProperty(propertyId?: string) {
+    const tickets = await db.maintenanceTickets.find(propertyId);
 
-    return tickets.map((tkt) => {
-      const room = tkt.roomId ? db.rooms.findById(tkt.roomId) : null;
-      return {
-        ...tkt,
-        roomNumber: room?.roomNumber || (tkt.roomId ? tkt.roomId.replace(/^rm_[^_]+_/, '') : 'General'),
-        building: room?.building || 'Main',
-        floor: room?.floor || 1,
-      };
-    }).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const enriched = await Promise.all(
+      tickets.map(async (tkt) => {
+        const room = tkt.roomId ? await db.rooms.findById(tkt.roomId) : null;
+        return {
+          ...tkt,
+          roomNumber: room?.roomNumber || (tkt.roomId ? tkt.roomId.replace(/^rm_[^_]+_/, '') : 'General'),
+          building: room?.building || 'Main',
+          floor: room?.floor || 1,
+        };
+      })
+    );
+
+    return enriched.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 
-  public createTicket(data: {
+  public async createTicket(data: {
     propertyId: string;
     roomId?: string;
     title: string;
@@ -31,12 +33,12 @@ export class MaintenanceService {
     notes?: string;
     takeOutOfOrder?: boolean;
   }) {
-    const property = db.properties.findById(data.propertyId);
+    const property = await db.properties.findById(data.propertyId);
     if (!property) {
       throw new ApiError(404, 'Property not found');
     }
 
-    let room = data.roomId ? db.rooms.findById(data.roomId) : undefined;
+    let room = data.roomId ? await db.rooms.findById(data.roomId) : undefined;
 
     const id = `tkt_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
     const newTicket: MaintenanceTicket = {
@@ -54,11 +56,11 @@ export class MaintenanceService {
       createdAt: new Date().toISOString(),
     };
 
-    db.maintenanceTickets.insert(newTicket);
+    await db.maintenanceTickets.insert(newTicket);
 
     // If requested, take room out of order
     if (data.takeOutOfOrder && room) {
-      db.rooms.update(room.id, {
+      await db.rooms.update(room.id, {
         status: 'out_of_order',
         quirks: data.description ? `${data.category}: ${data.description}` : room.quirks,
       });
@@ -81,13 +83,13 @@ export class MaintenanceService {
     return payload;
   }
 
-  public resolveTicket(id: string, notes?: string) {
-    const ticket = db.maintenanceTickets.findById(id);
+  public async resolveTicket(id: string, notes?: string) {
+    const ticket = await db.maintenanceTickets.findById(id);
     if (!ticket) {
       throw new ApiError(404, 'Maintenance ticket not found');
     }
 
-    const updated = db.maintenanceTickets.update(id, {
+    const updated = await db.maintenanceTickets.update(id, {
       status: 'resolved',
       resolvedAt: new Date().toISOString(),
       notes: notes ? (ticket.notes ? `${ticket.notes} | Resolution: ${notes}` : notes) : ticket.notes,

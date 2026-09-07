@@ -5,16 +5,16 @@ import { ApiError } from '../types/api.types.js';
 import type { FolioCharge } from '../types/domain.types.js';
 
 export class FolioService {
-  public getFolioByReservationId(reservationId: string) {
-    const reservation = db.reservations.findById(reservationId);
+  public async getFolioByReservationId(reservationId: string) {
+    const reservation = await db.reservations.findById(reservationId);
     if (!reservation) {
       throw new ApiError(404, 'Reservation not found');
     }
 
-    const guest = db.guests.findById(reservation.guestId);
-    const assignedRoom = reservation.assignedRoomId ? db.rooms.findById(reservation.assignedRoomId) : null;
-    const property = db.properties.findById(reservation.propertyId);
-    const charges = db.folioCharges.find(c => c.reservationId === reservationId);
+    const guest = await db.guests.findById(reservation.guestId);
+    const assignedRoom = reservation.assignedRoomId ? await db.rooms.findById(reservation.assignedRoomId) : null;
+    const property = await db.properties.findById(reservation.propertyId);
+    const charges = await db.folioCharges.findByReservationId(reservationId);
 
     let totalCharges = 0;
     let totalPayments = 0;
@@ -51,8 +51,8 @@ export class FolioService {
     };
   }
 
-  public addCharge(reservationId: string, category: FolioCharge['category'], description: string, amount: number, postedBy = 'Front Desk') {
-    const reservation = db.reservations.findById(reservationId);
+  public async addCharge(reservationId: string, category: FolioCharge['category'], description: string, amount: number, postedBy = 'Front Desk') {
+    const reservation = await db.reservations.findById(reservationId);
     if (!reservation) {
       throw new ApiError(404, 'Reservation not found');
     }
@@ -69,7 +69,7 @@ export class FolioService {
       createdAt: new Date().toISOString(),
     };
 
-    db.folioCharges.insert(charge);
+    await db.folioCharges.insert(charge);
     broadcastEvent('FOLIO_UPDATED', {
       reservationId,
       propertyId: reservation.propertyId,
@@ -79,8 +79,8 @@ export class FolioService {
     return charge;
   }
 
-  public settlePayment(reservationId: string, amount: number, paymentMethod = 'Credit Card (Tokenized Square)', token = 'tok_sq_settle_4242') {
-    const reservation = db.reservations.findById(reservationId);
+  public async settlePayment(reservationId: string, amount: number, paymentMethod = 'Credit Card (Tokenized Square)', token = 'tok_sq_settle_4242') {
+    const reservation = await db.reservations.findById(reservationId);
     if (!reservation) {
       throw new ApiError(404, 'Reservation not found');
     }
@@ -101,8 +101,8 @@ export class FolioService {
       createdAt: new Date().toISOString(),
     };
 
-    db.folioCharges.insert(paymentEntry);
-    db.reservations.update(reservationId, {
+    await db.folioCharges.insert(paymentEntry);
+    await db.reservations.update(reservationId, {
       paidAmount: reservation.paidAmount + amount,
       paymentStatus: 'paid',
     });

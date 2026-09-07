@@ -18,7 +18,7 @@ const REFRESH_COOKIE_OPTIONS = {
 
 export const login = asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = req.body;
-  const { user, accessToken, refreshToken } = authService.login(email, password);
+  const { user, accessToken, refreshToken } = await authService.login(email, password);
 
   // Set 7-day secure HTTP-only cookie
   res.cookie(REFRESH_COOKIE_NAME, refreshToken, REFRESH_COOKIE_OPTIONS);
@@ -31,7 +31,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const register = asyncHandler(async (req: Request, res: Response) => {
-  const { user, accessToken, refreshToken } = authService.register(req.body);
+  const { user, accessToken, refreshToken } = await authService.register(req.body);
 
   // Set 7-day secure HTTP-only cookie
   res.cookie(REFRESH_COOKIE_NAME, refreshToken, REFRESH_COOKIE_OPTIONS);
@@ -51,7 +51,7 @@ export const refreshToken = asyncHandler(async (req: Request, res: Response) => 
     return sendError(res, 'No active session', 401);
   }
 
-  const { user, accessToken, refreshToken: newRefreshToken } = authService.refresh(incomingRefreshToken);
+  const { user, accessToken, refreshToken: newRefreshToken } = await authService.refresh(incomingRefreshToken);
 
   // Rotate 7-day secure HTTP-only cookie
   res.cookie(REFRESH_COOKIE_NAME, newRefreshToken, REFRESH_COOKIE_OPTIONS);
@@ -79,7 +79,7 @@ export const getMe = asyncHandler(async (req: AuthenticatedRequest, res: Respons
     throw new ApiError(401, 'Not authenticated');
   }
 
-  const user = authService.getCurrentUser(req.user.id);
+  const user = await authService.getCurrentUser(req.user.id);
   const { passwordHash: _, ...safeUser } = user;
   return sendSuccess(res, safeUser, 'Current user profile retrieved');
 });

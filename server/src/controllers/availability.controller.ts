@@ -11,7 +11,7 @@ export const getAvailability = asyncHandler(async (req: Request, res: Response) 
     promoCode?: string;
   };
 
-  const availability = availabilityService.getAvailability(
+  const availability = await availabilityService.getAvailability(
     propertyId,
     checkIn,
     checkOut,

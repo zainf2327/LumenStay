@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs';
-import { db } from './index.js';
 import { getSupabaseClient } from './supabase.js';
 import { logger } from '../utils/logger.js';
 import { format, addDays, subDays } from 'date-fns';
@@ -239,10 +238,6 @@ export async function seedDatabase(force: boolean = true): Promise<void> {
       createdAt: now,
     },
   ];
-  for (const p of seededProperties) {
-    if (db.properties.findById(p.id)) db.properties.update(p.id, p);
-    else db.properties.insert(p);
-  }
 
   // 2. Room Types
   const seededRoomTypes: RoomType[] = [
@@ -442,10 +437,6 @@ export async function seedDatabase(force: boolean = true): Promise<void> {
       totalInventory: 11,
     },
   ];
-  for (const rt of seededRoomTypes) {
-    if (db.roomTypes.findById(rt.id)) db.roomTypes.update(rt.id, rt);
-    else db.roomTypes.insert(rt);
-  }
 
   // 3. Physical Rooms (197 total)
   const seededRooms: Room[] = [];
@@ -513,10 +504,6 @@ export async function seedDatabase(force: boolean = true): Promise<void> {
     const status = i % 6 === 0 ? 'dirty' : 'clean';
     seededRooms.push({ id: `rm_ledg_${roomNum}`, propertyId: 'prop_theledger', roomTypeId: rtId, roomNumber: roomNum, floor, building: 'Urban Atelier', status, quirks: quirk, isOccupied: false, features: ['Acoustic Soundproofing', 'Workstation'] });
   }
-  for (const r of seededRooms) {
-    if (db.rooms.findById(r.id)) db.rooms.update(r.id, r);
-    else db.rooms.insert(r);
-  }
 
   // 4. Rate Plans
   const seededRatePlans: RatePlan[] = [];
@@ -528,10 +515,6 @@ export async function seedDatabase(force: boolean = true): Promise<void> {
       { id: `rp_${prop.id}_promo`, propertyId: prop.id, name: 'Early Mountain & Desert Escape', code: 'EARLYBIRD', description: 'Special promotional rate with $50 property experience credit.', priceModifier: 0.80, cancellationPolicy: 'Free cancellation up to 7 days before check-in', includesBreakfast: true, requiresLoyalty: false, minLoyaltyTier: null, isPromo: true, promoCode: 'LUMEN2026' }
     );
   }
-  for (const rp of seededRatePlans) {
-    if (db.ratePlans.findById(rp.id)) db.ratePlans.update(rp.id, rp);
-    else db.ratePlans.insert(rp);
-  }
 
   // 5. Guests
   const seededGuests: Guest[] = [
@@ -540,10 +523,6 @@ export async function seedDatabase(force: boolean = true): Promise<void> {
     { id: 'gst_elena_rostova', firstName: 'Elena', lastName: 'Rostova', email: 'elena.rostova@montrealdesign.ca', phone: '+1 (514) 732-8891', city: 'Montreal', state: 'QC', country: 'Canada', loyaltyTier: 'silver', loyaltyPoints: 12100, idDocumentType: 'Passport', idDocumentNumber: 'CAN-KC492019', specialPreferences: 'Late checkout requests whenever available.', notes: 'Canadian frequent traveler at Utah properties.', vipStatus: false, createdAt: now },
     { id: 'gst_david_chen', firstName: 'David', lastName: 'Chen', email: 'dchen@summitadvisors.com', phone: '+1 (206) 555-0199', city: 'Seattle', state: 'WA', country: 'USA', loyaltyTier: 'member', loyaltyPoints: 3500, idDocumentType: 'Drivers License', idDocumentNumber: 'WA-WDL98234B', specialPreferences: 'Fast Wi-Fi priority for executive Zoom calls.', notes: 'First time guest booking directly.', vipStatus: false, createdAt: now },
   ];
-  for (const g of seededGuests) {
-    if (db.guests.findById(g.id)) db.guests.update(g.id, g);
-    else db.guests.insert(g);
-  }
 
   // 6. Reservations
   const seededReservations: Reservation[] = [
@@ -552,13 +531,6 @@ export async function seedDatabase(force: boolean = true): Promise<void> {
     { id: 'res_birch_depart_1', confirmationCode: 'LMN-BW-7731', propertyId: 'prop_birchwood', guestId: 'gst_david_chen', roomTypeId: 'rt_birch_std', assignedRoomId: 'rm_birch_104', ratePlanId: 'rp_prop_birchwood_nonref', status: 'checked_in', checkInDate: format(subDays(new Date(), 3), 'yyyy-MM-dd'), checkOutDate: today, adultCount: 1, childCount: 0, totalNights: 3, nightlyRate: 323.0, taxAmount: 116.28, resortFee: 105.0, totalAmount: 1190.28, paidAmount: 1190.28, paymentStatus: 'paid', specialRequests: 'Quiet room for business calls.', estimatedArrival: '14:00', checkedInAt: `${format(subDays(new Date(), 3), 'yyyy-MM-dd')}T14:15:00Z`, checkedOutAt: null, digitalKeyIssued: true, source: 'direct', createdAt: format(subDays(new Date(), 10), 'yyyy-MM-dd'), updatedAt: now },
     { id: 'res_cop_future_1', confirmationCode: 'LMN-CP-5520', propertyId: 'prop_copperline', guestId: 'gst_elena_rostova', roomTypeId: 'rt_cop_loft', assignedRoomId: 'rm_cop_201', ratePlanId: 'rp_prop_copperline_member', status: 'confirmed', checkInDate: in3Days, checkOutDate: in5Days, adultCount: 2, childCount: 0, totalNights: 2, nightlyRate: 351.0, taxAmount: 84.24, resortFee: 60.0, totalAmount: 846.24, paidAmount: 846.24, paymentStatus: 'authorized', specialRequests: 'Interested in fat-tire bike rentals.', estimatedArrival: '15:00', checkedInAt: null, checkedOutAt: null, digitalKeyIssued: false, source: 'direct', createdAt: now, updatedAt: now },
   ];
-  for (const r of seededReservations) {
-    if (db.reservations.findById(r.id)) db.reservations.update(r.id, r);
-    else db.reservations.insert(r);
-  }
-
-  db.rooms.update('rm_birch_201', { isOccupied: true });
-  db.rooms.update('rm_birch_104', { isOccupied: true });
 
   // 7. Folio Charges
   const seededFolioCharges: FolioCharge[] = [
@@ -569,10 +541,6 @@ export async function seedDatabase(force: boolean = true): Promise<void> {
     { id: 'fol_5', reservationId: 'res_birch_inhouse_1', propertyId: 'prop_birchwood', category: 'dining', description: 'Courtyard Fireside Dining & Cocktails', amount: 184.50, status: 'posted', postedBy: 'Fireside POS Bridge', createdAt: `${yesterday}T21:45:00Z` },
     { id: 'fol_6', reservationId: 'res_birch_inhouse_1', propertyId: 'prop_birchwood', category: 'payment', description: 'Initial Deposit Authorized (Square Token)', amount: -2478.56, status: 'paid', postedBy: 'Front Desk', paymentMethod: 'Credit Card (Square Token)', paymentRef: 'sq_auth_98129031', createdAt: yesterday },
   ];
-  for (const f of seededFolioCharges) {
-    if (db.folioCharges.findById(f.id)) db.folioCharges.update(f.id, f);
-    else db.folioCharges.insert(f);
-  }
 
   // 8. Staff & Guest Accounts (Real Bcrypt Hashes - Password: "123456")
   const defaultSaltRounds = 10;
@@ -668,13 +636,6 @@ export async function seedDatabase(force: boolean = true): Promise<void> {
       createdAt: now,
     },
   ];
-  for (const user of seededUsers) {
-    if (db.users.findById(user.id)) {
-      db.users.update(user.id, user);
-    } else {
-      db.users.insert(user);
-    }
-  }
 
   // 9. Sync to live Supabase PostgreSQL
   if (supabase) {

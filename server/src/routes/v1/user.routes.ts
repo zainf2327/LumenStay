@@ -6,7 +6,7 @@ import { asyncHandler } from '../../middlewares/asyncHandler.middleware.js';
 const router = Router();
 
 router.get('/', asyncHandler(async (req, res) => {
-  const users = db.users.find();
+  const users = await db.users.find();
   return sendSuccess(res, users, 'Users retrieved successfully');
 }));
 

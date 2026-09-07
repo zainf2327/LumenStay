@@ -10,7 +10,7 @@ export const createBooking = asyncHandler(async (req: Request, res: Response) =>
 
 export const getBookingByIdentifier = asyncHandler(async (req: Request, res: Response) => {
   const id = req.params.id as string;
-  const booking = bookingService.getBookingByIdentifier(id);
+  const booking = await bookingService.getBookingByIdentifier(id);
   return sendSuccess(res, booking, 'Reservation retrieved successfully');
 });
 

@@ -115,6 +115,17 @@ export function loadDatabase(): DatabaseSchema {
 }
 
 export function saveDatabase(): void {
+  // Guard against overwriting an existing populated DB file with an empty schema
+  if (inMemoryData.properties.length === 0 && fs.existsSync(dbFile)) {
+    try {
+      const existing = fs.readFileSync(dbFile, 'utf-8');
+      if (existing.length > 1000) {
+        console.warn('[DB] Guard prevented saving empty properties over populated database file.');
+        return;
+      }
+    } catch {}
+  }
+
   try {
     fs.writeFileSync(dbFile, JSON.stringify(inMemoryData, null, 2), 'utf-8');
   } catch (e) {

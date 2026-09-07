@@ -40,7 +40,7 @@
         "Tesla Destination Charging"
       ],
       "totalRooms": 42,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "prop_copperline",
@@ -82,7 +82,7 @@
         "Heated Boot Warmers"
       ],
       "totalRooms": 28,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "prop_wrenhouse",
@@ -124,7 +124,7 @@
         "Private Heliski Coordination"
       ],
       "totalRooms": 19,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "prop_sundowner",
@@ -166,7 +166,7 @@
         "Valet Parking"
       ],
       "totalRooms": 51,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "prop_cedarsalt",
@@ -208,7 +208,7 @@
         "EV Superchargers"
       ],
       "totalRooms": 24,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "prop_theledger",
@@ -250,7 +250,7 @@
         "Curated Art Gallery"
       ],
       "totalRooms": 33,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     }
   ],
   "roomTypes": [
@@ -540,8 +540,8 @@
       "roomNumber": "101",
       "floor": 1,
       "building": "Historic Lodge",
-      "status": "inspected",
-      "quirks": "Lighting & Electrical: issue",
+      "status": "clean",
+      "quirks": null,
       "isOccupied": false,
       "features": [
         "Historic Timber",
@@ -555,7 +555,7 @@
       "roomNumber": "102",
       "floor": 1,
       "building": "Historic Lodge",
-      "status": "inspected",
+      "status": "clean",
       "quirks": null,
       "isOccupied": false,
       "features": [
@@ -570,7 +570,7 @@
       "roomNumber": "103",
       "floor": 1,
       "building": "Historic Lodge",
-      "status": "inspected",
+      "status": "dirty",
       "quirks": null,
       "isOccupied": false,
       "features": [
@@ -585,7 +585,7 @@
       "roomNumber": "104",
       "floor": 1,
       "building": "Historic Lodge",
-      "status": "dirty",
+      "status": "clean",
       "quirks": null,
       "isOccupied": true,
       "features": [
@@ -705,7 +705,7 @@
       "roomNumber": "112",
       "floor": 1,
       "building": "Historic Lodge",
-      "status": "clean",
+      "status": "dirty",
       "quirks": null,
       "isOccupied": false,
       "features": [
@@ -752,7 +752,7 @@
       "building": "Historic Lodge",
       "status": "clean",
       "quirks": null,
-      "isOccupied": false,
+      "isOccupied": true,
       "features": [
         "Historic Timber",
         "Courtyard Access"
@@ -3844,7 +3844,7 @@
       "specialPreferences": "Prefers top floor away from elevator. Feather-free hypoallergenic pillows.",
       "notes": "Repeat VIP across Aspen and Telluride.",
       "vipStatus": true,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "gst_marcus_sterling",
@@ -3857,12 +3857,12 @@
       "country": "USA",
       "loyaltyTier": "gold",
       "loyaltyPoints": 24200,
-      "idDocumentType": "Passport",
-      "idDocumentNumber": "USA-P7411563",
+      "idDocumentType": "Drivers License",
+      "idDocumentNumber": "IL-S490-192-30",
       "specialPreferences": "Loves corner rooms with natural lighting.",
       "notes": "Architect enthusiast; loves The Birchwood restoration.",
       "vipStatus": true,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "gst_elena_rostova",
@@ -3880,7 +3880,7 @@
       "specialPreferences": "Late checkout requests whenever available.",
       "notes": "Canadian frequent traveler at Utah properties.",
       "vipStatus": false,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "gst_david_chen",
@@ -3898,7 +3898,7 @@
       "specialPreferences": "Fast Wi-Fi priority for executive Zoom calls.",
       "notes": "First time guest booking directly.",
       "vipStatus": false,
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "gst_1788170825489_14f15",
@@ -4064,9 +4064,9 @@
       "roomTypeId": "rt_birch_mtn",
       "assignedRoomId": "rm_birch_201",
       "ratePlanId": "rp_prop_birchwood_member",
-      "status": "checked_out",
-      "checkInDate": "2026-09-01",
-      "checkOutDate": "2026-09-05",
+      "status": "checked_in",
+      "checkInDate": "2026-09-06",
+      "checkOutDate": "2026-09-10",
       "adultCount": 2,
       "childCount": 0,
       "totalNights": 4,
@@ -4078,12 +4078,12 @@
       "paymentStatus": "paid",
       "specialRequests": "Celebration bottle of vintage champagne on ice at arrival.",
       "estimatedArrival": "15:30",
-      "checkedInAt": "2026-09-01T15:45:00Z",
-      "checkedOutAt": "2026-09-02T11:33:17.764Z",
+      "checkedInAt": "2026-09-06T15:45:00Z",
+      "checkedOutAt": null,
       "digitalKeyIssued": true,
       "source": "direct",
-      "createdAt": "2026-09-01",
-      "updatedAt": "2026-09-02T11:33:17.764Z"
+      "createdAt": "2026-09-06",
+      "updatedAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "res_birch_arrival_1",
@@ -4093,9 +4093,9 @@
       "roomTypeId": "rt_birch_std",
       "assignedRoomId": "rm_birch_102",
       "ratePlanId": "rp_prop_birchwood_std",
-      "status": "checked_out",
-      "checkInDate": "2026-09-02",
-      "checkOutDate": "2026-09-03",
+      "status": "confirmed",
+      "checkInDate": "2026-09-07",
+      "checkOutDate": "2026-09-08",
       "adultCount": 2,
       "childCount": 0,
       "totalNights": 1,
@@ -4107,12 +4107,12 @@
       "paymentStatus": "authorized",
       "specialRequests": "High floor if possible.",
       "estimatedArrival": "16:00",
-      "checkedInAt": "2026-09-03T09:27:38.118Z",
-      "checkedOutAt": "2026-09-03T09:28:21.667Z",
-      "digitalKeyIssued": true,
+      "checkedInAt": null,
+      "checkedOutAt": null,
+      "digitalKeyIssued": false,
       "source": "direct",
-      "createdAt": "2026-09-01",
-      "updatedAt": "2026-09-03T09:28:21.667Z"
+      "createdAt": "2026-09-06",
+      "updatedAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "res_birch_depart_1",
@@ -4123,8 +4123,8 @@
       "assignedRoomId": "rm_birch_104",
       "ratePlanId": "rp_prop_birchwood_nonref",
       "status": "checked_in",
-      "checkInDate": "2026-08-30",
-      "checkOutDate": "2026-09-02",
+      "checkInDate": "2026-09-04",
+      "checkOutDate": "2026-09-07",
       "adultCount": 1,
       "childCount": 0,
       "totalNights": 3,
@@ -4136,12 +4136,12 @@
       "paymentStatus": "paid",
       "specialRequests": "Quiet room for business calls.",
       "estimatedArrival": "14:00",
-      "checkedInAt": "2026-08-30T14:15:00Z",
+      "checkedInAt": "2026-09-04T14:15:00Z",
       "checkedOutAt": null,
       "digitalKeyIssued": true,
       "source": "direct",
-      "createdAt": "2026-08-23",
-      "updatedAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-08-28",
+      "updatedAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "res_cop_future_1",
@@ -4152,8 +4152,8 @@
       "assignedRoomId": "rm_cop_201",
       "ratePlanId": "rp_prop_copperline_member",
       "status": "confirmed",
-      "checkInDate": "2026-09-05",
-      "checkOutDate": "2026-09-07",
+      "checkInDate": "2026-09-10",
+      "checkOutDate": "2026-09-12",
       "adultCount": 2,
       "childCount": 0,
       "totalNights": 2,
@@ -4169,8 +4169,8 @@
       "checkedOutAt": null,
       "digitalKeyIssued": false,
       "source": "direct",
-      "createdAt": "2026-09-02T10:59:37.904Z",
-      "updatedAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z",
+      "updatedAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "res_1788170825491_bwuc8",
@@ -4572,7 +4572,7 @@
       "amount": 2088,
       "status": "posted",
       "postedBy": "System Night Audit",
-      "createdAt": "2026-09-01"
+      "createdAt": "2026-09-06"
     },
     {
       "id": "fol_2",
@@ -4583,7 +4583,7 @@
       "amount": 250.56,
       "status": "posted",
       "postedBy": "System Night Audit",
-      "createdAt": "2026-09-01"
+      "createdAt": "2026-09-06"
     },
     {
       "id": "fol_3",
@@ -4594,7 +4594,7 @@
       "amount": 140,
       "status": "posted",
       "postedBy": "System Night Audit",
-      "createdAt": "2026-09-01"
+      "createdAt": "2026-09-06"
     },
     {
       "id": "fol_4",
@@ -4605,7 +4605,7 @@
       "amount": 115,
       "status": "posted",
       "postedBy": "Minibar Restock Staff",
-      "createdAt": "2026-09-01T20:30:00Z"
+      "createdAt": "2026-09-06T20:30:00Z"
     },
     {
       "id": "fol_5",
@@ -4616,7 +4616,7 @@
       "amount": 184.5,
       "status": "posted",
       "postedBy": "Fireside POS Bridge",
-      "createdAt": "2026-09-01T21:45:00Z"
+      "createdAt": "2026-09-06T21:45:00Z"
     },
     {
       "id": "fol_6",
@@ -4629,7 +4629,7 @@
       "postedBy": "Front Desk",
       "paymentMethod": "Credit Card (Square Token)",
       "paymentRef": "sq_auth_98129031",
-      "createdAt": "2026-09-01"
+      "createdAt": "2026-09-06"
     },
     {
       "id": "fol_1788170825493_1",
@@ -5541,90 +5541,90 @@
     {
       "id": "usr_owner",
       "email": "owner@lumenstay.com",
-      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "passwordHash": "$2b$10$6K9J9UsP712VofQLcofdjO6xb.CtmgnbE1PsAwSCB887aK7bb0rQ6",
       "name": "Marcus Weil (Owner)",
       "role": "owner",
       "propertyId": "prop_birchwood",
       "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
       "preferredLanguage": "en",
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "usr_gm",
       "email": "gm@lumenstay.com",
-      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "passwordHash": "$2b$10$6K9J9UsP712VofQLcofdjO6xb.CtmgnbE1PsAwSCB887aK7bb0rQ6",
       "name": "Sarah Jenkins (General Manager)",
       "role": "gm",
       "propertyId": "prop_birchwood",
       "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
       "preferredLanguage": "en",
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "usr_frontdesk",
       "email": "frontdesk@lumenstay.com",
-      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "passwordHash": "$2b$10$6K9J9UsP712VofQLcofdjO6xb.CtmgnbE1PsAwSCB887aK7bb0rQ6",
       "name": "Liam Callahan (Front Desk)",
       "role": "front_desk",
       "propertyId": "prop_birchwood",
       "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
       "preferredLanguage": "en",
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "usr_supervisor",
       "email": "supervisor@lumenstay.com",
-      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "passwordHash": "$2b$10$6K9J9UsP712VofQLcofdjO6xb.CtmgnbE1PsAwSCB887aK7bb0rQ6",
       "name": "Rosa Mendez (HK Supervisor)",
       "role": "housekeeping_supervisor",
       "propertyId": "prop_birchwood",
       "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
       "preferredLanguage": "en",
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "usr_housekeeper",
       "email": "housekeeper@lumenstay.com",
-      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "passwordHash": "$2b$10$6K9J9UsP712VofQLcofdjO6xb.CtmgnbE1PsAwSCB887aK7bb0rQ6",
       "name": "Elena Ramos (Room Attendant)",
       "role": "housekeeping",
       "propertyId": "prop_birchwood",
       "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
       "preferredLanguage": "en",
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "usr_maintenance",
       "email": "maintenance@lumenstay.com",
-      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "passwordHash": "$2b$10$6K9J9UsP712VofQLcofdjO6xb.CtmgnbE1PsAwSCB887aK7bb0rQ6",
       "name": "Pete Kovacs (Lead Engineer)",
       "role": "maintenance",
       "propertyId": "prop_birchwood",
       "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
       "preferredLanguage": "en",
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "usr_revenue",
       "email": "revenue@lumenstay.com",
-      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "passwordHash": "$2b$10$6K9J9UsP712VofQLcofdjO6xb.CtmgnbE1PsAwSCB887aK7bb0rQ6",
       "name": "Claire Dubois (Revenue Manager)",
       "role": "revenue_manager",
       "propertyId": "prop_birchwood",
       "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=80",
       "preferredLanguage": "en",
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     },
     {
       "id": "usr_guest",
       "email": "guest@lumenstay.com",
-      "passwordHash": "$2b$10$nSYMrVU6wzFi0yoOo4Swk./9HTn7BQqWR/YWdpjGYiLcKyOjjO0Vq",
+      "passwordHash": "$2b$10$6K9J9UsP712VofQLcofdjO6xb.CtmgnbE1PsAwSCB887aK7bb0rQ6",
       "name": "Alexandra Vance (Guest)",
       "role": "guest",
       "propertyId": "prop_birchwood",
       "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
       "preferredLanguage": "en",
-      "createdAt": "2026-09-02T10:59:37.904Z"
+      "createdAt": "2026-09-07T11:33:12.675Z"
     }
   ],
   "maintenanceTickets": [

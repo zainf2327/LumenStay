@@ -11,8 +11,17 @@ import { notFoundMiddleware } from './middlewares/notFound.middleware.js';
 import { logger } from './utils/logger.js';
 import { sendSuccess } from './utils/response.util.js';
 
+import { db } from './db/index.js';
+import { seedDatabase } from './db/seed.js';
+
 // Initialize Database connection & pragmas per AGENTS.md §6
 dbConnection.initialize();
+
+// Ensure properties and rooms are seeded if database is empty on boot
+if (db.properties.count() === 0 || db.rooms.count() === 0) {
+  logger.warn('[DB] Properties or rooms missing from local DB. Running auto-seed...');
+  await seedDatabase(true);
+}
 
 const app = express();
 

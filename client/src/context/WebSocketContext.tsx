@@ -33,10 +33,20 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
       
-      // Match the server path '/ws' exactly
-      const wsUrl = isLocalhost
-        ? `${protocol}//${window.location.hostname}:3001/ws`
-        : `${protocol}//${window.location.host}/ws`;
+      let wsUrl: string;
+      const envWs = import.meta.env.VITE_WS_URL;
+      const envApi = import.meta.env.VITE_API_URL;
+
+      if (envWs) {
+        wsUrl = envWs;
+      } else if (envApi) {
+        const base = envApi.replace(/^http/, 'ws').replace(/\/+$/, '');
+        wsUrl = `${base}/ws`;
+      } else if (isLocalhost) {
+        wsUrl = `${protocol}//${window.location.hostname}:3001/ws`;
+      } else {
+        wsUrl = `${protocol}//${window.location.host}/ws`;
+      }
 
       try {
         ws = new WebSocket(wsUrl);

@@ -6,11 +6,12 @@ import { config } from '../config/index.js';
 import { ApiError } from '../types/api.types.js';
 import type { AuthenticatedRequest } from '../middlewares/auth.middleware.js';
 
+const isProd = config.nodeEnv === 'production';
 const REFRESH_COOKIE_NAME = 'refreshToken';
 const REFRESH_COOKIE_OPTIONS = {
   httpOnly: true,
-  secure: config.nodeEnv === 'production',
-  sameSite: 'lax' as const,
+  secure: isProd,
+  sameSite: (isProd ? 'none' : 'lax') as 'none' | 'lax',
   path: '/api/v1/auth',
   maxAge: config.refreshTokenExpiryDays * 24 * 60 * 60 * 1000, // 7 days in ms
 };
@@ -65,8 +66,8 @@ export const refreshToken = asyncHandler(async (req: Request, res: Response) => 
 export const logout = asyncHandler(async (req: Request, res: Response) => {
   res.clearCookie(REFRESH_COOKIE_NAME, {
     httpOnly: true,
-    secure: config.nodeEnv === 'production',
-    sameSite: 'lax',
+    secure: isProd,
+    sameSite: isProd ? 'none' : 'lax',
     path: '/api/v1/auth',
   });
 

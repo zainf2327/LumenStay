@@ -1,5 +1,7 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import bcrypt from 'bcryptjs';
 import type {
   Property,
   RoomType,
@@ -26,12 +28,19 @@ export interface DatabaseSchema {
   housekeepingTasks: HousekeepingTask[];
 }
 
-const dbDir = fs.existsSync(path.resolve(process.cwd(), 'server', 'data'))
-  ? path.resolve(process.cwd(), 'server', 'data')
-  : fs.existsSync(path.resolve(process.cwd(), 'data'))
-  ? path.resolve(process.cwd(), 'data')
-  : path.resolve(__dirname, '..', 'data');
-const dbFile = path.resolve(dbDir, 'lumenstay_db.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const candidateFiles = [
+  path.resolve(__dirname, '..', 'data', 'lumenstay_db.json'),
+  path.resolve(__dirname, 'data', 'lumenstay_db.json'),
+  path.resolve(process.cwd(), 'server', 'data', 'lumenstay_db.json'),
+  path.resolve(process.cwd(), 'data', 'lumenstay_db.json'),
+  path.resolve(process.cwd(), 'lumenstay_db.json'),
+];
+
+let dbFile = candidateFiles.find(f => fs.existsSync(f)) || path.resolve(__dirname, '..', 'data', 'lumenstay_db.json');
+const dbDir = path.dirname(dbFile);
 
 if (!fs.existsSync(dbDir)) {
   fs.mkdirSync(dbDir, { recursive: true });
@@ -76,11 +85,32 @@ export function loadDatabase(): DatabaseSchema {
         maintenanceTickets: dedup(parsed.maintenanceTickets),
         housekeepingTasks: dedup(parsed.housekeepingTasks),
       };
-      saveDatabase();
+      console.log(`[DB] Loaded database from ${dbFile} with ${inMemoryData.users.length} users and ${inMemoryData.properties.length} properties`);
     } catch (e) {
       console.error('Error loading database file, initializing empty schema:', e);
     }
+  } else {
+    console.warn(`[DB] Database file not found at ${dbFile}.`);
   }
+
+  // Self-healing fallback: If users collection is missing/empty, seed the standard demo accounts with password "123456"
+  if (inMemoryData.users.length === 0) {
+    console.warn('[DB] No users found in database. Auto-seeding standard accounts with password "123456"...');
+    const defaultHash = bcrypt.hashSync('123456', 10);
+    const now = new Date().toISOString();
+    inMemoryData.users = [
+      { id: 'usr_owner', email: 'owner@lumenstay.com', passwordHash: defaultHash, name: 'Marcus Weil (Owner)', role: 'owner', propertyId: 'prop_birchwood', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80', preferredLanguage: 'en', createdAt: now },
+      { id: 'usr_gm', email: 'gm@lumenstay.com', passwordHash: defaultHash, name: 'Sarah Jenkins (General Manager)', role: 'gm', propertyId: 'prop_birchwood', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80', preferredLanguage: 'en', createdAt: now },
+      { id: 'usr_frontdesk', email: 'frontdesk@lumenstay.com', passwordHash: defaultHash, name: 'Liam Callahan (Front Desk)', role: 'front_desk', propertyId: 'prop_birchwood', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80', preferredLanguage: 'en', createdAt: now },
+      { id: 'usr_supervisor', email: 'supervisor@lumenstay.com', passwordHash: defaultHash, name: 'Rosa Mendez (HK Supervisor)', role: 'housekeeping_supervisor', propertyId: 'prop_birchwood', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80', preferredLanguage: 'en', createdAt: now },
+      { id: 'usr_housekeeper', email: 'housekeeper@lumenstay.com', passwordHash: defaultHash, name: 'Elena Ramos (Room Attendant)', role: 'housekeeping', propertyId: 'prop_birchwood', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80', preferredLanguage: 'en', createdAt: now },
+      { id: 'usr_maintenance', email: 'maintenance@lumenstay.com', passwordHash: defaultHash, name: 'Pete Kovacs (Lead Engineer)', role: 'maintenance', propertyId: 'prop_birchwood', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80', preferredLanguage: 'en', createdAt: now },
+      { id: 'usr_revenue', email: 'revenue@lumenstay.com', passwordHash: defaultHash, name: 'Claire Dubois (Revenue Manager)', role: 'revenue_manager', propertyId: 'prop_birchwood', avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=80', preferredLanguage: 'en', createdAt: now },
+      { id: 'usr_guest', email: 'guest@lumenstay.com', passwordHash: defaultHash, name: 'Alexandra Vance (Guest)', role: 'guest', propertyId: 'prop_birchwood', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80', preferredLanguage: 'en', createdAt: now },
+    ];
+    saveDatabase();
+  }
+
   return inMemoryData;
 }
 

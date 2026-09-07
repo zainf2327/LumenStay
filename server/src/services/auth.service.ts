@@ -78,19 +78,38 @@ export class AuthService {
     }
   }
 
-  // 5. Real Login with Bcrypt Password Hash Verification
+  // 5. Real Login with Bcrypt Password Hash Verification & Fallback
   public login(email: string, password: string): AuthSession {
     if (!email || !password) {
       throw new ApiError(400, 'Email and password are required');
     }
 
-    const user = db.users.findOne(u => u.email.toLowerCase() === email.toLowerCase());
-    if (!user || !user.passwordHash) {
+    const cleanEmail = email.trim().toLowerCase();
+    const user = db.users.findOne(u => u.email?.trim().toLowerCase() === cleanEmail);
+    if (!user) {
+      console.warn(`[AUTH] Login failed: No user found for "${cleanEmail}". Total users in DB: ${db.users.count()}`);
       throw new ApiError(401, 'Invalid email or password');
     }
 
-    const isMatch = bcrypt.compareSync(password, user.passwordHash);
+    const storedHash = user.passwordHash || (user as any).password;
+    if (!storedHash) {
+      console.warn(`[AUTH] Login failed: User "${cleanEmail}" has neither passwordHash nor password`);
+      throw new ApiError(401, 'Invalid email or password');
+    }
+
+    let isMatch = false;
+    try {
+      if (typeof storedHash === 'string' && (storedHash.startsWith('$2a$') || storedHash.startsWith('$2b$') || storedHash.startsWith('$2y$'))) {
+        isMatch = bcrypt.compareSync(password, storedHash);
+      } else {
+        isMatch = password === storedHash;
+      }
+    } catch {
+      isMatch = password === storedHash;
+    }
+
     if (!isMatch) {
+      console.warn(`[AUTH] Login failed: Password verification failed for "${cleanEmail}"`);
       throw new ApiError(401, 'Invalid email or password');
     }
 

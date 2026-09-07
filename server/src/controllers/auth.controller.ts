@@ -6,22 +6,36 @@ import { config } from '../config/index.js';
 import { ApiError } from '../types/api.types.js';
 import type { AuthenticatedRequest } from '../middlewares/auth.middleware.js';
 
+
 const isProd = config.nodeEnv === 'production';
-const REFRESH_COOKIE_NAME = 'refreshToken';
-const REFRESH_COOKIE_OPTIONS = {
-  httpOnly: true,
-  secure: isProd,
-  sameSite: (isProd ? 'none' : 'lax') as 'none' | 'lax',
-  path: '/api/v1/auth',
-  maxAge: config.refreshTokenExpiryDays * 24 * 60 * 60 * 1000, // 7 days in ms
+
+const setRefreshTokenCookie = (res: Response, token: string): void => {
+  res.cookie('refreshToken', token, {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+};
+
+const clearRefreshTokenCookie = (res: Response): void => {
+  res.clearCookie('refreshToken', {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: 'lax',
+    path: '/',
+  });
+  // Clear any legacy /api/v1/auth path cookies
+  res.clearCookie('refreshToken', { path: '/api/v1/auth' });
 };
 
 export const login = asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const { user, accessToken, refreshToken } = await authService.login(email, password);
 
-  // Set 7-day secure HTTP-only cookie
-  res.cookie(REFRESH_COOKIE_NAME, refreshToken, REFRESH_COOKIE_OPTIONS);
+  // Set 7-day secure HTTP-only refresh cookie
+  setRefreshTokenCookie(res, refreshToken);
 
   return sendSuccess(
     res,
@@ -33,8 +47,8 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 export const register = asyncHandler(async (req: Request, res: Response) => {
   const { user, accessToken, refreshToken } = await authService.register(req.body);
 
-  // Set 7-day secure HTTP-only cookie
-  res.cookie(REFRESH_COOKIE_NAME, refreshToken, REFRESH_COOKIE_OPTIONS);
+  // Set 7-day secure HTTP-only refresh cookie
+  setRefreshTokenCookie(res, refreshToken);
 
   return sendSuccess(
     res,
@@ -45,16 +59,16 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const refreshToken = asyncHandler(async (req: Request, res: Response) => {
-  const incomingRefreshToken = req.cookies?.[REFRESH_COOKIE_NAME] || req.body?.refreshToken;
+  const incomingRefreshToken = req.cookies?.['refreshToken'] || req.body?.refreshToken;
 
   if (!incomingRefreshToken) {
-    return sendError(res, 'No active session', 401);
+    return sendSuccess(res, null, 'No active session');
   }
 
   const { user, accessToken, refreshToken: newRefreshToken } = await authService.refresh(incomingRefreshToken);
 
   // Rotate 7-day secure HTTP-only cookie
-  res.cookie(REFRESH_COOKIE_NAME, newRefreshToken, REFRESH_COOKIE_OPTIONS);
+  setRefreshTokenCookie(res, newRefreshToken);
 
   return sendSuccess(
     res,
@@ -64,13 +78,7 @@ export const refreshToken = asyncHandler(async (req: Request, res: Response) => 
 });
 
 export const logout = asyncHandler(async (req: Request, res: Response) => {
-  res.clearCookie(REFRESH_COOKIE_NAME, {
-    httpOnly: true,
-    secure: isProd,
-    sameSite: isProd ? 'none' : 'lax',
-    path: '/api/v1/auth',
-  });
-
+  clearRefreshTokenCookie(res);
   return sendSuccess(res, null, 'Logged out successfully');
 });
 

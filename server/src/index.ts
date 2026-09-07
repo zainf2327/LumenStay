@@ -16,6 +16,9 @@ dbConnection.initialize();
 
 const app = express();
 
+// Trust reverse proxy (Nginx / Cloudflare on EC2) for correct HTTPS detection
+app.set('trust proxy', 1);
+
 // Middlewares
 app.use(cors({
   origin: (origin, callback) => {

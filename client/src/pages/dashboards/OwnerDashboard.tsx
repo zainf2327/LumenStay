@@ -35,6 +35,8 @@ export const OwnerDashboard: React.FC = () => {
 
   const [metrics, setMetrics] = useState<any>(null);
   const [reservations, setReservations] = useState<any[]>([]);
+  const [portfolioMetrics, setPortfolioMetrics] = useState<Record<string, any>>({});
+  const [portfolioReservations, setPortfolioReservations] = useState<Record<string, any[]>>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [activeFolioResId, setActiveFolioResId] = useState<string | null>(null);
 
@@ -42,9 +44,25 @@ export const OwnerDashboard: React.FC = () => {
     if (!currentProperty?.id) return;
     try {
       setLoading(true);
-      const [metricsRes, resQueue] = await Promise.all([
+      const [metricsRes, resQueue, allMetricsResults, allResResults] = await Promise.all([
         fetch(`/api/v1/rooms/dashboard?propertyId=${currentProperty.id}`).then((r) => r.json()),
         fetch(`/api/v1/rooms/reservations?propertyId=${currentProperty.id}`).then((r) => r.json()),
+        Promise.all(
+          properties.map((p) =>
+            fetch(`/api/v1/rooms/dashboard?propertyId=${p.id}`)
+              .then((r) => r.json())
+              .then((res) => ({ id: p.id, data: res.success ? (res.data.metrics || res.data) : null }))
+              .catch(() => ({ id: p.id, data: null }))
+          )
+        ),
+        Promise.all(
+          properties.map((p) =>
+            fetch(`/api/v1/rooms/reservations?propertyId=${p.id}`)
+              .then((r) => r.json())
+              .then((res) => ({ id: p.id, data: res.success && Array.isArray(res.data) ? res.data : [] }))
+              .catch(() => ({ id: p.id, data: [] }))
+          )
+        ),
       ]);
 
       if (metricsRes.success && metricsRes.data) {
@@ -53,12 +71,28 @@ export const OwnerDashboard: React.FC = () => {
       if (resQueue.success && Array.isArray(resQueue.data)) {
         setReservations(resQueue.data);
       }
+
+      if (Array.isArray(allMetricsResults)) {
+        const mObj: Record<string, any> = {};
+        allMetricsResults.forEach((item) => {
+          if (item?.id) mObj[item.id] = item.data;
+        });
+        setPortfolioMetrics(mObj);
+      }
+
+      if (Array.isArray(allResResults)) {
+        const rObj: Record<string, any[]> = {};
+        allResResults.forEach((item) => {
+          if (item?.id) rObj[item.id] = item.data;
+        });
+        setPortfolioReservations(rObj);
+      }
     } catch (err) {
       console.error('Failed to load Owner data:', err);
     } finally {
       setLoading(false);
     }
-  }, [currentProperty?.id]);
+  }, [currentProperty?.id, properties]);
 
   useEffect(() => {
     fetchOwnerData();
@@ -169,6 +203,8 @@ export const OwnerDashboard: React.FC = () => {
           properties={properties}
           currentProperty={currentProperty}
           onSelectProperty={(p) => setCurrentProperty(p)}
+          portfolioMetrics={portfolioMetrics}
+          portfolioReservations={portfolioReservations}
         />
       )}
 
@@ -177,6 +213,11 @@ export const OwnerDashboard: React.FC = () => {
           metrics={metrics}
           reservations={reservations}
           totalRooms={currentProperty?.totalRooms || 42}
+          properties={properties}
+          currentProperty={currentProperty}
+          portfolioMetrics={portfolioMetrics}
+          portfolioReservations={portfolioReservations}
+          onSelectProperty={(p) => setCurrentProperty(p)}
         />
       )}
 

@@ -135,12 +135,16 @@ CREATE TABLE IF NOT EXISTS folio_charges (
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY,
   email TEXT NOT NULL UNIQUE,
-  password_hash TEXT NOT NULL,
+  password_hash TEXT,
   name TEXT NOT NULL,
   role TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'active',
   property_id TEXT REFERENCES properties(id),
   avatar TEXT,
   preferred_language TEXT NOT NULL DEFAULT 'en',
+  invitation_token TEXT,
+  invitation_expires_at TEXT,
+  invited_by TEXT REFERENCES users(id),
   created_at TEXT NOT NULL
 );
 

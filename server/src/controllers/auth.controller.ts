@@ -7,6 +7,7 @@ import { ApiError } from '../types/api.types.js';
 import type { AuthenticatedRequest } from '../middlewares/auth.middleware.js';
 
 
+
 const isProd = config.nodeEnv === 'production';
 
 const setRefreshTokenCookie = (res: Response, token: string): void => {
@@ -101,3 +102,25 @@ export const forgotPassword = asyncHandler(async (req: Request, res: Response) =
     'If an account exists with this email address, password reset instructions have been sent.'
   );
 });
+
+export const verifyInvitation = asyncHandler(async (req: Request, res: Response) => {
+  const token = (req.query.token as string) || (req.body?.token as string);
+  const details = await authService.verifyInvitation(token);
+  return sendSuccess(res, details, 'Staff invitation verified successfully');
+});
+
+export const setPassword = asyncHandler(async (req: Request, res: Response) => {
+  const { token, password } = req.body;
+  const { user, accessToken, refreshToken } = await authService.setPasswordAndActivate(token, password);
+
+  // Set 7-day secure HTTP-only refresh cookie
+  setRefreshTokenCookie(res, refreshToken);
+
+  return sendSuccess(
+    res,
+    { user, accessToken, expiresIn: '15m' },
+    'Password set successfully. Welcome to the LumenStay team!',
+    200
+  );
+});
+

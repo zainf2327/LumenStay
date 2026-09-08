@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { LumenStayLogo, LumenStayMark } from './LumenStayLogo';
 import {
   BedDouble,
   Search,
@@ -97,6 +98,7 @@ const ROLE_CONFIGS: Record<string, RoleConfig> = {
       { id: 'operations', label: 'Front Desk Flow', icon: Key },
       { id: 'rooms', label: 'Room Health', icon: Layers },
       { id: 'crm', label: 'Guest VIP CRM', icon: Users },
+      { id: 'staff', label: 'Staff & Team', icon: UserPlus },
     ],
   },
   owner: {
@@ -108,6 +110,7 @@ const ROLE_CONFIGS: Record<string, RoleConfig> = {
       { id: 'portfolio', label: 'Properties Portfolio', icon: Building2 },
       { id: 'analytics', label: 'Yield & ADR Analytics', icon: TrendingUp },
       { id: 'ledger', label: 'Ledger & Folio Audit', icon: Receipt },
+      { id: 'staff', label: 'Staff & Governance', icon: Users },
     ],
   },
   maintenance: {
@@ -227,25 +230,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Top: Brand Wordmark Header */}
         <div className={`h-16 flex items-center border-b border-[#E5E7EB] shrink-0 bg-white transition-all duration-300 ${isExpanded ? 'px-5 justify-between' : 'px-0 justify-center'
           }`}>
-          <Link to="/" className="flex items-center gap-2.5 overflow-hidden group">
+          <Link to="/" className="flex items-center overflow-hidden group">
             {isExpanded ? (
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#0F172A] text-white flex items-center justify-center font-bold text-xs tracking-wider shadow-xs group-hover:bg-[#C5A059] transition-colors duration-300">
-                  L
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-heading font-extrabold text-sm tracking-[0.2em] text-[#0F172A] uppercase leading-none">
-                    LUMENSTAY
-                  </span>
-                  <span className="text-[9px] uppercase tracking-[0.25em] text-[#64748B] font-medium mt-1">
-                    Operations PMS
-                  </span>
-                </div>
-              </div>
+              <LumenStayLogo
+                size="sm"
+                theme="dark"
+                showWordmark={true}
+                subtitle="Operations PMS"
+              />
             ) : (
-              <div className="w-8 h-8 rounded-lg bg-[#0F172A] text-white flex items-center justify-center font-bold text-xs shadow-xs group-hover:bg-[#C5A059] transition-colors duration-300">
-                L
-              </div>
+              <LumenStayMark size={32} />
             )}
           </Link>
 

@@ -202,6 +202,71 @@ export class AuthService {
     }
     return user;
   }
+
+  // 8. Verify Staff Invitation Token
+  public async verifyInvitation(token: string) {
+    if (!token || typeof token !== 'string') {
+      throw new ApiError(400, 'Invitation token is missing or invalid.');
+    }
+
+    const user = await db.users.findByInvitationToken(token.trim());
+    if (!user || user.status !== 'invited') {
+      throw new ApiError(400, 'This invitation link is invalid or has already been used.');
+    }
+
+    if (user.invitationExpiresAt && new Date(user.invitationExpiresAt) < new Date()) {
+      throw new ApiError(400, 'This invitation link has expired. Please ask your administrator to resend your invite.');
+    }
+
+    let propertyName = 'LumenStay Sanctuaries';
+    if (user.propertyId) {
+      const prop = await db.properties.findById(user.propertyId);
+      if (prop) propertyName = prop.name;
+    }
+
+    return {
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      propertyId: user.propertyId,
+      propertyName,
+    };
+  }
+
+  // 9. Set Password, Activate Account, and Create Session
+  public async setPasswordAndActivate(token: string, password: string): Promise<AuthSession> {
+    if (!token || !password) {
+      throw new ApiError(400, 'Token and password are required');
+    }
+
+    const user = await db.users.findByInvitationToken(token.trim());
+    if (!user || user.status !== 'invited') {
+      throw new ApiError(400, 'This invitation link is invalid or has already been used.');
+    }
+
+    if (user.invitationExpiresAt && new Date(user.invitationExpiresAt) < new Date()) {
+      throw new ApiError(400, 'This invitation link has expired. Please ask your administrator to resend your invite.');
+    }
+
+    // Hash the new password
+    const passwordHash = bcrypt.hashSync(password, 10);
+
+    // Update user record: status -> active, clear invitation tokens
+    const updatedUser = await db.users.update(user.id, {
+      passwordHash,
+      status: 'active',
+      invitationToken: null,
+      invitationExpiresAt: null,
+    });
+
+    // Auto-login: generate access + refresh tokens
+    const accessToken = this.generateAccessToken(updatedUser);
+    const refreshToken = this.generateRefreshToken(updatedUser);
+
+    const { passwordHash: _, ...safeUser } = updatedUser;
+    return { user: safeUser, accessToken, refreshToken };
+  }
 }
 
 export const authService = new AuthService();
+

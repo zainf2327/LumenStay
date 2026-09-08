@@ -193,9 +193,13 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash TEXT,
   name TEXT NOT NULL,
   role user_role NOT NULL,
+  status TEXT NOT NULL DEFAULT 'active',
   property_id TEXT REFERENCES properties(id),
   avatar TEXT,
   preferred_language preferred_language NOT NULL DEFAULT 'en',
+  invitation_token TEXT,
+  invitation_expires_at TIMESTAMPTZ,
+  invited_by TEXT REFERENCES users(id),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 

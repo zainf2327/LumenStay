@@ -3,12 +3,13 @@ import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useWebSocket } from '../../context/WebSocketContext';
 import { FolioModal } from '../../components/FolioModal';
-import { Building2, TrendingUp, Receipt, Hotel, Loader2 } from 'lucide-react';
+import { Building2, TrendingUp, Receipt, Hotel, Loader2, Users } from 'lucide-react';
 
 // Modular Feature Tabs
 import { OwnerPortfolioTab } from '../../features/owner/OwnerPortfolioTab';
 import { OwnerAnalyticsTab } from '../../features/owner/OwnerAnalyticsTab';
 import { OwnerLedgerAuditTab } from '../../features/owner/OwnerLedgerAuditTab';
+import { StaffManagementTab } from '../../features/staff/StaffManagementTab';
 
 export const OwnerDashboard: React.FC = () => {
   const { currentProperty, properties, setCurrentProperty } = useAuth();
@@ -16,7 +17,7 @@ export const OwnerDashboard: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Active Tab State driven by URL ?tab= (Default is 'portfolio')
-  const validTabs = ['portfolio', 'analytics', 'ledger'] as const;
+  const validTabs = ['portfolio', 'analytics', 'ledger', 'staff'] as const;
   type OwnerTab = typeof validTabs[number];
 
   const rawTab = searchParams.get('tab') as OwnerTab | null;
@@ -149,6 +150,17 @@ export const OwnerDashboard: React.FC = () => {
           <Receipt className="w-3.5 h-3.5" />
           <span>Ledger & Folio Audit</span>
         </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('staff')}
+          className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
+            activeTab === 'staff' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+          }`}
+        >
+          <Users className="w-3.5 h-3.5" />
+          <span>Staff & Governance</span>
+        </button>
       </div>
 
       {/* 3. Active Tab Content */}
@@ -173,6 +185,10 @@ export const OwnerDashboard: React.FC = () => {
           reservations={reservations}
           onOpenFolio={(resId) => setActiveFolioResId(resId)}
         />
+      )}
+
+      {activeTab === 'staff' && (
+        <StaffManagementTab />
       )}
 
       {/* 4. Folio Audit Modal */}

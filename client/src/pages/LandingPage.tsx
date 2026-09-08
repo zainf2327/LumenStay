@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useWebSocket } from '../context/WebSocketContext';
 import { GuestNavbar } from '../components/GuestNavbar';
 import { BrandFooter } from '../components/BrandFooter';
+import { LumenStayMark } from '../components/LumenStayLogo';
 import { BookingSearchBar } from '../components/BookingSearchBar';
 import { PropertyGrid } from '../components/PropertyGrid';
 import { RoomCard } from '../components/RoomCard';
@@ -13,7 +14,6 @@ import {
   ShieldCheck,
   Compass,
   Loader2,
-  Sparkles,
   ArrowRight,
   Search,
   Sun,
@@ -169,8 +169,8 @@ export const LandingPage: React.FC = () => {
 
         {/* Hero Content Narrative */}
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6 pt-12 pb-24">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase text-white/95 bg-white/10 backdrop-blur-md border border-white/20">
-            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase text-white/95 bg-white/10 backdrop-blur-md border border-white/20 shadow-sm">
+            <LumenStayMark size={18} framed={false} className="shrink-0" />
             <span>LumenStay Boutique Sanctuaries</span>
             <span className="text-white/40">•</span>
             <span>Est. 2026</span>

@@ -28,8 +28,11 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   useEffect(() => {
     let ws: WebSocket | null = null;
     let reconnectTimeout: any = null;
+    let isDisposed = false;
 
     const connect = () => {
+      if (isDisposed) return;
+
       const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
       
@@ -52,10 +55,15 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         ws = new WebSocket(wsUrl);
 
         ws.onopen = () => {
+          if (isDisposed) {
+            try { ws?.close(); } catch {}
+            return;
+          }
           setIsConnected(true);
         };
 
         ws.onmessage = (event) => {
+          if (isDisposed) return;
           try {
             const data = JSON.parse(event.data);
             const { type, payload } = data;
@@ -111,22 +119,40 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
         ws.onclose = () => {
           setIsConnected(false);
-          reconnectTimeout = setTimeout(connect, 3000);
+          if (!isDisposed) {
+            reconnectTimeout = setTimeout(connect, 3000);
+          }
         };
 
         ws.onerror = () => {
           setIsConnected(false);
         };
       } catch (err) {
-        console.error('WebSocket connection error:', err);
+        if (!isDisposed) {
+          console.error('WebSocket connection error:', err);
+        }
       }
     };
 
     connect();
 
     return () => {
-      if (ws) ws.close();
+      isDisposed = true;
       if (reconnectTimeout) clearTimeout(reconnectTimeout);
+      if (ws) {
+        ws.onclose = null;
+        ws.onerror = null;
+        ws.onmessage = null;
+        if (ws.readyState === WebSocket.CONNECTING) {
+          // If unmounting while still connecting (React StrictMode dev double-invoke),
+          // defer close to onopen so the browser does not log "closed before established"
+          ws.onopen = () => {
+            try { ws?.close(); } catch {}
+          };
+        } else if (ws.readyState === WebSocket.OPEN) {
+          try { ws.close(); } catch {}
+        }
+      }
     };
   }, []);
 

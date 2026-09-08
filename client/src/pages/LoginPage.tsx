@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import type { UserRole } from '../types';
+import { LumenStayLogo } from '../components/LumenStayLogo';
 import {
   Eye,
   EyeOff,
@@ -114,19 +115,14 @@ export const LoginPage: React.FC = () => {
       <header className="w-full px-6 py-5 border-b border-[#E5E7EB] bg-white/80 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between">
         <Link
           to="/"
-          className="flex items-center gap-2.5 group cursor-pointer"
+          className="flex items-center cursor-pointer"
         >
-          <div className="w-8 h-8 rounded-lg bg-[#0F172A] text-white flex items-center justify-center font-bold text-xs tracking-wider group-hover:bg-[#C5A059] transition">
-            L
-          </div>
-          <div className="flex flex-col">
-            <span className="font-heading font-extrabold text-sm tracking-[0.22em] text-[#0F172A] uppercase leading-none">
-              LUMENSTAY
-            </span>
-            <span className="text-[9px] uppercase tracking-[0.25em] text-[#64748B] font-medium mt-0.5">
-              Sanctuaries & Operations
-            </span>
-          </div>
+          <LumenStayLogo
+            size="sm"
+            theme="dark"
+            showWordmark={true}
+            subtitle="Sanctuaries & Operations"
+          />
         </Link>
 
         <Link

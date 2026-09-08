@@ -10,6 +10,7 @@ import {
   LogOut,
 } from 'lucide-react';
 import type { UserRole } from '../types';
+import { LumenStayLogo } from './LumenStayLogo';
 
 export const GuestNavbar: React.FC = () => {
   const {
@@ -87,19 +88,14 @@ export const GuestNavbar: React.FC = () => {
                 navigate('/');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="flex items-center gap-2.5 group cursor-pointer"
+              className="flex items-center cursor-pointer"
             >
-              <div className="w-8 h-8 rounded-lg bg-[#0F172A] text-white flex items-center justify-center font-bold text-xs tracking-wider shadow-xs group-hover:bg-[#C5A059] transition-colors duration-300">
-                L
-              </div>
-              <div className="flex flex-col">
-                <span className="font-heading font-extrabold text-base tracking-[0.22em] text-[#0F172A] uppercase leading-none">
-                  LUMENSTAY
-                </span>
-                <span className="text-[9px] uppercase tracking-[0.25em] text-[#64748B] font-medium mt-0.5">
-                  Boutique Sanctuaries
-                </span>
-              </div>
+              <LumenStayLogo
+                size="md"
+                theme="dark"
+                showWordmark={true}
+                subtitle="Boutique Sanctuaries"
+              />
             </a>
 
             {/* Desktop Navigation Links */}

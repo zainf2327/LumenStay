@@ -27,6 +27,17 @@ export interface BookingEmailData {
   cardLast4?: string;
 }
 
+export interface StaffInvitationEmailData {
+  recipientName: string;
+  recipientEmail: string;
+  roleName: string;
+  propertyName: string;
+  inviterName: string;
+  activationLink: string;
+  personalNote?: string | null;
+  expiresInHours?: number;
+}
+
 export class EmailService {
   private resend: Resend | null = null;
 
@@ -405,6 +416,151 @@ export class EmailService {
         success: false,
         error: err.message,
       };
+    }
+  }
+
+  /**
+   * Generate an ultra-luxury HTML email for staff invitations & password activation
+   */
+  public generateStaffInvitationHtml(data: StaffInvitationEmailData): string {
+    const hours = data.expiresInHours || 48;
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to LumenStay Staff</title>
+  <style>
+    body { margin: 0; padding: 0; background-color: #F8F9FA; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    .email-container { max-width: 620px; margin: 40px auto; background-color: #FFFFFF; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08); border: 1px solid #E2E8F0; }
+    .header { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); padding: 44px 32px 36px; text-align: center; border-bottom: 2px solid #C5A059; }
+    .logo-badge { display: inline-block; width: 44px; height: 44px; line-height: 44px; border-radius: 12px; background-color: #C5A059; color: #0F172A; font-weight: 800; font-size: 20px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(197, 160, 89, 0.35); }
+    .brand-title { color: #FFFFFF; font-size: 24px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 6px 0; }
+    .brand-sub { color: #C5A059; font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em; font-weight: 600; margin: 0; }
+    .content { padding: 40px 36px; color: #334155; line-height: 1.65; }
+    .greeting { font-size: 22px; font-weight: 700; color: #0F172A; margin: 0 0 16px; }
+    .role-card { background: #F8FAFC; border: 1px solid #E2E8F0; border-left: 4px solid #C5A059; border-radius: 12px; padding: 20px 24px; margin: 26px 0; }
+    .role-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+    .role-label { color: #64748B; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 11px; }
+    .role-value { color: #0F172A; font-weight: 700; }
+    .note-box { background: #FFFBEB; border: 1px dashed #FCD34D; border-radius: 10px; padding: 16px 20px; margin: 22px 0; font-style: italic; color: #92400E; font-size: 13px; }
+    .cta-container { text-align: center; margin: 36px 0; }
+    .cta-btn { display: inline-block; background-color: #C5A059; color: #0F172A !important; font-weight: 700; font-size: 14px; text-decoration: none; padding: 16px 36px; border-radius: 12px; letter-spacing: 0.04em; text-transform: uppercase; box-shadow: 0 6px 20px rgba(197, 160, 89, 0.35); }
+    .expiry-text { font-size: 12px; color: #94A3B8; text-align: center; margin-top: 14px; }
+    .footer { background-color: #0F172A; color: #94A3B8; padding: 28px 36px; text-align: center; font-size: 11px; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <div class="logo-badge">L</div>
+      <h1 class="brand-title">LumenStay</h1>
+      <p class="brand-sub">Sanctuary Hospitality Management</p>
+    </div>
+
+    <div class="content">
+      <h2 class="greeting">Welcome to the Team, ${data.recipientName}</h2>
+      <p style="font-size: 14px; color: #475569; margin: 0 0 16px;">
+        You have been invited by <strong>${data.inviterName}</strong> to join the LumenStay hospitality operations team.
+      </p>
+
+      <div class="role-card">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="padding: 6px 0; font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase;">Assigned Role</td>
+            <td style="padding: 6px 0; text-align: right; font-size: 14px; font-weight: 700; color: #0F172A;">${data.roleName}</td>
+          </tr>
+          <tr>
+            <td style="padding: 6px 0; font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase;">Sanctuary / Property</td>
+            <td style="padding: 6px 0; text-align: right; font-size: 14px; font-weight: 700; color: #0F172A;">${data.propertyName}</td>
+          </tr>
+        </table>
+      </div>
+
+      ${data.personalNote ? `
+      <div class="note-box">
+        <strong>Personal Message from ${data.inviterName}:</strong><br />
+        "${data.personalNote}"
+      </div>
+      ` : ''}
+
+      <p style="font-size: 13px; color: #64748B; margin: 20px 0 28px;">
+        To activate your staff account and access your dedicated operations dashboard, please set your security password using the link below:
+      </p>
+
+      <div class="cta-container">
+        <a href="${data.activationLink}" class="cta-btn" target="_blank">Activate Account & Set Password</a>
+        <p class="expiry-text">
+          🔒 For your security, this invitation link is unique to you and will expire in <strong>${hours} hours</strong>.
+        </p>
+      </div>
+
+      <div style="border-top: 1px solid #F1F5F9; padding-top: 20px; margin-top: 30px;">
+        <p style="font-size: 11px; color: #94A3B8; margin: 0; word-break: break-all;">
+          If the button above does not open, copy and paste this secure URL into your browser:<br />
+          <a href="${data.activationLink}" style="color: #C5A059;">${data.activationLink}</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p style="margin: 0 0 6px;">&copy; ${new Date().getFullYear()} LumenStay Sanctuaries & Resorts Inc. All rights reserved.</p>
+      <p style="margin: 0; color: #64748B;">Confidential hotel staff invitation. If you received this by mistake, please disregard.</p>
+    </div>
+  </div>
+</body>
+</html>
+`;
+  }
+
+  /**
+   * Send staff invitation email with activation link
+   */
+  public async sendStaffInvitation(data: StaffInvitationEmailData): Promise<{ success: boolean; messageId?: string; error?: string }> {
+    const subject = `Welcome to LumenStay: Activate Your Staff Account (${data.roleName})`;
+    const html = this.generateStaffInvitationHtml(data);
+
+    if (!this.resend || !config.isResendConfigured) {
+      logger.info(`📧 [Resend Simulated] Staff Invitation dispatched to ${data.recipientEmail}`);
+      logger.info(`📧 [Resend Simulated Role]: "${data.roleName}" at "${data.propertyName}"`);
+      logger.info(`📧 [Resend Simulated Activation Link]: ${data.activationLink}`);
+      return {
+        success: true,
+        messageId: `sim_invite_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+      };
+    }
+
+    try {
+      let fromAddress = config.resendFromEmail || 'LumenStay <onboarding@resend.dev>';
+      let response = await this.resend.emails.send({
+        from: fromAddress,
+        to: data.recipientEmail,
+        subject,
+        html,
+      });
+
+      if (response.error && (response.error.message?.includes('not verified') || response.error.message?.includes('domain'))) {
+        logger.warn(`⚠️ [Resend Domain Notice]: ${response.error.message}. Retrying with verified sender onboarding@resend.dev...`);
+        fromAddress = 'LumenStay <onboarding@resend.dev>';
+        response = await this.resend.emails.send({
+          from: fromAddress,
+          to: data.recipientEmail,
+          subject,
+          html,
+        });
+      }
+
+      if (response.error) {
+        logger.error(`❌ [Resend API Error]: ${response.error.message}`);
+        return { success: false, error: response.error.message };
+      }
+
+      logger.info(`✅ [Resend Success] Staff invitation sent to ${data.recipientEmail}. ID: ${response.data?.id}`);
+      return { success: true, messageId: response.data?.id };
+    } catch (err: any) {
+      logger.error(`❌ [Resend Failed] Could not dispatch staff invitation: ${err.message}`);
+      return { success: false, error: err.message };
     }
   }
 }

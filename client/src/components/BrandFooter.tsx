@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { ShieldCheck, Clock, Sparkles, MapPin, ArrowUpRight, Lock } from 'lucide-react';
 import type { Property } from '../types';
+import { LumenStayLogo } from './LumenStayLogo';
 
 export const BrandFooter: React.FC = () => {
   const { properties, setCurrentPropertyId } = useAuth();
@@ -88,14 +89,12 @@ export const BrandFooter: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
           {/* Brand Column */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-white/10 text-[#C5A059] flex items-center justify-center font-bold text-xs tracking-wider border border-white/15">
-                L
-              </div>
-              <span className="font-heading font-extrabold text-lg tracking-[0.22em] text-white uppercase">
-                LUMENSTAY
-              </span>
-            </div>
+            <LumenStayLogo
+              size="md"
+              theme="light"
+              showWordmark={true}
+              subtitle="Boutique Hospitality Group"
+            />
             <p className="text-xs text-slate-400 max-w-sm leading-relaxed">
               A curated collection of intimate boutique sanctuaries designed around natural light, silence, and modern architectural elegance across America's most iconic landscapes.
             </p>

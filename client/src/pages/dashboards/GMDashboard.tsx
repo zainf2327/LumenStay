@@ -3,13 +3,14 @@ import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useWebSocket } from '../../context/WebSocketContext';
 import { FolioModal } from '../../components/FolioModal';
-import { TrendingUp, Key, Layers, Users, Hotel, Loader2 } from 'lucide-react';
+import { TrendingUp, Key, Layers, Users, Hotel, Loader2, UserPlus } from 'lucide-react';
 
 // Modular Feature Tabs
 import { GMExecutiveKPIsTab } from '../../features/gm/GMExecutiveKPIsTab';
 import { GMOperationsMonitorTab } from '../../features/gm/GMOperationsMonitorTab';
 import { GMRoomHealthTab } from '../../features/gm/GMRoomHealthTab';
 import { GMGuestCRMTab } from '../../features/gm/GMGuestCRMTab';
+import { StaffManagementTab } from '../../features/staff/StaffManagementTab';
 
 export const GMDashboard: React.FC = () => {
   const { currentProperty } = useAuth();
@@ -17,7 +18,7 @@ export const GMDashboard: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Active Tab State driven by URL ?tab= (Default is 'kpis')
-  const validTabs = ['kpis', 'operations', 'rooms', 'crm'] as const;
+  const validTabs = ['kpis', 'operations', 'rooms', 'crm', 'staff'] as const;
   type GMTab = typeof validTabs[number];
 
   const rawTab = searchParams.get('tab') as GMTab | null;
@@ -169,6 +170,17 @@ export const GMDashboard: React.FC = () => {
           <Users className="w-3.5 h-3.5" />
           <span>Guest VIP CRM</span>
         </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('staff')}
+          className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
+            activeTab === 'staff' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+          }`}
+        >
+          <UserPlus className="w-3.5 h-3.5" />
+          <span>Staff & Team</span>
+        </button>
       </div>
 
       {/* 3. Active Tab View */}
@@ -193,6 +205,10 @@ export const GMDashboard: React.FC = () => {
 
       {activeTab === 'crm' && (
         <GMGuestCRMTab />
+      )}
+
+      {activeTab === 'staff' && (
+        <StaffManagementTab />
       )}
 
       {/* 4. Folio Modal */}

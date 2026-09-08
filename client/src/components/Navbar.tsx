@@ -15,6 +15,7 @@ import {
   Check,
 } from 'lucide-react';
 import type { Property, UserRole } from '../types';
+import { LumenStayLogo } from './LumenStayLogo';
 
 interface NavItem {
   path: string;
@@ -117,26 +118,8 @@ export const Navbar: React.FC = () => {
           {/* Left: Constant Brand Identity + Hotel Selector */}
           <div className="flex items-center gap-3 relative" ref={propDropdownRef}>
             {/* Brand Logo & Name */}
-            <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 p-0.5 shadow-md group-hover:scale-105 transition-transform">
-                <div className="w-full h-full bg-[#0d121a] rounded-[10px] flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#c5a059"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-4.5 h-4.5"
-                  >
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                  </svg>
-                </div>
-              </div>
-              <span className="font-heading font-bold text-lg text-white tracking-wide hidden sm:inline">
-                LumenStay
-              </span>
+            <Link to="/" className="flex items-center shrink-0">
+              <LumenStayLogo size="md" theme="light" showWordmark={true} />
             </Link>
 
             <span className="text-slate-700 hidden sm:inline">|</span>

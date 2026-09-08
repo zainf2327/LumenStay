@@ -10,6 +10,7 @@ import { TopBar } from './components/TopBar';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
+import { SetPasswordPage } from './pages/SetPasswordPage';
 import { BookingEngine } from './pages/BookingEngine';
 import { LandingPage } from './pages/LandingPage';
 import { CheckoutPage } from './pages/CheckoutPage';
@@ -76,7 +77,8 @@ function AppContent() {
     location.pathname === '/login' ||
     location.pathname === '/register' ||
     location.pathname === '/signup' ||
-    location.pathname === '/forgot-password';
+    location.pathname === '/forgot-password' ||
+    location.pathname === '/set-password';
 
   // Dedicated default landing route based on role
   const defaultRoute =
@@ -134,6 +136,7 @@ function AppContent() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/signup" element={<RegisterPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/set-password" element={<SetPasswordPage />} />
 
             {/* 8 Dedicated Role-Specific Dashboard Routes */}
             <Route

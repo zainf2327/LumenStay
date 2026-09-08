@@ -23,6 +23,7 @@ interface AuthContextType {
     role?: UserRole;
     propertyId?: string | null;
   }) => Promise<{ success: boolean; message?: string }>;
+  setPasswordAndActivate: (token: string, password: string) => Promise<{ success: boolean; user?: User; message?: string }>;
   logout: () => Promise<void>;
   refreshSession: () => Promise<boolean>;
 }
@@ -231,6 +232,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCurrentRole('guest');
   };
 
+  const setPasswordAndActivate = async (token: string, password: string): Promise<{ success: boolean; user?: User; message?: string }> => {
+    try {
+      const res = await fetch('/api/v1/auth/set-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ token, password }),
+      }).then((r) => r.json());
+
+      if (res.success && res.data?.accessToken) {
+        setAccessToken(res.data.accessToken);
+        setCurrentUser(res.data.user);
+        setCurrentRole(res.data.user.role);
+        if (res.data.user.propertyId && properties.length > 0) {
+          const assigned = properties.find((p) => p.id === res.data.user.propertyId);
+          if (assigned) {
+            setCurrentProperty(assigned);
+            localStorage.setItem('lumenstay_property_id', assigned.id);
+          }
+        }
+        return { success: true, user: res.data.user, message: res.message };
+      }
+      return { success: false, message: res.message || 'Failed to activate account' };
+    } catch (err: any) {
+      return { success: false, message: err.message || 'Network error while setting password' };
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -252,6 +281,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         login,
         loginAsRole,
         register,
+        setPasswordAndActivate,
         logout,
         refreshSession,
       }}

@@ -8,6 +8,7 @@ import type {
   Reservation,
   FolioCharge,
   User,
+  UserStatus,
   MaintenanceTicket,
   HousekeepingTask,
   RoomStatus,
@@ -120,15 +121,38 @@ export function mapGuest(row: any): Guest {
 }
 
 export function mapUser(row: any): User {
+  let status: UserStatus = row.status || 'active';
+  let invitationToken = row.invitation_token || null;
+  let invitationExpiresAt = row.invitation_expires_at || null;
+  let invitedBy = row.invited_by || null;
+  const passwordHash = row.password_hash || row.passwordHash || '';
+
+  // Decode fallback encoding if columns aren't present in remote DB
+  if (passwordHash && typeof passwordHash === 'string') {
+    if (passwordHash.startsWith('INVITED:')) {
+      status = 'invited';
+      const parts = passwordHash.split(':');
+      invitationToken = parts[1] || null;
+      invitationExpiresAt = parts[2] || null;
+      invitedBy = parts[3] || null;
+    } else if (passwordHash.startsWith('SUSPENDED:')) {
+      status = 'suspended';
+    }
+  }
+
   return {
     id: row.id,
     email: row.email,
-    passwordHash: row.password_hash || row.passwordHash || '',
+    passwordHash,
     name: row.name,
     role: row.role,
+    status,
     propertyId: row.property_id || null,
     avatar: row.avatar,
     preferredLanguage: row.preferred_language || 'en',
+    invitationToken,
+    invitationExpiresAt,
+    invitedBy,
     createdAt: row.created_at,
   };
 }
@@ -310,26 +334,140 @@ export const supabaseDb = {
       if (error) throw error;
       return data ? mapUser(data) : null;
     },
+    async findByInvitationToken(token: string): Promise<User | null> {
+      const cleanToken = token.trim();
+      // 1. Try querying explicit invitation_token column
+      try {
+        const { data, error } = await getClient()
+          .from('users')
+          .select('*')
+          .eq('invitation_token', cleanToken)
+          .maybeSingle();
+        if (!error && data) {
+          return mapUser(data);
+        }
+      } catch {
+        // column may not exist
+      }
+
+      // 2. Query encoded password_hash
+      try {
+        const { data, error } = await getClient()
+          .from('users')
+          .select('*')
+          .like('password_hash', `INVITED:${cleanToken}:%`)
+          .maybeSingle();
+        if (!error && data) {
+          return mapUser(data);
+        }
+      } catch {
+        // fallback
+      }
+
+      // 3. Fallback to in-memory check across users
+      const all = await this.find();
+      return all.find((u) => u.invitationToken === cleanToken) || null;
+    },
     async count(): Promise<number> {
       const { count, error } = await getClient().from('users').select('*', { count: 'exact', head: true });
       if (error) throw error;
       return count || 0;
     },
     async insert(user: User): Promise<User> {
-      const payload = {
+      const encodedPasswordHash =
+        user.status === 'invited' && user.invitationToken
+          ? `INVITED:${user.invitationToken}:${user.invitationExpiresAt || ''}:${user.invitedBy || ''}`
+          : user.passwordHash || null;
+
+      const payload: Record<string, any> = {
         id: user.id,
         email: user.email.toLowerCase(),
-        password_hash: user.passwordHash,
+        password_hash: encodedPasswordHash,
         name: user.name,
         role: user.role,
+        status: user.status || 'active',
         property_id: user.propertyId || null,
-        avatar: user.avatar,
+        avatar: user.avatar || null,
         preferred_language: user.preferredLanguage || 'en',
         created_at: user.createdAt || new Date().toISOString(),
       };
+      if (user.invitationToken) payload.invitation_token = user.invitationToken;
+      if (user.invitationExpiresAt) payload.invitation_expires_at = user.invitationExpiresAt;
+      if (user.invitedBy) payload.invited_by = user.invitedBy;
+
       const { data, error } = await getClient().from('users').insert(payload).select('*').single();
-      if (error) throw error;
+      if (error) {
+        if (error.code === 'PGRST204' || error.message?.includes('column')) {
+          const fallbackPayload = {
+            id: user.id,
+            email: user.email.toLowerCase(),
+            password_hash: encodedPasswordHash,
+            name: user.name,
+            role: user.role,
+            property_id: user.propertyId || null,
+            avatar: user.avatar || null,
+            preferred_language: user.preferredLanguage || 'en',
+            created_at: user.createdAt || new Date().toISOString(),
+          };
+          const { data: fbData, error: fbError } = await getClient().from('users').insert(fallbackPayload).select('*').single();
+          if (fbError) throw fbError;
+          return mapUser(fbData);
+        }
+        throw error;
+      }
       return mapUser(data);
+    },
+    async update(id: string, updates: Partial<User>): Promise<User> {
+      const payload: Record<string, any> = {};
+      if (updates.name !== undefined) payload.name = updates.name;
+      if (updates.role !== undefined) payload.role = updates.role;
+      if (updates.status !== undefined) payload.status = updates.status;
+      if (updates.propertyId !== undefined) payload.property_id = updates.propertyId;
+      if (updates.avatar !== undefined) payload.avatar = updates.avatar;
+      if (updates.preferredLanguage !== undefined) payload.preferred_language = updates.preferredLanguage;
+      if (updates.invitationToken !== undefined) payload.invitation_token = updates.invitationToken;
+      if (updates.invitationExpiresAt !== undefined) payload.invitation_expires_at = updates.invitationExpiresAt;
+      if (updates.invitedBy !== undefined) payload.invited_by = updates.invitedBy;
+
+      if (updates.status === 'invited' && updates.invitationToken) {
+        payload.password_hash = `INVITED:${updates.invitationToken}:${updates.invitationExpiresAt || ''}:${updates.invitedBy || ''}`;
+      } else if (updates.status === 'suspended') {
+        payload.password_hash = `SUSPENDED:${Date.now()}`;
+      } else if (updates.passwordHash !== undefined) {
+        payload.password_hash = updates.passwordHash;
+      }
+
+      const { data, error } = await getClient()
+        .from('users')
+        .update(payload)
+        .eq('id', id)
+        .select('*')
+        .single();
+
+      if (error) {
+        if (error.code === 'PGRST204' || error.message?.includes('column')) {
+          delete payload.status;
+          delete payload.invitation_token;
+          delete payload.invitation_expires_at;
+          delete payload.invited_by;
+
+          const { data: fbData, error: fbError } = await getClient()
+            .from('users')
+            .update(payload)
+            .eq('id', id)
+            .select('*')
+            .single();
+          if (fbError) throw fbError;
+          return mapUser(fbData);
+        }
+        throw error;
+      }
+      return mapUser(data);
+    },
+    async delete(id: string): Promise<boolean> {
+      const { error } = await getClient().from('users').delete().eq('id', id);
+      if (error) throw error;
+      return true;
     },
   },
 

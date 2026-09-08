@@ -151,15 +151,21 @@ export interface FolioCharge {
   createdAt: string;
 }
 
+export type UserStatus = 'active' | 'invited' | 'suspended';
+
 export interface User {
   id: string;
   email: string;
   passwordHash?: string;
   name: string;
   role: UserRole;
+  status?: UserStatus;
   propertyId?: string | null;
   avatar?: string | null;
   preferredLanguage: 'en' | 'es';
+  invitationToken?: string | null;
+  invitationExpiresAt?: string | null;
+  invitedBy?: string | null;
   createdAt: string;
 }
 

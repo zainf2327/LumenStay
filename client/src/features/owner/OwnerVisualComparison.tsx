@@ -2,17 +2,12 @@ import React, { useState, useMemo } from 'react';
 import type { Property } from '../../types';
 import {
   TrendingUp,
-  Award,
   Sparkles,
   BarChart3,
   Sliders,
   DollarSign,
-  Building2,
   Percent,
-  Compass,
-  ArrowUpRight,
   ShieldCheck,
-  CheckCircle2,
   Layers,
   Activity,
   LineChart,

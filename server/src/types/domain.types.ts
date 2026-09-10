@@ -133,6 +133,10 @@ export interface Reservation {
   checkedOutAt?: string | null;
   digitalKeyIssued: boolean;
   source: 'direct' | 'expedia' | 'booking_com' | 'airbnb' | 'google_hotel';
+  channelCommissionRate?: number | null;
+  commissionAmount?: number | null;
+  netReceivable?: number | null;
+  channelReservationId?: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -141,7 +145,7 @@ export interface FolioCharge {
   id: string;
   reservationId: string;
   propertyId: string;
-  category: 'room_rate' | 'tax' | 'resort_fee' | 'dining' | 'minibar' | 'parking' | 'spa' | 'late_checkout' | 'adjustment' | 'payment';
+  category: 'room_rate' | 'tax' | 'resort_fee' | 'dining' | 'minibar' | 'parking' | 'spa' | 'late_checkout' | 'commission_fee' | 'adjustment' | 'payment';
   description: string;
   amount: number;
   status: 'posted' | 'void' | 'paid';
@@ -149,6 +153,54 @@ export interface FolioCharge {
   paymentMethod?: string | null;
   paymentRef?: string | null;
   createdAt: string;
+}
+
+export interface DynamicPricingRule {
+  id: string;
+  propertyId: string;
+  ruleType: 'occupancy_surge' | 'shoulder_season' | 'mlos_restriction' | 'weekend_premium';
+  name: string;
+  thresholdPercent: number;
+  priceAdjustmentPercent: number;
+  minNights?: number;
+  isActive: boolean;
+  updatedAt: string;
+}
+
+export interface ChannelSyncStatus {
+  propertyId: string;
+  propertyName: string;
+  channexConnected: boolean;
+  lastSyncedAt: string;
+  syncLatencySeconds: number;
+  channels: {
+    name: 'expedia' | 'booking_com' | 'airbnb';
+    status: 'online' | 'syncing' | 'offline';
+    lastEvent: string;
+    commissionRate: number;
+    activeListings: number;
+  }[];
+}
+
+export interface ChannexWebhookPayload {
+  event: 'booking_created' | 'booking_modified' | 'booking_cancelled' | 'rate_update_acknowledged';
+  propertyId: string;
+  channel: 'expedia' | 'booking_com' | 'airbnb' | 'google_hotel';
+  channelReservationId: string;
+  roomTypeCode: string;
+  checkInDate: string;
+  checkOutDate: string;
+  adultCount: number;
+  childCount?: number;
+  guest: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+  };
+  totalAmount: number;
+  currency?: string;
+  commissionRate?: number;
 }
 
 export type UserStatus = 'active' | 'invited' | 'suspended';

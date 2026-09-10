@@ -99,7 +99,7 @@ function AppContent() {
       : '/guest';
 
   return (
-    <div className="min-h-screen flex bg-[#F8F9FA] text-[#0F172A] selection:bg-[#C5A059]/20 selection:text-[#0F172A] overflow-x-hidden font-sans">
+    <div className="min-h-screen flex bg-[#FAF9FC] text-[#1E1627] selection:bg-[#4A1D6D]/15 selection:text-[#4A1D6D] overflow-x-hidden font-sans">
       {/* Left Vertical Sidebar Navigation (Only on Staff Management & Operations Views) */}
       {!isGuestExperience && !isAuthPage && (
         <Sidebar
@@ -215,10 +215,10 @@ function AppContent() {
 
         {/* Staff Operations PMS Footer */}
         {!isGuestExperience && !isAuthPage && (
-          <footer className="border-t border-[#E5E7EB] py-6 text-center text-xs text-[#64748B] bg-[#F8F9FA]">
+          <footer className="border-t border-[#E9E5EE] py-6 text-center text-xs text-[#6E6678] bg-[#FAF9FC]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-3">
               <p>© 2026 Lumen Hospitality Group LLC — Operations PMS Management</p>
-              <p className="text-[#0F172A] font-semibold">
+              <p className="text-[#1E1627] font-semibold">
                 Aspen • Breckenridge • Telluride • Park City • Moab • Salt Lake City
               </p>
             </div>

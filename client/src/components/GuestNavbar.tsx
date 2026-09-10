@@ -133,16 +133,16 @@ export const GuestNavbar: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setIsPropertyDropdownOpen(!isPropertyDropdownOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F1F5F9] border border-[#E2E8F0] hover:border-[#CBD5E1] transition text-xs font-medium text-[#1E293B]"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF9FC] border border-[#E9E5EE] hover:border-[#D4C5E3] transition text-xs font-medium text-[#1E1627]"
               >
-                <MapPin className="w-3.5 h-3.5 text-[#C5A059]" />
+                <MapPin className="w-3.5 h-3.5 text-[#4A1D6D]" />
                 <span className="max-w-[140px] truncate">{currentProperty?.name || 'Select Lodge'}</span>
-                <ChevronDown className="w-3 h-3 text-[#64748B]" />
+                <ChevronDown className="w-3 h-3 text-[#6E6678]" />
               </button>
 
               {isPropertyDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-72 bg-white rounded-2xl border border-[#E5E7EB] shadow-xl p-2 z-50 animate-fadeIn">
-                  <div className="px-3 py-2 text-[11px] font-semibold tracking-wider uppercase text-[#94A3B8] border-b border-[#F1F5F9]">
+                <div className="absolute right-0 mt-2 w-72 bg-white rounded-2xl border border-[#E9E5EE] shadow-xl p-2 z-50 animate-fadeIn">
+                  <div className="px-3 py-2 text-[11px] font-semibold tracking-wider uppercase text-[#94A3B8] border-b border-[#FAF9FC]">
                     Select Boutique Lodge
                   </div>
                   <div className="py-1 max-h-64 overflow-y-auto space-y-1">
@@ -155,18 +155,18 @@ export const GuestNavbar: React.FC = () => {
                         }}
                         className={`w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between transition ${
                           currentProperty?.id === p.id
-                            ? 'bg-[#0F172A] text-white font-medium'
-                            : 'text-[#1E293B] hover:bg-[#F8F9FA]'
+                            ? 'bg-[#4A1D6D] text-white font-medium shadow-xs'
+                            : 'text-[#1E1627] hover:bg-[#F3EDF8] hover:text-[#4A1D6D]'
                         }`}
                       >
                         <div>
                           <p className="font-semibold">{p.name}</p>
-                          <p className={`text-[10px] ${currentProperty?.id === p.id ? 'text-slate-300' : 'text-[#64748B]'}`}>
+                          <p className={`text-[10px] ${currentProperty?.id === p.id ? 'text-white/80' : 'text-[#6E6678]'}`}>
                             {p.city}, {p.state}
                           </p>
                         </div>
                         {currentProperty?.id === p.id && (
-                          <span className="text-[10px] bg-[#C5A059] text-white px-2 py-0.5 rounded-full">Active</span>
+                          <span className="text-[10px] bg-white/20 text-white px-2 py-0.5 rounded-full">Active</span>
                         )}
                       </button>
                     ))}
@@ -180,9 +180,9 @@ export const GuestNavbar: React.FC = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => navigate(routeForRole(currentRole))}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F172A] text-white text-xs font-semibold hover:bg-[#1E293B] transition shadow-xs"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#4A1D6D] text-white text-xs font-semibold hover:bg-[#3B1457] transition shadow-xs"
                 >
-                  <User className="w-3.5 h-3.5 text-[#C5A059]" />
+                  <User className="w-3.5 h-3.5 text-purple-200" />
                   <span>
                     {currentRole === 'guest'
                       ? 'My Bookings'
@@ -192,7 +192,7 @@ export const GuestNavbar: React.FC = () => {
                 <button
                   onClick={logout}
                   title="Sign Out"
-                  className="p-2 text-[#64748B] hover:text-[#0F172A] hover:bg-[#F1F5F9] rounded-full transition cursor-pointer"
+                  className="p-2 text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8] rounded-full transition cursor-pointer"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -219,13 +219,13 @@ export const GuestNavbar: React.FC = () => {
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={() => navigate('/login')}
-              className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#0F172A] text-white cursor-pointer"
+              className="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-[#4A1D6D] text-white cursor-pointer hover:bg-[#3B1457] transition shadow-xs"
             >
               Sign In
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-[#0F172A] hover:bg-[#F1F5F9] rounded-xl transition cursor-pointer"
+              className="p-2 text-[#1E1627] hover:bg-[#F3EDF8] rounded-xl transition cursor-pointer"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -235,47 +235,47 @@ export const GuestNavbar: React.FC = () => {
 
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-[#E5E7EB] px-4 pt-3 pb-6 space-y-4 animate-fadeIn">
+        <div className="lg:hidden bg-white border-b border-[#E9E5EE] px-4 pt-3 pb-6 space-y-4 animate-fadeIn">
           {/* Active Lodge Tag */}
-          <div className="p-3 bg-[#F8F9FA] rounded-2xl border border-[#E5E7EB]">
+          <div className="p-3 bg-[#FAF9FC] rounded-2xl border border-[#E9E5EE]">
             <p className="text-[10px] uppercase font-bold text-[#94A3B8] tracking-wider mb-1">
               Active Lodge Destination
             </p>
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-[#0F172A]">{currentProperty?.name}</span>
-              <span className="text-[11px] text-[#64748B]">{currentProperty?.city}, {currentProperty?.state}</span>
+              <span className="text-xs font-bold text-[#1E1627]">{currentProperty?.name}</span>
+              <span className="text-[11px] text-[#6E6678]">{currentProperty?.city}, {currentProperty?.state}</span>
             </div>
           </div>
 
           {/* Navigation Links */}
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col space-y-1">
             <button
               onClick={() => scrollToSection('destinations')}
-              className="text-left px-3 py-2 text-sm font-medium text-[#1E293B] hover:bg-[#F1F5F9] rounded-xl transition cursor-pointer"
+              className="text-left px-3 py-2 text-xs font-medium text-[#1E1627] hover:bg-[#F3EDF8] hover:text-[#4A1D6D] rounded-xl transition cursor-pointer"
             >
               Destinations Portfolio
             </button>
             <button
               onClick={() => scrollToSection('accommodations')}
-              className="text-left px-3 py-2 text-sm font-medium text-[#1E293B] hover:bg-[#F1F5F9] rounded-xl transition cursor-pointer"
+              className="text-left px-3 py-2 text-xs font-medium text-[#1E1627] hover:bg-[#F3EDF8] hover:text-[#4A1D6D] rounded-xl transition cursor-pointer"
             >
               Suites & Live Availability
             </button>
             <button
               onClick={() => scrollToSection('philosophy')}
-              className="text-left px-3 py-2 text-sm font-medium text-[#1E293B] hover:bg-[#F1F5F9] rounded-xl transition cursor-pointer"
+              className="text-left px-3 py-2 text-xs font-medium text-[#1E1627] hover:bg-[#F3EDF8] hover:text-[#4A1D6D] rounded-xl transition cursor-pointer"
             >
               Architectural Philosophy
             </button>
             <button
               onClick={() => scrollToSection('lookup')}
-              className="text-left px-3 py-2 text-sm font-medium text-[#1E293B] hover:bg-[#F1F5F9] rounded-xl transition cursor-pointer"
+              className="text-left px-3 py-2 text-xs font-medium text-[#1E1627] hover:bg-[#F3EDF8] hover:text-[#4A1D6D] rounded-xl transition cursor-pointer"
             >
               Manage / Lookup Reservation
             </button>
           </div>
 
-          <div className="pt-2 border-t border-[#E5E7EB] flex items-center justify-between">
+          <div className="pt-2 border-t border-[#E9E5EE] flex items-center justify-between">
             {isAuthenticated ? (
               <div className="flex items-center justify-between w-full">
                 <button
@@ -283,7 +283,7 @@ export const GuestNavbar: React.FC = () => {
                     setIsMobileMenuOpen(false);
                     navigate(routeForRole(currentRole));
                   }}
-                  className="px-4 py-2.5 bg-[#0F172A] text-white text-xs font-bold rounded-xl cursor-pointer"
+                  className="px-4 py-2.5 bg-[#4A1D6D] text-white text-xs font-bold rounded-xl cursor-pointer hover:bg-[#3B1457] transition shadow-xs"
                 >
                   Go to {currentRole.replace('_', ' ')} Dashboard
                 </button>
@@ -300,7 +300,7 @@ export const GuestNavbar: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   navigate('/login');
                 }}
-                className="w-full py-3 bg-[#0F172A] text-white text-xs font-bold rounded-xl tracking-wide cursor-pointer"
+                className="w-full py-3 bg-[#4A1D6D] text-white text-xs font-bold rounded-xl tracking-wide cursor-pointer hover:bg-[#3B1457] transition shadow-xs"
               >
                 Sign In (Guest & Staff Portal)
               </button>

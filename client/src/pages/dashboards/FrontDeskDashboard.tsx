@@ -153,25 +153,25 @@ export const FrontDeskDashboard: React.FC = () => {
   const readyRoomsCount = (metrics?.cleanRooms || 0) + (metrics?.inspectedRooms || 0);
 
   return (
-    <div className="min-h-screen pb-24 p-4 sm:p-6 lg:p-8 max-w-[1520px] w-full mx-auto space-y-8 text-[#0F172A] bg-[#F8F9FA] font-sans selection:bg-[#C5A059]/20 selection:text-[#0F172A]">
+    <div className="min-h-screen pb-24 p-4 sm:p-6 lg:p-8 max-w-[1520px] w-full mx-auto space-y-8 text-[#1E1627] bg-[#FAF9FC] font-sans selection:bg-[#4A1D6D]/15 selection:text-[#4A1D6D]">
       {/* 1. Header Ribbon */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#E5E7EB]">
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#E9E5EE]">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase text-[#0F172A] bg-white border border-[#E5E7EB] shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase text-[#1E1627] bg-white border border-[#E9E5EE] shadow-2xs">
             <span>Front Desk Hub</span>
             <span>•</span>
             {loading ? (
-              <span className="flex items-center gap-1 text-[#C5A059]">
+              <span className="flex items-center gap-1 text-[#4A1D6D]">
                 <Loader2 className="w-3 h-3 animate-spin" /> Live Syncing...
               </span>
             ) : (
-              <span className="text-emerald-600 font-bold">Real-Time Bus Live</span>
+              <span className="text-emerald-700 font-bold">Real-Time Bus Live</span>
             )}
           </div>
-          <h1 className="text-3xl font-heading font-extrabold text-[#0F172A] tracking-tight mt-2">
+          <h1 className="text-3xl font-heading font-extrabold text-[#1E1627] tracking-tight mt-2">
             {currentProperty?.name} Front Desk
           </h1>
-          <p className="text-xs text-[#64748B] mt-1">
+          <p className="text-xs text-[#6E6678] mt-1">
             Guest arrivals, digital key provisioning, in-house folios, departures, and suite condition directory.
           </p>
         </div>
@@ -182,7 +182,7 @@ export const FrontDeskDashboard: React.FC = () => {
           onClick={() => setShowWalkInModal(true)}
           className="px-4 py-2.5 rounded-xl astra-btn-primary font-semibold text-xs flex items-center gap-2 transition cursor-pointer shadow-xs"
         >
-          <UserPlus className="w-4 h-4 text-[#C5A059]" />
+          <UserPlus className="w-4 h-4 text-white" />
           <span>Walk-In Registration</span>
         </button>
       </div>
@@ -190,65 +190,65 @@ export const FrontDeskDashboard: React.FC = () => {
       {/* 2. Operational KPI Cards */}
       {metrics && (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="editorial-card rounded-2xl bg-white border border-[#E5E7EB] p-5 space-y-2 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-[#64748B]">
+          <div className="editorial-card rounded-2xl bg-white border border-[#E9E5EE] p-5 space-y-2 shadow-xs">
+            <div className="flex items-center justify-between text-xs text-[#6E6678]">
               <span className="font-semibold uppercase tracking-wider">Occupancy</span>
-              <TrendingUp className="w-4 h-4 text-[#C5A059]" />
+              <TrendingUp className="w-4 h-4 text-[#4A1D6D]" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl sm:text-4xl font-heading font-extrabold text-[#0F172A]">{metrics.occupancyRate}%</span>
-              <span className="text-xs text-[#64748B]">({inHouseCount}/{metrics.totalRooms} Suites)</span>
+              <span className="text-3xl sm:text-4xl font-heading font-extrabold text-[#1E1627]">{metrics.occupancyRate}%</span>
+              <span className="text-xs text-[#6E6678]">({inHouseCount}/{metrics.totalRooms} Suites)</span>
             </div>
-            <div className="w-full h-1.5 bg-[#F1F5F9] rounded-full overflow-hidden">
-              <div className="h-full bg-[#0F172A] rounded-full" style={{ width: `${Math.min(100, metrics.occupancyRate)}%` }} />
+            <div className="w-full h-1.5 bg-[#F3EDF8] rounded-full overflow-hidden">
+              <div className="h-full bg-[#4A1D6D] rounded-full" style={{ width: `${Math.min(100, metrics.occupancyRate)}%` }} />
             </div>
           </div>
 
-          <div className="editorial-card rounded-2xl bg-white border border-[#E5E7EB] p-5 space-y-2 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-[#64748B]">
+          <div className="editorial-card rounded-2xl bg-white border border-[#E9E5EE] p-5 space-y-2 shadow-xs">
+            <div className="flex items-center justify-between text-xs text-[#6E6678]">
               <span className="font-semibold uppercase tracking-wider">Today's Arrivals</span>
-              <Key className="w-4 h-4 text-[#C5A059]" />
+              <Key className="w-4 h-4 text-[#4A1D6D]" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl sm:text-4xl font-heading font-extrabold text-[#0F172A]">{arrivalsCount}</span>
-              <span className="text-xs text-[#64748B]">Incoming</span>
+              <span className="text-3xl sm:text-4xl font-heading font-extrabold text-[#1E1627]">{arrivalsCount}</span>
+              <span className="text-xs text-[#6E6678]">Incoming</span>
             </div>
-            <p className="text-[11px] text-[#64748B]">Awaiting check-in</p>
+            <p className="text-[11px] text-[#6E6678]">Awaiting check-in</p>
           </div>
 
-          <div className="editorial-card rounded-2xl bg-white border border-[#E5E7EB] p-5 space-y-2 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-[#64748B]">
+          <div className="editorial-card rounded-2xl bg-white border border-[#E9E5EE] p-5 space-y-2 shadow-xs">
+            <div className="flex items-center justify-between text-xs text-[#6E6678]">
               <span className="font-semibold uppercase tracking-wider">In-House Stays</span>
-              <Users className="w-4 h-4 text-emerald-600" />
+              <Users className="w-4 h-4 text-emerald-700" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl sm:text-4xl font-heading font-extrabold text-emerald-600">{inHouseCount}</span>
-              <span className="text-xs text-[#64748B]">Active</span>
+              <span className="text-3xl sm:text-4xl font-heading font-extrabold text-emerald-700">{inHouseCount}</span>
+              <span className="text-xs text-[#6E6678]">Active</span>
             </div>
-            <p className="text-[11px] text-[#64748B]">Digital keys active</p>
+            <p className="text-[11px] text-[#6E6678]">Digital keys active</p>
           </div>
 
-          <div className="editorial-card rounded-2xl bg-white border border-[#E5E7EB] p-5 space-y-2 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-[#64748B]">
+          <div className="editorial-card rounded-2xl bg-white border border-[#E9E5EE] p-5 space-y-2 shadow-xs">
+            <div className="flex items-center justify-between text-xs text-[#6E6678]">
               <span className="font-semibold uppercase tracking-wider">Ready for Allocation</span>
-              <CheckCircle className="w-4 h-4 text-[#0F172A]" />
+              <CheckCircle className="w-4 h-4 text-[#4A1D6D]" />
             </div>
             <div className="flex items-baseline gap-2">
-              <span className="text-3xl sm:text-4xl font-heading font-extrabold text-[#0F172A]">{readyRoomsCount}</span>
-              <span className="text-xs text-[#64748B]">Suites</span>
+              <span className="text-3xl sm:text-4xl font-heading font-extrabold text-[#1E1627]">{readyRoomsCount}</span>
+              <span className="text-xs text-[#6E6678]">Suites</span>
             </div>
-            <p className="text-[11px] text-[#64748B]">Clean & inspected</p>
+            <p className="text-[11px] text-[#6E6678]">Clean & inspected</p>
           </div>
         </div>
       )}
 
       {/* 3. Front Desk Sub-Tabs Ribbon */}
-      <div className="p-1.5 rounded-2xl bg-white border border-[#E5E7EB] flex flex-wrap gap-1 shadow-xs">
+      <div className="p-1.5 rounded-2xl bg-white border border-[#E9E5EE] flex flex-wrap gap-1 shadow-xs">
         <button
           type="button"
           onClick={() => setActiveTab('arrivals')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'arrivals' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+            activeTab === 'arrivals' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
           }`}
         >
           <Key className="w-3.5 h-3.5" />
@@ -259,7 +259,7 @@ export const FrontDeskDashboard: React.FC = () => {
           type="button"
           onClick={() => setActiveTab('inhouse')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'inhouse' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+            activeTab === 'inhouse' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
           }`}
         >
           <Users className="w-3.5 h-3.5" />
@@ -270,7 +270,7 @@ export const FrontDeskDashboard: React.FC = () => {
           type="button"
           onClick={() => setActiveTab('departures')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'departures' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+            activeTab === 'departures' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
           }`}
         >
           <LogOut className="w-3.5 h-3.5" />
@@ -281,7 +281,7 @@ export const FrontDeskDashboard: React.FC = () => {
           type="button"
           onClick={() => setActiveTab('status')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'status' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+            activeTab === 'status' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
           }`}
         >
           <Layers className="w-3.5 h-3.5" />
@@ -292,7 +292,7 @@ export const FrontDeskDashboard: React.FC = () => {
           type="button"
           onClick={() => setActiveTab('walkin')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'walkin' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+            activeTab === 'walkin' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
           }`}
         >
           <UserPlus className="w-3.5 h-3.5" />

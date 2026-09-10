@@ -184,6 +184,10 @@ export function mapReservation(row: any): Reservation {
     checkedOutAt: row.checked_out_at,
     digitalKeyIssued: Boolean(row.digital_key_issued),
     source: row.source || 'direct',
+    channelCommissionRate: row.channel_commission_rate ?? row.channelCommissionRate ?? null,
+    commissionAmount: row.commission_amount ?? row.commissionAmount ?? null,
+    netReceivable: row.net_receivable ?? row.netReceivable ?? null,
+    channelReservationId: row.channel_reservation_id ?? row.channelReservationId ?? null,
     createdAt: row.created_at,
     updatedAt: row.updated_at || row.created_at,
   };
@@ -622,11 +626,27 @@ export const supabaseDb = {
         checked_out_at: res.checkedOutAt || null,
         digital_key_issued: Boolean(res.digitalKeyIssued),
         source: res.source || 'direct',
+        channel_commission_rate: res.channelCommissionRate ?? null,
+        commission_amount: res.commissionAmount ?? null,
+        net_receivable: res.netReceivable ?? null,
+        channel_reservation_id: res.channelReservationId ?? null,
         created_at: res.createdAt || new Date().toISOString(),
         updated_at: res.updatedAt || new Date().toISOString(),
       };
       const { data, error } = await getClient().from('reservations').insert(payload).select('*').single();
-      if (error) throw error;
+      if (error) {
+        if (error.code === 'PGRST204' || error.message?.includes('column')) {
+          const fallbackPayload: any = { ...payload };
+          delete fallbackPayload.channel_commission_rate;
+          delete fallbackPayload.commission_amount;
+          delete fallbackPayload.net_receivable;
+          delete fallbackPayload.channel_reservation_id;
+          const { data: fbData, error: fbError } = await getClient().from('reservations').insert(fallbackPayload).select('*').single();
+          if (fbError) throw fbError;
+          return mapReservation({ ...fbData, ...payload });
+        }
+        throw error;
+      }
       return mapReservation(data);
     },
     async update(id: string, updates: Partial<Reservation>): Promise<Reservation | null> {

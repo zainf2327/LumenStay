@@ -51,17 +51,17 @@ export const LumenStayMark: React.FC<{
       >
         <defs>
           <linearGradient id="lsBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1E293B" />
-            <stop offset="100%" stopColor="#0F172A" />
+            <stop offset="0%" stopColor="#4A1D6D" />
+            <stop offset="100%" stopColor="#240D36" />
           </linearGradient>
-          <linearGradient id="lsGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FDE68A" />
-            <stop offset="35%" stopColor="#D4AF37" />
-            <stop offset="100%" stopColor="#AA7C11" />
+          <linearGradient id="lsAmethystGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FAF5FF" />
+            <stop offset="45%" stopColor="#E9D8FD" />
+            <stop offset="100%" stopColor="#D6BCFA" />
           </linearGradient>
-          <radialGradient id="lsHaloGrad" cx="50%" cy="45%" r="40%">
-            <stop offset="0%" stopColor="#FDE68A" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
+          <radialGradient id="lsHaloGrad" cx="50%" cy="45%" r="42%">
+            <stop offset="0%" stopColor="#E9D8FD" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#4A1D6D" stopOpacity="0" />
           </radialGradient>
         </defs>
 
@@ -74,20 +74,20 @@ export const LumenStayMark: React.FC<{
               height="32"
               rx="8"
               fill="none"
-              stroke="#C5A059"
+              stroke="#9F67D0"
               strokeWidth="0.8"
-              strokeOpacity="0.4"
+              strokeOpacity="0.45"
             />
           </>
         )}
 
         {/* Ambient Luminous Halo */}
-        <circle cx="16" cy="14.5" r="7.5" fill="url(#lsHaloGrad)" />
+        <circle cx="16" cy="14.5" r="7.2" fill="url(#lsHaloGrad)" />
 
         {/* Architectural Plinth / Horizon Line */}
         <path
           d="M7 24.5H25"
-          stroke="url(#lsGoldGrad)"
+          stroke="url(#lsAmethystGlow)"
           strokeWidth="1.8"
           strokeLinecap="round"
         />
@@ -96,7 +96,7 @@ export const LumenStayMark: React.FC<{
         <path
           d="M9.5 24.5V13.5C9.5 9.91 12.41 7 16 7C19.59 7 22.5 9.91 22.5 13.5V24.5"
           fill="none"
-          stroke="url(#lsGoldGrad)"
+          stroke="url(#lsAmethystGlow)"
           strokeWidth="1.8"
           strokeLinecap="round"
         />
@@ -104,7 +104,7 @@ export const LumenStayMark: React.FC<{
         {/* Radiant Astroid Star of Light (Lumen) */}
         <path
           d="M16 8.5Q16 14.5 21.5 14.5Q16 14.5 16 20.5Q16 14.5 10.5 14.5Q16 14.5 16 8.5Z"
-          fill="url(#lsGoldGrad)"
+          fill="url(#lsAmethystGlow)"
           className="transition-transform origin-[16px_14.5px] group-hover:scale-110 duration-300"
         />
 
@@ -126,8 +126,8 @@ export const LumenStayLogo: React.FC<LumenStayLogoProps> = ({
 }) => {
   const config = sizeMap[size];
 
-  const titleColor = theme === 'light' ? 'text-white' : 'text-[#0F172A]';
-  const subtitleColor = theme === 'light' ? 'text-slate-400' : 'text-[#64748B]';
+  const titleColor = theme === 'light' ? 'text-white' : 'text-[#1E1627]';
+  const subtitleColor = theme === 'light' ? 'text-slate-400' : 'text-[#6E6678]';
 
   return (
     <div className={`inline-flex items-center gap-2.5 group select-none ${className}`}>

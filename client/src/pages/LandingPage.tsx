@@ -176,11 +176,17 @@ export const LandingPage: React.FC = () => {
             <span>Est. 2026</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-heading font-extrabold text-white tracking-tight leading-[1.08] drop-shadow-md">
+          <h1
+            className="text-4xl sm:text-6xl md:text-7xl font-heading font-extrabold !text-white tracking-tight leading-[1.08] drop-shadow-md"
+            style={{ color: '#FFFFFF' }}
+          >
             Architectural Sanctuaries Crafted for Stillness & Light.
           </h1>
 
-          <p className="text-base sm:text-lg text-white/85 font-normal max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+          <p
+            className="text-base sm:text-lg !text-white/90 font-normal max-w-2xl mx-auto leading-relaxed drop-shadow-sm"
+            style={{ color: 'rgba(255, 255, 255, 0.9)' }}
+          >
             Intimate boutique retreats tucked across the American West. Experience handcrafted hospitality, clean architectural design, and serene natural terrain.
           </p>
 

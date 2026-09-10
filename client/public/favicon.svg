@@ -1,41 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <defs>
     <linearGradient id="lumenBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E293B" />
-      <stop offset="100%" stop-color="#0F172A" />
+      <stop offset="0%" stop-color="#4A1D6D" />
+      <stop offset="100%" stop-color="#240D36" />
     </linearGradient>
-    <linearGradient id="lumenGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FDE68A" />
-      <stop offset="40%" stop-color="#D4AF37" />
-      <stop offset="100%" stop-color="#AA7C11" />
+    <linearGradient id="lumenGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF5FF" />
+      <stop offset="45%" stop-color="#E9D8FD" />
+      <stop offset="100%" stop-color="#D6BCFA" />
     </linearGradient>
-    <radialGradient id="lumenAura" cx="50%" cy="45%" r="40%">
-      <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.35" />
-      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
+    <radialGradient id="lumenAura" cx="50%" cy="45%" r="42%">
+      <stop offset="0%" stop-color="#E9D8FD" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#4A1D6D" stop-opacity="0" />
     </radialGradient>
   </defs>
 
-  <!-- Deep Slate Sanctuary Backing -->
-  <rect width="32" height="32" rx="7.5" fill="url(#lumenBg)" />
-  <rect width="32" height="32" rx="7.5" fill="none" stroke="#C5A059" stroke-width="0.75" stroke-opacity="0.35" />
+  <!-- Deep Amethyst Sanctuary Backing -->
+  <rect width="32" height="32" rx="8" fill="url(#lumenBg)" />
+  <rect width="32" height="32" rx="8" fill="none" stroke="#9F67D0" stroke-width="0.8" stroke-opacity="0.45" />
 
   <!-- Soft Ambient Luminous Halo -->
-  <circle cx="16" cy="14.5" r="7" fill="url(#lumenAura)" />
+  <circle cx="16" cy="14.5" r="7.2" fill="url(#lumenAura)" />
 
   <!-- Foundation Plinth / Threshold -->
-  <path d="M7 24.5H25" stroke="url(#lumenGold)" stroke-width="1.8" stroke-linecap="round" />
+  <path d="M7 24.5H25" stroke="url(#lumenGlow)" stroke-width="1.8" stroke-linecap="round" />
 
   <!-- Architectural Portal Arch (Stay / Sanctuary) -->
   <path d="M9.5 24.5V13.5C9.5 9.91 12.41 7 16 7C19.59 7 22.5 9.91 22.5 13.5V24.5" 
         fill="none" 
-        stroke="url(#lumenGold)" 
+        stroke="url(#lumenGlow)" 
         stroke-width="1.8" 
         stroke-linecap="round" />
 
   <!-- Inner Radiant Star of Light (Lumen) -->
-  <path d="M16 8.5Q16 14.5 21.5 14.5Q16 14.5 16 20.5Q16 14.5 10.5 14.5Q16 14.5 16 8.5Z" 
-        fill="url(#lumenGold)" />
+  <path d="M16 8.5Q16 14.5 21.5 14.5Q16 14.5 16 20.5Q16 14.5 16 8.5Z" 
+        fill="url(#lumenGlow)" />
 
   <!-- Core Radiant Spark Center -->
-  <circle cx="16" cy="14.5" r="1.1" fill="#FFFDF5" />
+  <circle cx="16" cy="14.5" r="1.15" fill="#FFFFFF" />
 </svg>

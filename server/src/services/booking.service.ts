@@ -4,6 +4,7 @@ import { stripeService } from './stripe.service.js';
 import { emailService } from './email.service.js';
 import { simulatePaymentTokenization, processTokenizedCharge } from './paymentSimulator.js';
 import { broadcastEvent } from './websocket.js';
+import { channexService } from './channex.service.js';
 import { ApiError } from '../types/api.types.js';
 import type { Reservation, Guest, FolioCharge } from '../types/domain.types.js';
 
@@ -243,6 +244,11 @@ export class BookingService {
       propertyId,
       guestName: `${guest.firstName} ${guest.lastName}`,
       totalAmount: pricing.grandTotal,
+    });
+
+    // Instant Outbound Inventory Sync to OTAs (<3.0s Parity Guarantee)
+    channexService.syncAvailability(propertyId, roomTypeId).catch((err) => {
+      console.error('[Channex Outbound Sync Error]:', err);
     });
 
     // Dispatch Resend Email Asynchronously after DB commit

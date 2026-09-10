@@ -61,4 +61,13 @@ export const config = {
     process.env.RESEND_API_KEY &&
     !process.env.RESEND_API_KEY.includes('your-key')
   ),
+
+  // Channex.io OTA Channel Distribution (Option 1: Pull Revisions Feed API)
+  channexApiKey: process.env.CHANNEX_API_KEY || '',
+  channexBaseUrl: process.env.CHANNEX_BASE_URL || (process.env.CHANNEX_ENVIRONMENT === 'production' ? 'https://app.channex.io/api/v1' : 'https://staging.channex.io/api/v1'),
+  isChannexConfigured: Boolean(
+    process.env.CHANNEX_API_KEY &&
+    !process.env.CHANNEX_API_KEY.includes('demo') &&
+    !process.env.CHANNEX_API_KEY.includes('sandbox_demo')
+  ),
 };

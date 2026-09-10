@@ -223,12 +223,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
           setIsHovered(false);
           setIsPropDropdownOpen(false);
         }}
-        className={`fixed top-0 bottom-0 left-0 z-50 flex flex-col bg-white border-r border-[#E5E7EB] transition-[width,transform,box-shadow] duration-300 ease-in-out font-sans overflow-x-hidden no-scrollbar ${isExpanded ? 'w-[270px] shadow-2xl ring-1 ring-black/5' : 'w-[76px] shadow-xs'
+        className={`fixed top-0 bottom-0 left-0 z-50 flex flex-col bg-white border-r border-[#E9E5EE] transition-[width,transform,box-shadow] duration-300 ease-in-out font-sans overflow-x-hidden no-scrollbar ${isExpanded ? 'w-[270px] shadow-2xl ring-1 ring-black/5' : 'w-[76px] shadow-xs'
           } ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}
       >
         {/* Top: Brand Wordmark Header */}
-        <div className={`h-16 flex items-center border-b border-[#E5E7EB] shrink-0 bg-white transition-all duration-300 ${isExpanded ? 'px-5 justify-between' : 'px-0 justify-center'
+        <div className={`h-16 flex items-center border-b border-[#E9E5EE] shrink-0 bg-white transition-all duration-300 ${isExpanded ? 'px-5 justify-between' : 'px-0 justify-center'
           }`}>
           <Link to="/" className="flex items-center overflow-hidden group">
             {isExpanded ? (
@@ -246,14 +246,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Mobile Close Button */}
           <button
             onClick={onMobileClose}
-            className="lg:hidden text-[#64748B] hover:text-[#0F172A] p-1.5 rounded-lg hover:bg-[#F1F5F9] transition-colors"
+            className="lg:hidden text-[#6E6678] hover:text-[#1E1627] p-1.5 rounded-lg hover:bg-[#F3EDF8] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Property Selector Widget */}
-        <div className="p-3 border-b border-[#E5E7EB] relative" ref={propDropdownRef}>
+        <div className="p-3 border-b border-[#E9E5EE] relative" ref={propDropdownRef}>
           {(() => {
             const isPropertyFixed = currentRole !== 'owner' && currentRole !== 'guest';
 
@@ -261,25 +261,25 @@ export const Sidebar: React.FC<SidebarProps> = ({
               return !isExpanded ? (
                 <div
                   title={`${currentProperty?.name} (Assigned Property)`}
-                  className="w-10 h-10 rounded-xl bg-[#F8F9FA] border border-[#E5E7EB] flex items-center justify-center text-[#64748B] cursor-default mx-auto"
+                  className="w-10 h-10 rounded-xl bg-[#FAF9FC] border border-[#E9E5EE] flex items-center justify-center text-[#6E6678] cursor-default mx-auto"
                 >
-                  <Building2 className="w-4 h-4 text-[#C5A059]" />
+                  <Building2 className="w-4 h-4 text-[#4A1D6D]" />
                 </div>
               ) : (
-                <div className="bg-[#F8F9FA] p-2.5 rounded-xl border border-[#E5E7EB]">
+                <div className="bg-[#FAF9FC] p-2.5 rounded-xl border border-[#E9E5EE]">
                   <div className="flex items-center justify-between text-[10px] uppercase font-bold tracking-wider text-[#94A3B8] mb-1.5">
                     <span>Property</span>
-                    <span className="text-[9px] font-semibold text-[#0F172A] px-2 py-0.5 rounded-full bg-white border border-[#E5E7EB] shadow-2xs">
+                    <span className="text-[9px] font-semibold text-[#1E1627] px-2 py-0.5 rounded-full bg-white border border-[#E9E5EE] shadow-2xs">
                       Assigned Hotel
                     </span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <Building2 className="w-4 h-4 text-[#C5A059] shrink-0" />
+                    <Building2 className="w-4 h-4 text-[#4A1D6D] shrink-0" />
                     <div className="truncate">
-                      <p className="text-xs font-bold text-[#0F172A] truncate leading-none">
+                      <p className="text-xs font-bold text-[#1E1627] truncate leading-none">
                         {currentProperty?.name || 'Birchwood Manor'}
                       </p>
-                      <p className="text-[10px] text-[#64748B] truncate mt-0.5">
+                      <p className="text-[10px] text-[#6E6678] truncate mt-0.5">
                         {currentProperty?.city}, {currentProperty?.state}
                       </p>
                     </div>
@@ -294,9 +294,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <button
                     onClick={() => setIsPropDropdownOpen(!isPropDropdownOpen)}
                     title={currentProperty?.name}
-                    className="w-10 h-10 rounded-xl bg-[#F8F9FA] border border-[#E5E7EB] hover:border-[#CBD5E1] flex items-center justify-center text-[#0F172A] transition cursor-pointer mx-auto shadow-2xs"
+                    className="w-10 h-10 rounded-xl bg-[#FAF9FC] border border-[#E9E5EE] hover:border-[#4A1D6D]/30 flex items-center justify-center text-[#1E1627] transition cursor-pointer mx-auto shadow-2xs"
                   >
-                    <Building2 className="w-4 h-4 text-[#C5A059]" />
+                    <Building2 className="w-4 h-4 text-[#4A1D6D]" />
                   </button>
                 ) : (
                   <div>
@@ -305,21 +305,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     </label>
                     <button
                       onClick={() => setIsPropDropdownOpen(!isPropDropdownOpen)}
-                      className="w-full px-3 py-2 rounded-xl bg-[#F8F9FA] hover:bg-[#F1F5F9] border border-[#E5E7EB] hover:border-[#CBD5E1] flex items-center justify-between transition text-left cursor-pointer"
+                      className="w-full px-3 py-2 rounded-xl bg-[#FAF9FC] hover:bg-[#F3EDF8] border border-[#E9E5EE] hover:border-[#4A1D6D]/30 flex items-center justify-between transition text-left cursor-pointer"
                     >
                       <div className="flex items-center gap-2.5 truncate">
-                        <Building2 className="w-4 h-4 text-[#C5A059] shrink-0" />
+                        <Building2 className="w-4 h-4 text-[#4A1D6D] shrink-0" />
                         <div className="truncate">
-                          <p className="text-xs font-bold text-[#0F172A] truncate leading-none">
+                          <p className="text-xs font-bold text-[#1E1627] truncate leading-none">
                             {currentProperty?.name || 'Select Property'}
                           </p>
-                          <p className="text-[10px] text-[#64748B] truncate mt-0.5">
+                          <p className="text-[10px] text-[#6E6678] truncate mt-0.5">
                             {currentProperty?.city}, {currentProperty?.state}
                           </p>
                         </div>
                       </div>
                       <ChevronDown
-                        className={`w-3.5 h-3.5 text-[#64748B] transition-transform shrink-0 ${isPropDropdownOpen ? 'rotate-180' : ''
+                        className={`w-3.5 h-3.5 text-[#6E6678] transition-transform shrink-0 ${isPropDropdownOpen ? 'rotate-180' : ''
                           }`}
                       />
                     </button>
@@ -328,8 +328,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
                 {/* Property Dropdown Menu */}
                 {isPropDropdownOpen && (
-                  <div className="absolute top-full left-3 right-3 mt-1.5 bg-white border border-[#E5E7EB] rounded-2xl shadow-xl p-1.5 z-50 animate-fadeIn">
-                    <p className="px-3 py-1.5 text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold border-b border-[#F1F5F9] mb-1">
+                  <div className="absolute top-full left-3 right-3 mt-1.5 bg-white border border-[#E9E5EE] rounded-2xl shadow-xl p-1.5 z-50 animate-fadeIn">
+                    <p className="px-3 py-1.5 text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold border-b border-[#FAF9FC] mb-1">
                       Portfolio Lodges
                     </p>
                     {properties.map((prop) => (
@@ -337,18 +337,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         key={prop.id}
                         onClick={() => handleSelectProperty(prop)}
                         className={`w-full px-3 py-2 text-left flex items-center justify-between text-xs rounded-xl transition cursor-pointer ${currentProperty?.id === prop.id
-                            ? 'bg-[#0F172A] font-semibold text-white'
-                            : 'text-[#334155] hover:bg-[#F8F9FA]'
+                            ? 'bg-[#4A1D6D] font-semibold text-white shadow-xs'
+                            : 'text-[#334155] hover:bg-[#F3EDF8] hover:text-[#4A1D6D]'
                           }`}
                       >
                         <div className="truncate">
                           <p className="truncate leading-none font-semibold">{prop.name}</p>
-                          <p className={`text-[10px] mt-0.5 ${currentProperty?.id === prop.id ? 'text-slate-300' : 'text-[#64748B]'}`}>
+                          <p className={`text-[10px] mt-0.5 ${currentProperty?.id === prop.id ? 'text-white/80' : 'text-[#6E6678]'}`}>
                             {prop.city}, {prop.state} • {prop.totalRooms} rooms
                           </p>
                         </div>
                         {currentProperty?.id === prop.id && (
-                          <Check className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
+                          <Check className="w-3.5 h-3.5 text-white shrink-0" />
                         )}
                       </button>
                     ))}
@@ -383,11 +383,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     isExpanded ? 'gap-3 px-3 py-2.5' : 'justify-center w-10 h-10 mx-auto'
                   } ${
                     isTabActive
-                      ? 'bg-[#0F172A] text-white font-semibold shadow-xs'
-                      : 'text-[#475569] hover:bg-[#F8F9FA] hover:text-[#0F172A]'
+                      ? 'bg-[#4A1D6D] text-white font-semibold shadow-xs'
+                      : 'text-[#475569] hover:bg-[#F3EDF8] hover:text-[#4A1D6D]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 shrink-0 ${isTabActive ? 'text-[#C5A059]' : 'text-[#64748B]'}`} />
+                  <Icon className={`w-4 h-4 shrink-0 ${isTabActive ? 'text-white' : 'text-[#6E6678]'}`} />
                   {isExpanded && <span className="truncate">{tab.label}</span>}
                 </Link>
               );
@@ -396,7 +396,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
           {/* 2. Public Direct Booking Link (for Guest) */}
           {currentRole === 'guest' && (
-            <div className="pt-3 border-t border-[#E5E7EB] space-y-1">
+            <div className="pt-3 border-t border-[#E9E5EE] space-y-1">
               {isExpanded && (
                 <p className="px-2 py-1 text-[10px] uppercase font-bold tracking-wider text-[#94A3B8] truncate">
                   Public Experience
@@ -405,21 +405,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <Link
                 to="/"
                 title={!isExpanded ? 'Explore Sanctuaries' : undefined}
-                className={`flex items-center rounded-xl text-xs font-medium text-[#475569] hover:bg-[#F8F9FA] hover:text-[#0F172A] transition-all ${
+                className={`flex items-center rounded-xl text-xs font-medium text-[#475569] hover:bg-[#F3EDF8] hover:text-[#4A1D6D] transition-all ${
                   isExpanded ? 'gap-3 px-3 py-2.5' : 'justify-center w-10 h-10 mx-auto'
                 }`}
               >
-                <BedDouble className="w-4 h-4 shrink-0 text-[#64748B]" />
+                <BedDouble className="w-4 h-4 shrink-0 text-[#6E6678]" />
                 {isExpanded && <span>Explore Sanctuaries</span>}
               </Link>
               <Link
                 to="/lookup"
                 title={!isExpanded ? 'Find Reservation' : undefined}
-                className={`flex items-center rounded-xl text-xs font-medium text-[#475569] hover:bg-[#F8F9FA] hover:text-[#0F172A] transition-all ${
+                className={`flex items-center rounded-xl text-xs font-medium text-[#475569] hover:bg-[#F3EDF8] hover:text-[#4A1D6D] transition-all ${
                   isExpanded ? 'gap-3 px-3 py-2.5' : 'justify-center w-10 h-10 mx-auto'
                 }`}
               >
-                <Search className="w-4 h-4 shrink-0 text-[#64748B]" />
+                <Search className="w-4 h-4 shrink-0 text-[#6E6678]" />
                 {isExpanded && <span>Find Reservation</span>}
               </Link>
             </div>
@@ -427,7 +427,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
           {/* 3. Other Accessible Operations Modules (for GM, Owner, Supervisor, etc.) */}
           {otherAccessibleModules.length > 0 && (
-            <div className="pt-3 border-t border-[#E5E7EB] space-y-1">
+            <div className="pt-3 border-t border-[#E9E5EE] space-y-1">
               {isExpanded && (
                 <p className="px-2 py-1 text-[10px] uppercase font-bold tracking-wider text-[#94A3B8] truncate">
                   Other Modules
@@ -440,11 +440,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     key={module.basePath}
                     to={`${module.basePath}?tab=${module.defaultTab}`}
                     title={!isExpanded ? module.title : undefined}
-                    className={`flex items-center rounded-xl text-xs font-medium text-[#475569] hover:bg-[#F8F9FA] hover:text-[#0F172A] transition-all ${
+                    className={`flex items-center rounded-xl text-xs font-medium text-[#475569] hover:bg-[#F3EDF8] hover:text-[#4A1D6D] transition-all ${
                       isExpanded ? 'gap-3 px-3 py-2' : 'justify-center w-10 h-10 mx-auto'
                     }`}
                   >
-                    <FirstTabIcon className="w-3.5 h-3.5 shrink-0 text-[#64748B]" />
+                    <FirstTabIcon className="w-3.5 h-3.5 shrink-0 text-[#6E6678]" />
                     {isExpanded && <span className="truncate">{module.title}</span>}
                   </Link>
                 );
@@ -454,15 +454,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </nav>
 
         {/* User Account / Footer Card */}
-        <div className={`p-3 border-t border-[#E5E7EB] bg-white transition-all duration-300 ${isExpanded ? '' : 'flex flex-col items-center px-2'}`}>
+        <div className={`p-3 border-t border-[#E9E5EE] bg-white transition-all duration-300 ${isExpanded ? '' : 'flex flex-col items-center px-2'}`}>
           {currentUser ? (
             <div className={`flex items-center justify-between w-full ${!isExpanded ? 'flex-col gap-2' : ''}`}>
               {isExpanded && (
                 <div className="truncate pr-2">
-                  <p className="text-xs font-bold text-[#0F172A] truncate leading-none">
+                  <p className="text-xs font-bold text-[#1E1627] truncate leading-none">
                     {currentUser.name}
                   </p>
-                  <p className="text-[10px] text-[#64748B] truncate mt-1">
+                  <p className="text-[10px] text-[#6E6678] truncate mt-1">
                     {roleLabels[currentUser.role] || currentUser.role}
                   </p>
                 </div>

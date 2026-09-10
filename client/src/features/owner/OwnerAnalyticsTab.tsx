@@ -6,11 +6,6 @@ import {
   DollarSign,
   Percent,
   BedDouble,
-  Users,
-  Compass,
-  ArrowUpRight,
-  ShieldCheck,
-  Building2,
   Sparkles,
 } from 'lucide-react';
 
@@ -40,7 +35,6 @@ export const OwnerAnalyticsTab: React.FC<OwnerAnalyticsTabProps> = ({
   const occupancy = metrics?.occupancyRate || Math.round((inHouse / Math.max(1, totalRooms)) * 100);
   const revenue = reservations.reduce((acc, r) => acc + (Number(r.totalAmount) || 0), 0) || inHouse * 395;
   const adr = inHouse > 0 ? Math.round(revenue / inHouse) : 385;
-  const revpar = Math.round(revenue / Math.max(1, totalRooms));
 
   // Portfolio-wide aggregates
   const portfolioAggregates = useMemo(() => {

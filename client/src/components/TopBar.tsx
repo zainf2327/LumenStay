@@ -29,12 +29,12 @@ export const TopBar: React.FC<TopBarProps> = ({ onMobileMenuOpen }) => {
   };
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur-md border-b border-[#E5E7EB] px-4 sm:px-6 flex items-center justify-between transition-all duration-300 shrink-0 font-sans shadow-2xs">
+    <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur-md border-b border-[#E9E5EE] px-4 sm:px-6 flex items-center justify-between transition-all duration-300 shrink-0 font-sans shadow-2xs">
       {/* Left: Mobile Hamburger & Page Context */}
       <div className="flex items-center gap-3 sm:gap-4">
         <button
           onClick={onMobileMenuOpen}
-          className="lg:hidden p-2 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition"
+          className="lg:hidden p-2 rounded-lg text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8] transition"
           aria-label="Open menu"
         >
           <Menu className="w-5 h-5" />
@@ -42,7 +42,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onMobileMenuOpen }) => {
 
         <div>
           <div className="flex items-center gap-2.5">
-            <h1 className="font-heading font-bold text-base sm:text-lg text-[#0F172A] tracking-tight">
+            <h1 className="font-heading font-bold text-base sm:text-lg text-[#1E1627] tracking-tight">
               {routeInfo.title}
             </h1>
             <span 
@@ -56,7 +56,7 @@ export const TopBar: React.FC<TopBarProps> = ({ onMobileMenuOpen }) => {
               {currentProperty?.name}
             </span>
           </div>
-          <p className="text-[11px] text-[#64748B] hidden sm:block leading-none mt-0.5">
+          <p className="text-[11px] text-[#6E6678] hidden sm:block leading-none mt-0.5">
             {routeInfo.subtitle}
           </p>
         </div>
@@ -64,16 +64,16 @@ export const TopBar: React.FC<TopBarProps> = ({ onMobileMenuOpen }) => {
 
       {/* Right: Active Hotel & Live Status */}
       <div className="flex items-center gap-3">
-        <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F8F9FA] border border-[#E5E7EB] text-xs text-[#334155] shadow-2xs">
-          <Building2 className="w-3.5 h-3.5 text-[#C5A059]" />
-          <span className="font-semibold text-[#0F172A]">{currentProperty?.city}, {currentProperty?.state}</span>
+        <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF9FC] border border-[#E9E5EE] text-xs text-[#334155] shadow-2xs">
+          <Building2 className="w-3.5 h-3.5 text-[#4A1D6D]" />
+          <span className="font-semibold text-[#1E1627]">{currentProperty?.city}, {currentProperty?.state}</span>
           <span className="text-[#CBD5E1]">•</span>
-          <span className="text-[#64748B]">{currentProperty?.totalRooms} Rooms</span>
+          <span className="text-[#6E6678]">{currentProperty?.totalRooms} Rooms</span>
         </div>
 
         {/* Live WebSocket Indicator */}
         <div
-          className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F8F9FA] border border-[#E5E7EB] text-[11px] text-[#64748B] shadow-2xs"
+          className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF9FC] border border-[#E9E5EE] text-[11px] text-[#6E6678] shadow-2xs"
           title={isConnected ? 'Live WebSocket Connected' : 'Syncing...'}
         >
           <span

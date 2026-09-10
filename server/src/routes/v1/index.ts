@@ -8,6 +8,7 @@ import folioRoutes from './folio.routes.js';
 import guestRoutes from './guest.routes.js';
 import userRoutes from './user.routes.js';
 import maintenanceRoutes from './maintenance.routes.js';
+import channelRoutes from './channel.routes.js';
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.use('/folios', folioRoutes);
 router.use('/guests', guestRoutes);
 router.use('/users', userRoutes);
 router.use('/maintenance', maintenanceRoutes);
+router.use('/channels', channelRoutes);
 
 export default router;
 

@@ -34,23 +34,27 @@ export const GuestDashboard: React.FC = () => {
   const [showKeyModal, setShowKeyModal] = useState<boolean>(false);
 
   return (
-    <div className="min-h-screen pb-24 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-8 text-[#0F172A] bg-[#F8F9FA] font-sans selection:bg-[#C5A059]/20 selection:text-[#0F172A]">
+    <div className="min-h-screen pb-24 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-8 text-[#1E1627] bg-[#FAF9FC] font-sans selection:bg-[#4A1D6D]/15 selection:text-[#4A1D6D]">
       {/* 1. Header Ribbon */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#E5E7EB]">
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#E9E5EE]">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase text-[#0F172A] bg-white border border-[#E5E7EB] shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-[#F3EDF8] text-[#4A1D6D] border border-[#E2D4F0] shadow-2xs">
             <span>Guest Member Portal</span>
             <span>•</span>
-            <span className="flex items-center gap-1 font-bold text-[#C5A059]">
-              <Crown className="w-3 h-3 text-[#C5A059]" /> Astra Signature Member
+            <span className="flex items-center gap-1 font-bold">
+              <Crown className="w-3 h-3 text-[#4A1D6D]" /> LumenStay Elite Member
             </span>
           </div>
-          <h1 className="text-3xl font-heading font-extrabold text-[#0F172A] tracking-tight mt-2">
+          <h1 className="text-3xl font-heading font-extrabold text-[#1E1627] tracking-tight mt-2">
             Welcome back, {currentUser?.name || 'Valued Guest'}
           </h1>
-          <p className="text-xs text-[#64748B] mt-1 font-normal">
-            Direct reservations, mobile Salto digital room key, and stay itinerary management.
-          </p>
+          <div className="flex flex-wrap items-center gap-3 text-xs text-[#6E6678] mt-1 font-normal">
+            <span>Direct reservations, mobile Salto digital room key, and stay itinerary management.</span>
+            <span className="hidden sm:inline text-slate-300">•</span>
+            <span className="text-[#4A1D6D] font-semibold flex items-center gap-1">
+              <Sparkles className="w-3 h-3" /> VIP Perks: 2PM Late Checkout • Complimentary Valet • 10% Member Rate
+            </span>
+          </div>
         </div>
 
         {/* Quick Actions */}
@@ -58,29 +62,29 @@ export const GuestDashboard: React.FC = () => {
           <button
             type="button"
             onClick={() => navigate('/')}
-            className="px-4 py-2.5 rounded-xl bg-white hover:bg-[#F1F5F9] text-[#0F172A] font-semibold text-xs border border-[#E5E7EB] flex items-center gap-2 transition cursor-pointer shadow-xs"
+            className="px-4 py-2.5 rounded-xl bg-white hover:bg-[#F3EDF8] text-[#1E1627] hover:text-[#4A1D6D] font-semibold text-xs border border-[#E9E5EE] flex items-center gap-2 transition cursor-pointer shadow-xs"
           >
-            <Compass className="w-4 h-4 text-[#64748B]" />
+            <Compass className="w-4 h-4 text-[#6E6678]" />
             <span>Explore Sanctuaries</span>
           </button>
           <button
             type="button"
             onClick={() => setShowKeyModal(true)}
-            className="px-4 py-2.5 rounded-xl bg-[#0F172A] hover:bg-[#1E293B] text-white font-semibold text-xs flex items-center gap-2 transition cursor-pointer shadow-xs"
+            className="px-4 py-2.5 rounded-xl bg-[#4A1D6D] hover:bg-[#3B1457] text-white font-semibold text-xs flex items-center gap-2 transition cursor-pointer shadow-xs"
           >
-            <Key className="w-4 h-4 text-[#C5A059]" />
+            <Key className="w-4 h-4 text-purple-200" />
             <span>Mobile Digital Key</span>
           </button>
         </div>
       </div>
 
       {/* 2. Sub-Tabs Ribbon */}
-      <div className="p-1.5 rounded-2xl bg-white border border-[#E5E7EB] flex flex-wrap gap-1 shadow-xs">
+      <div className="p-1.5 rounded-2xl bg-white border border-[#E9E5EE] flex flex-wrap gap-1 shadow-xs">
         <button
           type="button"
           onClick={() => setActiveTab('search')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'search' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+            activeTab === 'search' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -91,7 +95,7 @@ export const GuestDashboard: React.FC = () => {
           type="button"
           onClick={() => setActiveTab('stays')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'stays' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+            activeTab === 'stays' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
           }`}
         >
           <Key className="w-3.5 h-3.5" />
@@ -102,7 +106,7 @@ export const GuestDashboard: React.FC = () => {
           type="button"
           onClick={() => setActiveTab('lookup')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'lookup' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+            activeTab === 'lookup' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
           }`}
         >
           <Search className="w-3.5 h-3.5" />

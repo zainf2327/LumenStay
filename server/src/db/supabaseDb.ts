@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import { getSupabaseClient } from './supabase.js';
 import type {
   Property,
@@ -12,6 +14,7 @@ import type {
   MaintenanceTicket,
   HousekeepingTask,
   RoomStatus,
+  GuestServiceRequest,
 } from '../types/domain.types.js';
 
 function getClient() {
@@ -240,6 +243,100 @@ export function mapHousekeepingTask(row: any): HousekeepingTask {
     createdAt: row.created_at,
     completedAt: row.completed_at,
   };
+}
+
+export function mapGuestServiceRequest(row: any): GuestServiceRequest {
+  return {
+    id: row.id,
+    reservationId: row.reservation_id,
+    propertyId: row.property_id,
+    roomId: row.room_id || null,
+    roomNumber: row.room_number || null,
+    guestId: row.guest_id,
+    guestName: row.guest_name || null,
+    category: row.category,
+    requestType: row.request_type,
+    details: row.details,
+    status: row.status,
+    priority: row.priority,
+    isVip: Boolean(row.is_vip),
+    assignedTo: row.assigned_to || null,
+    resolvedAt: row.resolved_at || null,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at || row.created_at,
+  };
+}
+
+// Resilient persistent file-backed fallback store for guest service requests
+function getGuestRequestsFilePath(): string {
+  const candidates = [
+    path.resolve(process.cwd(), 'data', 'guest_requests.json'),
+    path.resolve(process.cwd(), 'server', 'data', 'guest_requests.json'),
+  ];
+  return candidates.find((f) => fs.existsSync(path.dirname(f))) || candidates[0];
+}
+
+function loadLocalRequests(): GuestServiceRequest[] {
+  try {
+    const file = getGuestRequestsFilePath();
+    if (fs.existsSync(file)) {
+      const data = fs.readFileSync(file, 'utf-8');
+      return JSON.parse(data);
+    }
+  } catch (e) {
+    // ignore
+  }
+  return [];
+}
+
+function saveLocalRequests(list: GuestServiceRequest[]): void {
+  try {
+    const file = getGuestRequestsFilePath();
+    const dir = path.dirname(file);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(file, JSON.stringify(list, null, 2), 'utf-8');
+  } catch (e) {
+    // ignore
+  }
+}
+
+function filterFallbackRequests(filters?: { propertyId?: string; reservationId?: string; status?: string }): GuestServiceRequest[] {
+  let list = loadLocalRequests();
+  if (filters?.propertyId) {
+    list = list.filter((r) => r.propertyId === filters.propertyId);
+  }
+  if (filters?.reservationId) {
+    list = list.filter((r) => r.reservationId === filters.reservationId);
+  }
+  if (filters?.status) {
+    list = list.filter((r) => r.status === filters.status);
+  }
+  return list;
+}
+
+function updateFallbackRequest(id: string, updates: Partial<GuestServiceRequest>): GuestServiceRequest | null {
+  const list = loadLocalRequests();
+  const idx = list.findIndex((r) => r.id === id);
+  if (idx === -1) return null;
+  const existing = list[idx];
+  const updated: GuestServiceRequest = {
+    ...existing,
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+  list[idx] = updated;
+  saveLocalRequests(list);
+  return updated;
+}
+
+function insertFallbackRequest(req: GuestServiceRequest): GuestServiceRequest {
+  const list = loadLocalRequests();
+  const filtered = list.filter((r) => r.id !== req.id);
+  filtered.unshift(req);
+  saveLocalRequests(filtered);
+  return req;
 }
 
 // -----------------------------------------------------------------------------
@@ -743,30 +840,165 @@ export const supabaseDb = {
   // Housekeeping Tasks
   housekeepingTasks: {
     async find(propertyId?: string): Promise<HousekeepingTask[]> {
-      let query = getClient().from('housekeeping_tasks').select('*').order('created_at', { ascending: false });
-      if (propertyId) {
-        query = query.eq('property_id', propertyId);
+      try {
+        let query = getClient().from('housekeeping_tasks').select('*').order('created_at', { ascending: false });
+        if (propertyId) {
+          query = query.eq('property_id', propertyId);
+        }
+        const { data, error } = await query;
+        if (error) {
+          if (error.code === '42P01' || error.code === 'PGRST205' || error.message?.includes('does not exist') || error.message?.includes('Could not find')) {
+            return [];
+          }
+          throw error;
+        }
+        return (data || []).map(mapHousekeepingTask);
+      } catch (err: any) {
+        if (err.code === 'PGRST205' || err.message?.includes('Could not find') || err.message?.includes('does not exist')) {
+          return [];
+        }
+        throw err;
       }
-      const { data, error } = await query;
-      if (error) throw error;
-      return (data || []).map(mapHousekeepingTask);
     },
     async insert(task: HousekeepingTask): Promise<HousekeepingTask> {
-      const payload = {
-        id: task.id,
-        property_id: task.propertyId,
-        room_id: task.roomId,
-        task_type: task.taskType,
-        status: task.status,
-        priority: task.priority,
-        assigned_to: task.assignedTo || null,
-        notes: task.notes || null,
-        created_at: task.createdAt || new Date().toISOString(),
-        completed_at: task.completedAt || null,
-      };
-      const { data, error } = await getClient().from('housekeeping_tasks').insert(payload).select('*').single();
-      if (error) throw error;
-      return mapHousekeepingTask(data);
+      try {
+        const payload = {
+          id: task.id,
+          property_id: task.propertyId,
+          room_id: task.roomId,
+          task_type: task.taskType,
+          status: task.status,
+          priority: task.priority,
+          assigned_to: task.assignedTo || null,
+          notes: task.notes || null,
+          created_at: task.createdAt || new Date().toISOString(),
+          completed_at: task.completedAt || null,
+        };
+        const { data, error } = await getClient().from('housekeeping_tasks').insert(payload).select('*').single();
+        if (error) {
+          if (error.code === '42P01' || error.code === 'PGRST205' || error.message?.includes('does not exist') || error.message?.includes('Could not find')) {
+            return task;
+          }
+          throw error;
+        }
+        return mapHousekeepingTask(data);
+      } catch (err: any) {
+        if (err.code === 'PGRST205' || err.message?.includes('Could not find') || err.message?.includes('does not exist')) {
+          return task;
+        }
+        throw err;
+      }
+    },
+  },
+
+  // Guest Service Requests with Persistent In-Memory Fallback
+  guestServiceRequests: {
+    async find(filters?: { propertyId?: string; reservationId?: string; status?: string }): Promise<GuestServiceRequest[]> {
+      try {
+        let query = getClient().from('guest_service_requests').select('*').order('created_at', { ascending: false });
+        if (filters?.propertyId) {
+          query = query.eq('property_id', filters.propertyId);
+        }
+        if (filters?.reservationId) {
+          query = query.eq('reservation_id', filters.reservationId);
+        }
+        if (filters?.status) {
+          query = query.eq('status', filters.status);
+        }
+        const { data, error } = await query;
+        if (error) {
+          if (error.code === '42P01' || error.code === 'PGRST205' || error.message?.includes('does not exist') || error.message?.includes('Could not find')) {
+            return filterFallbackRequests(filters);
+          }
+          throw error;
+        }
+        return (data || []).map(mapGuestServiceRequest);
+      } catch (err: any) {
+        if (err.code === 'PGRST205' || err.message?.includes('Could not find') || err.message?.includes('does not exist')) {
+          return filterFallbackRequests(filters);
+        }
+        throw err;
+      }
+    },
+    async findById(id: string): Promise<GuestServiceRequest | null> {
+      try {
+        const { data, error } = await getClient().from('guest_service_requests').select('*').eq('id', id).maybeSingle();
+        if (error) {
+          if (error.code === '42P01' || error.code === 'PGRST205' || error.message?.includes('does not exist') || error.message?.includes('Could not find')) {
+            return loadLocalRequests().find((r) => r.id === id) || null;
+          }
+          throw error;
+        }
+        return data ? mapGuestServiceRequest(data) : (loadLocalRequests().find((r) => r.id === id) || null);
+      } catch (err: any) {
+        if (err.code === 'PGRST205' || err.message?.includes('Could not find') || err.message?.includes('does not exist')) {
+          return loadLocalRequests().find((r) => r.id === id) || null;
+        }
+        throw err;
+      }
+    },
+    async insert(req: GuestServiceRequest): Promise<GuestServiceRequest> {
+      try {
+        const payload = {
+          id: req.id,
+          reservation_id: req.reservationId,
+          property_id: req.propertyId,
+          room_id: req.roomId || null,
+          guest_id: req.guestId,
+          category: req.category,
+          request_type: req.requestType,
+          details: req.details,
+          status: req.status,
+          priority: req.priority,
+          is_vip: req.isVip,
+          assigned_to: req.assignedTo || null,
+          resolved_at: req.resolvedAt || null,
+          created_at: req.createdAt || new Date().toISOString(),
+          updated_at: req.updatedAt || new Date().toISOString(),
+        };
+        const { data, error } = await getClient().from('guest_service_requests').insert(payload).select('*').single();
+        if (error) {
+          if (error.code === '42P01' || error.code === 'PGRST205' || error.message?.includes('does not exist') || error.message?.includes('Could not find')) {
+            return insertFallbackRequest(req);
+          }
+          throw error;
+        }
+        return mapGuestServiceRequest(data);
+      } catch (err: any) {
+        if (err.code === 'PGRST205' || err.message?.includes('Could not find') || err.message?.includes('does not exist')) {
+          return insertFallbackRequest(req);
+        }
+        throw err;
+      }
+    },
+    async update(id: string, updates: Partial<GuestServiceRequest>): Promise<GuestServiceRequest | null> {
+      try {
+        const payload: any = {
+          updated_at: new Date().toISOString(),
+        };
+        if (updates.status !== undefined) payload.status = updates.status;
+        if (updates.assignedTo !== undefined) payload.assigned_to = updates.assignedTo;
+        if (updates.resolvedAt !== undefined) payload.resolved_at = updates.resolvedAt;
+        if (updates.details !== undefined) payload.details = updates.details;
+        if (updates.priority !== undefined) payload.priority = updates.priority;
+
+        const { data, error } = await getClient().from('guest_service_requests').update(payload).eq('id', id).select('*').maybeSingle();
+        if (error) {
+          if (error.code === '42P01' || error.code === 'PGRST205' || error.message?.includes('does not exist') || error.message?.includes('Could not find')) {
+            return updateFallbackRequest(id, updates);
+          }
+          throw error;
+        }
+        if (!data) {
+          return updateFallbackRequest(id, updates);
+        }
+        return mapGuestServiceRequest(data);
+      } catch (err: any) {
+        if (err.code === 'PGRST205' || err.message?.includes('Could not find') || err.message?.includes('does not exist')) {
+          return updateFallbackRequest(id, updates);
+        }
+        throw err;
+      }
     },
   },
 };

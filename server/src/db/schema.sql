@@ -178,6 +178,26 @@ CREATE TABLE IF NOT EXISTS housekeeping_tasks (
   created_at TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS guest_service_requests (
+  id TEXT PRIMARY KEY,
+  reservation_id TEXT NOT NULL REFERENCES reservations(id) ON DELETE CASCADE,
+  property_id TEXT NOT NULL REFERENCES properties(id),
+  room_id TEXT REFERENCES rooms(id),
+  guest_id TEXT NOT NULL REFERENCES guests(id),
+  category TEXT NOT NULL,
+  request_type TEXT NOT NULL,
+  details TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending',
+  priority TEXT NOT NULL DEFAULT 'normal',
+  is_vip INTEGER NOT NULL DEFAULT 0,
+  assigned_to TEXT,
+  resolved_at TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_reservations_dates ON reservations (property_id, room_type_id, status, check_in_date, check_out_date);
 CREATE INDEX IF NOT EXISTS idx_rooms_property ON rooms (property_id, room_type_id, status);
 CREATE INDEX IF NOT EXISTS idx_folio_res ON folio_charges (reservation_id);
+CREATE INDEX IF NOT EXISTS idx_guest_requests_res ON guest_service_requests (reservation_id);
+CREATE INDEX IF NOT EXISTS idx_guest_requests_prop ON guest_service_requests (property_id, status);

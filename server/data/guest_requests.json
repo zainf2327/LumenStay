@@ -1,0 +1,40 @@
+[
+  {
+    "id": "req_1789392975184_c87wn",
+    "reservationId": "res_active_01",
+    "propertyId": "prop_birchwood",
+    "roomId": "rm_birch_201",
+    "roomNumber": "201",
+    "guestId": "gst_alexandra_vance",
+    "guestName": "Alexandra Vance",
+    "category": "housekeeping",
+    "requestType": "refresh",
+    "details": "Evening bed turn-down service, pillow fluffing, and fresh bedside mineral water.",
+    "status": "completed",
+    "priority": "high",
+    "isVip": true,
+    "assignedTo": null,
+    "resolvedAt": "2026-09-14T13:36:24.178Z",
+    "createdAt": "2026-09-14T13:36:15.184Z",
+    "updatedAt": "2026-09-14T13:36:24.378Z"
+  },
+  {
+    "id": "req_1789392856400_uhu6j",
+    "reservationId": "res_active_01",
+    "propertyId": "prop_birchwood",
+    "roomId": "rm_birch_201",
+    "roomNumber": "201",
+    "guestId": "gst_alexandra_vance",
+    "guestName": "Alexandra Vance",
+    "category": "housekeeping",
+    "requestType": "towels",
+    "details": "Please deliver 2 sets of extra bath towels and a plush waffle-weave bathrobe.",
+    "status": "completed",
+    "priority": "high",
+    "isVip": true,
+    "assignedTo": null,
+    "resolvedAt": "2026-09-14T13:35:41.083Z",
+    "createdAt": "2026-09-14T13:34:16.400Z",
+    "updatedAt": "2026-09-14T13:35:41.399Z"
+  }
+]

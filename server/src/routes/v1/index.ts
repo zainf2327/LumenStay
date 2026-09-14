@@ -9,6 +9,7 @@ import guestRoutes from './guest.routes.js';
 import userRoutes from './user.routes.js';
 import maintenanceRoutes from './maintenance.routes.js';
 import channelRoutes from './channel.routes.js';
+import serviceRequestRoutes from './serviceRequest.routes.js';
 
 const router = Router();
 
@@ -22,6 +23,7 @@ router.use('/guests', guestRoutes);
 router.use('/users', userRoutes);
 router.use('/maintenance', maintenanceRoutes);
 router.use('/channels', channelRoutes);
+router.use('/service-requests', serviceRequestRoutes);
 
 export default router;
 

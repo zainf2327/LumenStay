@@ -16,6 +16,7 @@ export interface ToastItem {
 interface ToastContextType {
   toasts: ToastItem[];
   showToast: (toast: Omit<ToastItem, 'id' | 'createdAt'>) => string;
+  addToast: (toast: Omit<ToastItem, 'id' | 'createdAt'>) => string;
   dismissToast: (id: string) => void;
   success: (message: string, title?: string, duration?: number, action?: ToastAction) => string;
   error: (message: string, title?: string, duration?: number, action?: ToastAction) => string;
@@ -86,6 +87,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     () => ({
       toasts,
       showToast,
+      addToast: showToast,
       dismissToast,
       success,
       error,

@@ -9,13 +9,15 @@ import {
   ArrowRight,
   Sparkles,
   Receipt,
+  Bell,
 } from 'lucide-react';
 
 interface GuestStaysTabProps {
   onOpenMobileKey: () => void;
+  onRequestService?: () => void;
 }
 
-export const GuestStaysTab: React.FC<GuestStaysTabProps> = ({ onOpenMobileKey }) => {
+export const GuestStaysTab: React.FC<GuestStaysTabProps> = ({ onOpenMobileKey, onRequestService }) => {
   const navigate = useNavigate();
   const [selectedFolioModal, setSelectedFolioModal] = useState<any | null>(null);
 
@@ -117,6 +119,16 @@ export const GuestStaysTab: React.FC<GuestStaysTabProps> = ({ onOpenMobileKey })
           </div>
 
           <div className="flex items-center gap-2.5">
+            {onRequestService && (
+              <button
+                type="button"
+                onClick={onRequestService}
+                className="px-4 py-3 rounded-xl bg-white hover:bg-[#F3EDF8] text-[#1E1627] hover:text-[#4A1D6D] border border-[#E9E5EE] text-xs font-bold inline-flex items-center gap-2 transition cursor-pointer shadow-xs"
+              >
+                <Bell className="w-4 h-4 text-[#4A1D6D]" />
+                <span>Request Concierge</span>
+              </button>
+            )}
             <button
               type="button"
               onClick={onOpenMobileKey}

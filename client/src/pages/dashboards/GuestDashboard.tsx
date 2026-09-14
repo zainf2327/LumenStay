@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { DigitalKeyModal } from '../../components/DigitalKeyModal';
-import { Sparkles, Key, Search, Crown, Compass } from 'lucide-react';
+import { Sparkles, Key, Search, Crown, Compass, Bell } from 'lucide-react';
 
 // Modular Feature Tabs
 import { BookingSearchTab } from '../../features/guest/BookingSearchTab';
 import { GuestStaysTab } from '../../features/guest/GuestStaysTab';
 import { ReservationLookupTab } from '../../features/guest/ReservationLookupTab';
+import { GuestConciergeTab } from '../../features/guest/GuestConciergeTab';
 
 export const GuestDashboard: React.FC = () => {
   const { currentUser, currentProperty } = useAuth();
@@ -15,7 +16,7 @@ export const GuestDashboard: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Active Tab State driven by URL ?tab= (Default is 'search')
-  const validTabs = ['search', 'stays', 'lookup'] as const;
+  const validTabs = ['search', 'stays', 'concierge', 'lookup'] as const;
   type GuestTab = typeof validTabs[number];
 
   const rawTab = searchParams.get('tab') as GuestTab | null;
@@ -104,6 +105,17 @@ export const GuestDashboard: React.FC = () => {
 
         <button
           type="button"
+          onClick={() => setActiveTab('concierge')}
+          className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
+            activeTab === 'concierge' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
+          }`}
+        >
+          <Bell className="w-3.5 h-3.5" />
+          <span>In-Stay Concierge</span>
+        </button>
+
+        <button
+          type="button"
           onClick={() => setActiveTab('lookup')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
             activeTab === 'lookup' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
@@ -120,7 +132,14 @@ export const GuestDashboard: React.FC = () => {
       )}
 
       {activeTab === 'stays' && (
-        <GuestStaysTab onOpenMobileKey={() => setShowKeyModal(true)} />
+        <GuestStaysTab
+          onOpenMobileKey={() => setShowKeyModal(true)}
+          onRequestService={() => setActiveTab('concierge')}
+        />
+      )}
+
+      {activeTab === 'concierge' && (
+        <GuestConciergeTab />
       )}
 
       {activeTab === 'lookup' && (

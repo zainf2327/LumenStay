@@ -292,3 +292,28 @@ export interface FolioSummary {
   balanceDue: number;
   status: 'open' | 'settled' | 'overdue';
 }
+
+export type ServiceRequestCategory = 'housekeeping' | 'maintenance' | 'front_desk';
+export type ServiceRequestType = 'towels' | 'refresh' | 'pillows' | 'toiletries' | 'late_checkout' | 'luggage' | 'climate' | 'repair' | 'custom';
+export type ServiceRequestStatus = 'pending' | 'acknowledged' | 'in_progress' | 'completed' | 'declined';
+export type ServiceRequestPriority = 'normal' | 'high' | 'urgent';
+
+export interface GuestServiceRequest {
+  id: string;
+  reservationId: string;
+  propertyId: string;
+  roomId?: string | null;
+  roomNumber?: string | null;
+  guestId: string;
+  guestName?: string | null;
+  category: ServiceRequestCategory;
+  requestType: ServiceRequestType;
+  details: string;
+  status: ServiceRequestStatus;
+  priority: ServiceRequestPriority;
+  isVip: boolean;
+  assignedTo?: string | null;
+  resolvedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}

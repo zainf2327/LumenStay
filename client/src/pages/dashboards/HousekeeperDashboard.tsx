@@ -5,7 +5,7 @@ import { useWebSocket } from '../../context/WebSocketContext';
 import { useToast } from '../../context/ToastContext';
 import { HousekeepingChecklistModal } from '../../components/HousekeepingChecklistModal';
 import { ReportMaintenanceModal } from '../../components/ReportMaintenanceModal';
-import { Brush, Layers, Wrench, Loader2, Sparkles, CheckCircle, Clock } from 'lucide-react';
+import { Brush, Layers, Wrench, Loader2, Sparkles, CheckCircle, Clock, Bell, Check } from 'lucide-react';
 
 // Modular Feature Tabs
 import { HKCleaningQueueTab } from '../../features/housekeeper/HKCleaningQueueTab';
@@ -16,6 +16,7 @@ export const HousekeeperDashboard: React.FC = () => {
   const { currentProperty } = useAuth();
   const { subscribe } = useWebSocket();
   const toast = useToast();
+  const { addToast } = toast;
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Active Tab State driven by URL ?tab= (Default is 'queue')
@@ -36,26 +37,35 @@ export const HousekeeperDashboard: React.FC = () => {
   };
 
   const [rooms, setRooms] = useState<any[]>([]);
+  const [guestRequests, setGuestRequests] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   // Modals
   const [activeChecklistRoom, setActiveChecklistRoom] = useState<any | null>(null);
   const [activeMaintenanceRoom, setActiveMaintenanceRoom] = useState<any | null>(null);
 
+  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
   const fetchHousekeeperData = useCallback(async () => {
     if (!currentProperty?.id) return;
     try {
       setLoading(true);
-      const res = await fetch(`/api/v1/rooms?propertyId=${currentProperty.id}`).then((r) => r.json());
+      const res = await fetch(`${API_BASE}/api/v1/rooms?propertyId=${currentProperty.id}`).then((r) => r.json());
       if (res.success && Array.isArray(res.data)) {
         setRooms(res.data);
+      }
+
+      // Fetch active guest service requests for housekeeping
+      const reqRes = await fetch(`${API_BASE}/api/v1/service-requests/property/${currentProperty.id}?category=housekeeping`).then((r) => r.json());
+      if (reqRes.success && Array.isArray(reqRes.data)) {
+        setGuestRequests(reqRes.data.filter((r: any) => r.status !== 'completed' && r.status !== 'declined'));
       }
     } catch (err) {
       console.error('Failed to load housekeeper data:', err);
     } finally {
       setLoading(false);
     }
-  }, [currentProperty?.id]);
+  }, [currentProperty?.id, API_BASE]);
 
   useEffect(() => {
     fetchHousekeeperData();
@@ -69,12 +79,54 @@ export const HousekeeperDashboard: React.FC = () => {
 
     const unsubStatus = subscribe('ROOM_STATUS_CHANGED', handleLiveEvent);
     const unsubGuestOut = subscribe('GUEST_CHECKED_OUT', handleLiveEvent);
+    const unsubServiceReq = subscribe('SERVICE_REQUEST_CREATED', (req: any) => {
+      if (req.category === 'housekeeping' && req.propertyId === currentProperty?.id) {
+        setGuestRequests((prev) => [req, ...prev.filter((r) => r.id !== req.id)]);
+        addToast({
+          type: 'info',
+          title: 'Guest Service Request',
+          message: `Suite ${req.roomNumber || 'Guest'}: ${req.details}`,
+        });
+      }
+    });
+
+    const unsubServiceUpdate = subscribe('SERVICE_REQUEST_UPDATED', (req: any) => {
+      if (req.category === 'housekeeping') {
+        if (req.status === 'completed' || req.status === 'declined') {
+          setGuestRequests((prev) => prev.filter((r) => r.id !== req.id));
+        } else {
+          setGuestRequests((prev) => prev.map((r) => (r.id === req.id ? req : r)));
+        }
+      }
+    });
 
     return () => {
       unsubStatus();
       unsubGuestOut();
+      unsubServiceReq();
+      unsubServiceUpdate();
     };
-  }, [subscribe, fetchHousekeeperData]);
+  }, [subscribe, fetchHousekeeperData, currentProperty?.id, addToast]);
+
+  const handleMarkDelivered = async (requestId: string) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/service-requests/${requestId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'completed' }),
+      });
+      if (res.ok) {
+        setGuestRequests((prev) => prev.filter((r) => r.id !== requestId));
+        addToast({
+          type: 'success',
+          title: 'Item Delivered',
+          message: 'Guest service request marked delivered.',
+        });
+      }
+    } catch (err) {
+      console.error('Failed to update request:', err);
+    }
+  };
 
   const dirtyCount = rooms.filter((r) => r.status === 'dirty').length;
   const cleanCount = rooms.filter((r) => r.status === 'clean').length;
@@ -104,6 +156,56 @@ export const HousekeeperDashboard: React.FC = () => {
           </p>
         </div>
       </div>
+
+      {/* Real-time In-Stay Guest Requests Banner */}
+      {guestRequests.length > 0 && (
+        <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 shadow-xs space-y-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+              </span>
+              <h3 className="font-heading font-bold text-sm text-amber-950 flex items-center gap-1.5">
+                <Bell className="w-4 h-4 text-amber-700" /> Active Guest In-Stay Requests ({guestRequests.length})
+              </h3>
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-wider bg-amber-200/80 text-amber-900 px-2.5 py-0.5 rounded-full">
+              Priority Dispatch
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {guestRequests.map((req) => (
+              <div
+                key={req.id}
+                className="p-3 rounded-xl bg-white border border-amber-200/80 shadow-2xs flex flex-col justify-between space-y-2"
+              >
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-xs text-[#0F172A]">Suite #{req.roomNumber || '204'}</span>
+                    <span className="text-[10px] text-amber-800 font-semibold uppercase">{req.requestType}</span>
+                  </div>
+                  <p className="text-xs text-[#64748B]">{req.details}</p>
+                </div>
+
+                <div className="flex items-center justify-between pt-1 border-t border-slate-100">
+                  <span className="text-[10px] text-slate-400">
+                    {new Date(req.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleMarkDelivered(req.id)}
+                    className="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-[11px] flex items-center gap-1 transition cursor-pointer"
+                  >
+                    <Check className="w-3 h-3" /> Mark Delivered
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 2. KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

@@ -281,12 +281,33 @@ CREATE TABLE IF NOT EXISTS housekeeping_tasks (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+-- 13. Guest Service Requests Table
+CREATE TABLE IF NOT EXISTS guest_service_requests (
+  id TEXT PRIMARY KEY,
+  reservation_id TEXT NOT NULL REFERENCES reservations(id) ON DELETE CASCADE,
+  property_id TEXT NOT NULL REFERENCES properties(id),
+  room_id TEXT REFERENCES rooms(id),
+  guest_id TEXT NOT NULL REFERENCES guests(id),
+  category TEXT NOT NULL,
+  request_type TEXT NOT NULL,
+  details TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending',
+  priority TEXT NOT NULL DEFAULT 'normal',
+  is_vip BOOLEAN NOT NULL DEFAULT FALSE,
+  assigned_to TEXT,
+  resolved_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
 -- ==============================================================================
 -- Indexes for High Performance Querying
 -- ==============================================================================
 CREATE INDEX IF NOT EXISTS idx_supa_res_dates ON reservations (property_id, room_type_id, status, check_in_date, check_out_date);
 CREATE INDEX IF NOT EXISTS idx_supa_rooms_prop ON rooms (property_id, room_type_id, status);
 CREATE INDEX IF NOT EXISTS idx_supa_folio_res ON folio_charges (reservation_id);
+CREATE INDEX IF NOT EXISTS idx_supa_guest_req_res ON guest_service_requests (reservation_id);
+CREATE INDEX IF NOT EXISTS idx_supa_guest_req_prop ON guest_service_requests (property_id, status);
 
 -- ==============================================================================
 -- Row Level Security (RLS) Configuration
@@ -301,6 +322,7 @@ ALTER TABLE reservations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE folio_charges ENABLE ROW LEVEL SECURITY;
 ALTER TABLE maintenance_tickets ENABLE ROW LEVEL SECURITY;
 ALTER TABLE housekeeping_tasks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE guest_service_requests ENABLE ROW LEVEL SECURITY;
 
 -- Service Role Full Access
 CREATE POLICY "Service Role Properties" ON properties USING (true) WITH CHECK (true);
@@ -313,3 +335,4 @@ CREATE POLICY "Service Role Reservations" ON reservations USING (true) WITH CHEC
 CREATE POLICY "Service Role Folio Charges" ON folio_charges USING (true) WITH CHECK (true);
 CREATE POLICY "Service Role Maintenance" ON maintenance_tickets USING (true) WITH CHECK (true);
 CREATE POLICY "Service Role Housekeeping" ON housekeeping_tasks USING (true) WITH CHECK (true);
+CREATE POLICY "Service Role Guest Service Requests" ON guest_service_requests USING (true) WITH CHECK (true);

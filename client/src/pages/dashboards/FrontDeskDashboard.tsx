@@ -17,24 +17,26 @@ import {
   Loader2,
   TrendingUp,
   CheckCircle,
+  Bell,
 } from 'lucide-react';
 
 // Modular Feature Tabs
 import { FrontDeskArrivalsTab } from '../../features/frontdesk/FrontDeskArrivalsTab';
 import { FrontDeskInHouseTab } from '../../features/frontdesk/FrontDeskInHouseTab';
+import { FrontDeskRequestsTab, ServiceRequest } from '../../features/frontdesk/FrontDeskRequestsTab';
 import { FrontDeskDeparturesTab } from '../../features/frontdesk/FrontDeskDeparturesTab';
 import { FrontDeskRoomStatusTab } from '../../features/frontdesk/FrontDeskRoomStatusTab';
 import { FrontDeskWalkInTab } from '../../features/frontdesk/FrontDeskWalkInTab';
 
 export const FrontDeskDashboard: React.FC = () => {
-  const { currentProperty } = useAuth();
+  const { currentProperty, currentUser } = useAuth();
   const { subscribe } = useWebSocket();
   const toast = useToast();
   const { confirm } = useConfirm();
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Active Tab State driven by URL ?tab= (Default is 'arrivals')
-  const validTabs = ['arrivals', 'inhouse', 'departures', 'status', 'walkin'] as const;
+  const validTabs = ['arrivals', 'inhouse', 'requests', 'departures', 'status', 'walkin'] as const;
   type FrontDeskTab = typeof validTabs[number];
 
   const rawTab = searchParams.get('tab') as FrontDeskTab | null;
@@ -54,6 +56,7 @@ export const FrontDeskDashboard: React.FC = () => {
   const [metrics, setMetrics] = useState<any>(null);
   const [rooms, setRooms] = useState<any[]>([]);
   const [reservations, setReservations] = useState<any[]>([]);
+  const [serviceRequests, setServiceRequests] = useState<ServiceRequest[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   // Modals
@@ -66,10 +69,11 @@ export const FrontDeskDashboard: React.FC = () => {
     if (!currentProperty?.id) return;
     try {
       setLoading(true);
-      const [metricsRes, resQueue, roomsRes] = await Promise.all([
+      const [metricsRes, resQueue, roomsRes, requestsRes] = await Promise.all([
         fetch(`/api/v1/rooms/dashboard?propertyId=${currentProperty.id}`).then((r) => r.json()),
         fetch(`/api/v1/rooms/reservations?propertyId=${currentProperty.id}`).then((r) => r.json()),
         fetch(`/api/v1/rooms?propertyId=${currentProperty.id}`).then((r) => r.json()),
+        fetch(`/api/v1/service-requests/property/${currentProperty.id}`).then((r) => r.json()),
       ]);
 
       if (metricsRes.success && metricsRes.data) {
@@ -80,6 +84,9 @@ export const FrontDeskDashboard: React.FC = () => {
       }
       if (resQueue.success && Array.isArray(resQueue.data)) {
         setReservations(resQueue.data);
+      }
+      if (requestsRes.success && Array.isArray(requestsRes.data)) {
+        setServiceRequests(requestsRes.data);
       }
     } catch (err) {
       console.error('Failed to load Front Desk data:', err);
@@ -105,6 +112,16 @@ export const FrontDeskDashboard: React.FC = () => {
     const unsubFolio = subscribe('FOLIO_UPDATED', handleLiveEvent);
     const unsubCreated = subscribe('RESERVATION_CREATED', handleLiveEvent);
     const unsubCancelled = subscribe('RESERVATION_CANCELLED', handleLiveEvent);
+    const unsubReqCreated = subscribe('SERVICE_REQUEST_CREATED', (newReq: any) => {
+      toast.info(
+        `In-stay request received from Suite #${newReq?.roomNumber || 'Guest'}: ${newReq?.details || 'New request'}`,
+        'Concierge Alert'
+      );
+      fetchFrontDeskData();
+    });
+    const unsubReqUpdated = subscribe('SERVICE_REQUEST_UPDATED', () => {
+      fetchFrontDeskData();
+    });
 
     return () => {
       unsubCheckIn();
@@ -114,8 +131,33 @@ export const FrontDeskDashboard: React.FC = () => {
       unsubFolio();
       unsubCreated();
       unsubCancelled();
+      unsubReqCreated();
+      unsubReqUpdated();
     };
-  }, [subscribe, fetchFrontDeskData]);
+  }, [subscribe, fetchFrontDeskData, toast]);
+
+  const handleUpdateServiceRequestStatus = async (
+    requestId: string,
+    status: ServiceRequest['status'],
+    assignedTo?: string
+  ) => {
+    try {
+      const res = await fetch(`/api/v1/service-requests/${requestId}/status`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status, assignedTo }),
+      }).then((r) => r.json());
+
+      if (res.success) {
+        toast.success(`Service request marked as ${status}.`, 'Concierge Dispatched');
+        fetchFrontDeskData();
+      } else {
+        toast.error(res.message || 'Failed to update service request');
+      }
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to update service request');
+    }
+  };
 
   const handleQuickCheckOut = async (reservationId: string) => {
     const isConfirmed = await confirm({
@@ -151,6 +193,7 @@ export const FrontDeskDashboard: React.FC = () => {
   const arrivalsCount = reservations.filter((r) => r.status === 'confirmed').length;
   const inHouseCount = reservations.filter((r) => r.status === 'checked_in').length;
   const readyRoomsCount = (metrics?.cleanRooms || 0) + (metrics?.inspectedRooms || 0);
+  const pendingRequestsCount = serviceRequests.filter((r) => r.status === 'pending').length;
 
   return (
     <div className="min-h-screen pb-24 p-4 sm:p-6 lg:p-8 max-w-[1520px] w-full mx-auto space-y-8 text-[#1E1627] bg-[#FAF9FC] font-sans selection:bg-[#4A1D6D]/15 selection:text-[#4A1D6D]">
@@ -268,6 +311,22 @@ export const FrontDeskDashboard: React.FC = () => {
 
         <button
           type="button"
+          onClick={() => setActiveTab('requests')}
+          className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
+            activeTab === 'requests' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
+          }`}
+        >
+          <Bell className="w-3.5 h-3.5" />
+          <span>Concierge & Requests ({serviceRequests.length})</span>
+          {pendingRequestsCount > 0 && (
+            <span className="ml-1 px-1.5 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-bold animate-pulse">
+              {pendingRequestsCount} new
+            </span>
+          )}
+        </button>
+
+        <button
+          type="button"
           onClick={() => setActiveTab('departures')}
           className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
             activeTab === 'departures' ? 'bg-[#4A1D6D] text-white shadow-xs' : 'text-[#6E6678] hover:text-[#4A1D6D] hover:bg-[#F3EDF8]'
@@ -314,6 +373,15 @@ export const FrontDeskDashboard: React.FC = () => {
           onOpenFolio={(resId) => setActiveFolioResId(resId)}
           onAddCharge={(chargeData) => setActiveChargeRes(chargeData)}
           onCheckOut={(resId) => handleQuickCheckOut(resId)}
+        />
+      )}
+
+      {activeTab === 'requests' && (
+        <FrontDeskRequestsTab
+          requests={serviceRequests}
+          onUpdateStatus={handleUpdateServiceRequestStatus}
+          onAddCharge={(chargeData) => setActiveChargeRes(chargeData)}
+          staffName={currentUser?.name || 'Front Desk Agent'}
         />
       )}
 

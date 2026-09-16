@@ -202,6 +202,26 @@ export class ServiceRequestService {
       throw new ApiError(500, 'Failed to update service request');
     }
 
+    // If Late Checkout is approved/completed, update the reservation special requests
+    if (status === 'completed' && request.requestType === 'late_checkout' && request.reservationId) {
+      try {
+        const res = await db.reservations.findById(request.reservationId);
+        if (res) {
+          const currentNotes = res.specialRequests || '';
+          if (!currentNotes.includes('Late Checkout Approved')) {
+            const updatedNotes = currentNotes
+              ? `${currentNotes} | Late Checkout Approved (2:00 PM)`
+              : 'Late Checkout Approved (2:00 PM)';
+            await db.reservations.update(res.id, { specialRequests: updatedNotes });
+            broadcastEvent('RESERVATION_UPDATED', { ...res, specialRequests: updatedNotes });
+            logger.info(`[ServiceRequest] Reservation ${res.confirmationCode} updated with approved Late Checkout`);
+          }
+        }
+      } catch (err) {
+        logger.warn('[ServiceRequest] Failed to update reservation for late checkout approval:', err);
+      }
+    }
+
     // Real-Time WebSocket broadcast
     broadcastEvent('SERVICE_REQUEST_UPDATED', updated);
 

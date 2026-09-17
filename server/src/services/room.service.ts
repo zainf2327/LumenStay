@@ -131,24 +131,62 @@ export class RoomService {
     return enriched;
   }
 
-  public async checkInGuest(reservationId: string, assignedRoomId?: string, idType?: string, idNumber?: string) {
+  public async checkInGuest(
+    reservationId: string,
+    assignedRoomId?: string,
+    idType?: string,
+    idNumber?: string,
+    estimatedArrival?: string,
+    vehiclePlate?: string
+  ) {
     const reservation = await db.reservations.findById(reservationId);
     if (!reservation) {
       throw new ApiError(404, 'Reservation not found');
     }
 
-    const finalRoomId = assignedRoomId || reservation.assignedRoomId;
+    let finalRoomId = assignedRoomId || reservation.assignedRoomId;
     if (!finalRoomId) {
-      throw new ApiError(400, 'A physical room must be assigned before check-in');
+      // Auto-assign first available clean/inspected room of matching roomTypeId
+      const propertyRooms = await db.rooms.findByPropertyId(reservation.propertyId);
+      const cleanMatch =
+        propertyRooms.find(
+          (r) =>
+            r.roomTypeId === reservation.roomTypeId &&
+            !r.isOccupied &&
+            (r.status === 'clean' || r.status === 'inspected')
+        ) ||
+        propertyRooms.find(
+          (r) => r.roomTypeId === reservation.roomTypeId && !r.isOccupied && r.status !== 'out_of_order'
+        );
+
+      if (cleanMatch) {
+        finalRoomId = cleanMatch.id;
+      } else {
+        throw new ApiError(
+          400,
+          'A physical room must be assigned before check-in, or no clean suites match this room category'
+        );
+      }
     }
 
     const now = new Date().toISOString();
-    await db.reservations.update(reservationId, {
+    const updatePayload: any = {
       status: 'checked_in',
       assignedRoomId: finalRoomId,
       checkedInAt: now,
-    });
+      digitalKeyIssued: true,
+    };
+    if (estimatedArrival) {
+      updatePayload.estimatedArrival = estimatedArrival;
+    }
+    if (vehiclePlate) {
+      const existingReqs = reservation.specialRequests || '';
+      updatePayload.specialRequests = existingReqs
+        ? `${existingReqs} | Vehicle: ${vehiclePlate}`
+        : `Vehicle: ${vehiclePlate}`;
+    }
 
+    await db.reservations.update(reservationId, updatePayload);
     await db.rooms.update(finalRoomId, { isOccupied: true });
 
     if (idType && idNumber) {
@@ -158,13 +196,22 @@ export class RoomService {
       });
     }
 
+    const assignedRoom = await db.rooms.findById(finalRoomId);
+
     broadcastEvent('GUEST_CHECKED_IN', {
       reservationId,
       propertyId: reservation.propertyId,
       roomId: finalRoomId,
+      roomNumber: assignedRoom?.roomNumber || 'Assigned',
+      isContactless: Boolean(estimatedArrival || vehiclePlate),
     });
 
-    return { checkInTime: now, assignedRoomId: finalRoomId };
+    return {
+      checkInTime: now,
+      assignedRoomId: finalRoomId,
+      roomNumber: assignedRoom?.roomNumber || null,
+      digitalKeyIssued: true,
+    };
   }
 
   public async checkOutGuest(reservationId: string) {

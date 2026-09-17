@@ -30,8 +30,15 @@ export const getReservations = asyncHandler(async (req: Request, res: Response) 
 
 export const checkInGuest = asyncHandler(async (req: Request, res: Response) => {
   const id = req.params.id as string;
-  const { assignedRoomId, idDocumentType, idDocumentNumber } = req.body;
-  const result = await roomService.checkInGuest(id, assignedRoomId, idDocumentType, idDocumentNumber);
+  const { assignedRoomId, idDocumentType, idDocumentNumber, estimatedArrival, vehiclePlate } = req.body;
+  const result = await roomService.checkInGuest(
+    id,
+    assignedRoomId,
+    idDocumentType,
+    idDocumentNumber,
+    estimatedArrival,
+    vehiclePlate
+  );
   return sendSuccess(res, result, 'Guest checked in successfully');
 });
 

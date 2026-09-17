@@ -18,6 +18,9 @@ export const checkInValidator = z.object({
     assignedRoomId: z.string().optional(),
     idDocumentType: z.string().optional(),
     idDocumentNumber: z.string().optional(),
+    estimatedArrival: z.string().optional(),
+    vehiclePlate: z.string().optional(),
+    termsAccepted: z.boolean().optional(),
   }),
 });
 

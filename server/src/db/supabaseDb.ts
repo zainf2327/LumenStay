@@ -755,6 +755,8 @@ export const supabaseDb = {
       if (updates.paymentStatus !== undefined) payload.payment_status = updates.paymentStatus;
       if (updates.paidAmount !== undefined) payload.paid_amount = updates.paidAmount;
       if (updates.specialRequests !== undefined) payload.special_requests = updates.specialRequests;
+      if (updates.digitalKeyIssued !== undefined) payload.digital_key_issued = updates.digitalKeyIssued;
+      if (updates.estimatedArrival !== undefined) payload.estimated_arrival = updates.estimatedArrival;
 
       const { data, error } = await getClient().from('reservations').update(payload).eq('id', id).select('*').maybeSingle();
       if (error) throw error;

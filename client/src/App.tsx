@@ -7,6 +7,7 @@ import { ToastProvider } from './context/ToastContext';
 import { ConfirmProvider } from './context/ConfirmContext';
 import { Sidebar } from './components/Sidebar';
 import { TopBar } from './components/TopBar';
+import { StaffBroadcastBanner } from './components/StaffBroadcastBanner';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
@@ -116,11 +117,14 @@ function AppContent() {
             : 'lg:pl-[76px]'
         }`}
       >
-        {/* Top Bar (Only on Staff Management & Operations Views) */}
+        {/* Top Bar & Emergency Staff Broadcast (Only on Staff Management & Operations Views) */}
         {!isGuestExperience && !isAuthPage && (
-          <TopBar
-            onMobileMenuOpen={() => setIsMobileOpen(true)}
-          />
+          <>
+            <TopBar
+              onMobileMenuOpen={() => setIsMobileOpen(true)}
+            />
+            <StaffBroadcastBanner />
+          </>
         )}
 
         {/* Main Content Area */}

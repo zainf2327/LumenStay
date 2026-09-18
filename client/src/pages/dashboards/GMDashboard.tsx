@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useWebSocket } from '../../context/WebSocketContext';
 import { FolioModal } from '../../components/FolioModal';
-import { TrendingUp, Key, Layers, Users, Hotel, Loader2, UserPlus } from 'lucide-react';
+import { TrendingUp, Key, Layers, Users, Hotel, Loader2, UserPlus, ClipboardCheck } from 'lucide-react';
 
 // Modular Feature Tabs
 import { GMExecutiveKPIsTab } from '../../features/gm/GMExecutiveKPIsTab';
@@ -11,6 +11,7 @@ import { GMOperationsMonitorTab } from '../../features/gm/GMOperationsMonitorTab
 import { GMRoomHealthTab } from '../../features/gm/GMRoomHealthTab';
 import { GMGuestCRMTab } from '../../features/gm/GMGuestCRMTab';
 import { StaffManagementTab } from '../../features/staff/StaffManagementTab';
+import { GMShiftChecklistTab } from '../../features/gm/GMShiftChecklistTab';
 
 export const GMDashboard: React.FC = () => {
   const { currentProperty } = useAuth();
@@ -18,7 +19,7 @@ export const GMDashboard: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Active Tab State driven by URL ?tab= (Default is 'kpis')
-  const validTabs = ['kpis', 'operations', 'rooms', 'crm', 'staff'] as const;
+  const validTabs = ['kpis', 'operations', 'rooms', 'crm', 'staff', 'checklists'] as const;
   type GMTab = typeof validTabs[number];
 
   const rawTab = searchParams.get('tab') as GMTab | null;
@@ -181,6 +182,17 @@ export const GMDashboard: React.FC = () => {
           <UserPlus className="w-3.5 h-3.5" />
           <span>Staff & Team</span>
         </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('checklists')}
+          className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider transition cursor-pointer flex items-center gap-1.5 ${
+            activeTab === 'checklists' ? 'bg-[#0F172A] text-white shadow-xs' : 'text-[#64748B] hover:text-[#0F172A]'
+          }`}
+        >
+          <ClipboardCheck className="w-3.5 h-3.5" />
+          <span>Shift Audit & Broadcast</span>
+        </button>
       </div>
 
       {/* 3. Active Tab View */}
@@ -209,6 +221,10 @@ export const GMDashboard: React.FC = () => {
 
       {activeTab === 'staff' && (
         <StaffManagementTab />
+      )}
+
+      {activeTab === 'checklists' && (
+        <GMShiftChecklistTab />
       )}
 
       {/* 4. Folio Modal */}

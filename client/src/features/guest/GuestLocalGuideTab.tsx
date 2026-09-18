@@ -412,12 +412,18 @@ export const GuestLocalGuideTab: React.FC<GuestLocalGuideTabProps> = ({
       </div>
 
       {/* 2. Live Sanctuary & Mountain Conditions Ribbon */}
-      <div className="editorial-card rounded-3xl bg-gradient-to-br from-[#2D1B3E] via-[#1E1627] to-[#140E1B] text-white p-6 sm:p-7 shadow-lg border border-[#4A1D6D]/40 space-y-5 relative overflow-hidden">
-        <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#7B3FA2]/30 rounded-full blur-3xl pointer-events-none" />
+      <div
+        style={{
+          background: 'linear-gradient(135deg, #241437 0%, #1A0E28 50%, #11091A 100%)',
+          color: '#FFFFFF',
+        }}
+        className="rounded-3xl p-6 sm:p-7 shadow-xl border border-[#582582]/40 space-y-5 relative overflow-hidden text-white"
+      >
+        <div className="absolute -top-16 -right-16 w-56 h-56 bg-[#7B3FA2]/25 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-purple-500/20 pb-4 relative z-10">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-purple-400/20 pb-4 relative z-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/10 text-purple-200 border border-white/15">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/12 text-purple-200 border border-white/20">
               <CloudSnow className="w-3.5 h-3.5 text-purple-300" />
               <span>Live Sanctuary & Mountain Conditions</span>
             </div>
@@ -428,39 +434,48 @@ export const GuestLocalGuideTab: React.FC<GuestLocalGuideTabProps> = ({
 
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <div className="font-heading font-extrabold text-3xl text-white tracking-tight">
+              <div className="font-heading font-extrabold text-3xl text-white tracking-tight drop-shadow-xs">
                 {guide.weatherTemp}
               </div>
-              <div className="text-xs text-purple-200/80 flex items-center justify-end gap-1">
-                <Sun className="w-3 h-3 text-amber-400" /> {guide.weatherCondition}
+              <div className="text-xs text-purple-200/90 flex items-center justify-end gap-1.5 font-medium mt-0.5">
+                <Sun className="w-3.5 h-3.5 text-amber-400" /> {guide.weatherCondition}
               </div>
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-purple-100 relative z-10">
-          <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-            <span className="text-[10px] uppercase font-bold tracking-wider text-purple-300 block mb-0.5">
+          <div
+            style={{ background: 'rgba(255, 255, 255, 0.08)' }}
+            className="p-4 rounded-2xl border border-white/15 backdrop-blur-md"
+          >
+            <span className="text-[10px] uppercase font-bold tracking-wider text-purple-300 block mb-1">
               Base Elevation
             </span>
-            <span className="font-mono font-bold text-sm text-white">{guide.altitude}</span>
-            <span className="text-[10px] text-purple-300 block mt-0.5">Alpine Hydration Recommended</span>
+            <span className="font-mono font-bold text-base text-white block">{guide.altitude}</span>
+            <span className="text-[11px] text-purple-200/80 block mt-1">Alpine Hydration Recommended</span>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-            <span className="text-[10px] uppercase font-bold tracking-wider text-purple-300 block mb-0.5">
+          <div
+            style={{ background: 'rgba(255, 255, 255, 0.08)' }}
+            className="p-4 rounded-2xl border border-white/15 backdrop-blur-md"
+          >
+            <span className="text-[10px] uppercase font-bold tracking-wider text-purple-300 block mb-1">
               Terrain & Slopes
             </span>
-            <span className="font-semibold text-xs text-white">{guide.trailStatus}</span>
-            <span className="text-[10px] text-emerald-300 font-semibold block mt-0.5">Ski Valet Live</span>
+            <span className="font-semibold text-sm text-white block">{guide.trailStatus}</span>
+            <span className="text-[11px] text-emerald-300 font-semibold block mt-1">Ski Valet Live</span>
           </div>
 
-          <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-            <span className="text-[10px] uppercase font-bold tracking-wider text-purple-300 block mb-0.5">
+          <div
+            style={{ background: 'rgba(255, 255, 255, 0.08)' }}
+            className="p-4 rounded-2xl border border-white/15 backdrop-blur-md"
+          >
+            <span className="text-[10px] uppercase font-bold tracking-wider text-purple-300 block mb-1">
               Lodge Transit Service
             </span>
-            <span className="font-semibold text-xs text-white">{guide.shuttleStatus}</span>
-            <span className="text-[10px] text-purple-300 block mt-0.5">Call Valet (Ext. 0)</span>
+            <span className="font-semibold text-sm text-white block">{guide.shuttleStatus}</span>
+            <span className="text-[11px] text-purple-200/80 block mt-1">Call Valet (Ext. 0)</span>
           </div>
         </div>
       </div>

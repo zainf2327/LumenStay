@@ -126,7 +126,7 @@ export interface Reservation {
   resortFee: number;
   totalAmount: number;
   paidAmount: number;
-  paymentStatus: 'pending' | 'authorized' | 'paid' | 'refunded';
+  paymentStatus: 'pending' | 'authorized' | 'paid' | 'refunded' | 'failed';
   specialRequests?: string | null;
   estimatedArrival: string;
   checkedInAt?: string | null;

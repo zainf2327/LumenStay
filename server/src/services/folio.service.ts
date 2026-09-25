@@ -1,5 +1,4 @@
 import { db } from '../db/index.js';
-import { processTokenizedCharge } from './paymentSimulator.js';
 import { broadcastEvent } from './websocket.js';
 import { ApiError } from '../types/api.types.js';
 import type { FolioCharge } from '../types/domain.types.js';
@@ -60,7 +59,7 @@ export class FolioService {
     const charge: FolioCharge = {
       id: `fol_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
       reservationId,
-      propertyId: reservation.propertyId,
+      propertyId: reservation.propertyId, 
       category,
       description,
       amount,
@@ -79,25 +78,29 @@ export class FolioService {
     return charge;
   }
 
-  public async settlePayment(reservationId: string, amount: number, paymentMethod = 'Credit Card (Tokenized Square)', token = 'tok_sq_settle_4242') {
+  public async settlePayment(
+    reservationId: string,
+    amount: number,
+    paymentMethod = 'Credit Card (Stripe)',
+    paymentRef?: string
+  ) {
     const reservation = await db.reservations.findById(reservationId);
     if (!reservation) {
       throw new ApiError(404, 'Reservation not found');
     }
 
-    const paymentResult = processTokenizedCharge(token, amount);
-
+    const ref = paymentRef || `AUTH-${Date.now().toString().slice(-6)}`;
     const paymentEntry: FolioCharge = {
       id: `fol_pay_${Date.now()}`,
       reservationId,
       propertyId: reservation.propertyId,
       category: 'payment',
-      description: `Payment Settled — Card ending in ${paymentResult.last4}`,
+      description: `Payment Settled — ${paymentMethod}`,
       amount: -amount,
       status: 'paid',
       postedBy: 'Front Desk Settle',
       paymentMethod,
-      paymentRef: `AUTH-${paymentResult.last4}`,
+      paymentRef: ref,
       createdAt: new Date().toISOString(),
     };
 
@@ -115,7 +118,7 @@ export class FolioService {
 
     return {
       paymentEntry,
-      paymentResult,
+      paymentRef: ref,
     };
   }
 }

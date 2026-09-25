@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import {
   Elements,
-  CardElement,
+  CardElement, 
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
@@ -96,6 +96,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   const [specialRequests, setSpecialRequests] = useState('');
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [cardComplete, setCardComplete] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -127,10 +128,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     }
 
     setIsSubmitting(true);
+    setStatusMessage('Securing payment token...');
     setError(null);
 
     try {
-      // 1. Client-Side Tokenization directly with Stripe
+      // 1. Client-Side Tokenization directly with Stripe (PCI-DSS compliant)
       const { error: stripeError, paymentMethod } = await stripe.createPaymentMethod({
         type: 'card',
         card: cardElement,
@@ -150,10 +152,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       }
 
       // 2. Send tokenized paymentMethodId to server
+      setStatusMessage('Authorizing reservation with Stripe...');
       const payload = {
         propertyId: property?.id || 'prop_birchwood',
-        roomTypeId: roomType?.id || 'rt_birch_std',
-        ratePlanId: ratePlan?.id || 'rp_birch_flex',
+        roomTypeId: roomType?.id,
+        ratePlanId: ratePlan?.id,
         checkInDate,
         checkOutDate,
         adultCount: adults,
@@ -175,6 +178,63 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       }).then((r) => r.json());
+
+      // 3. Handle 3D Secure / Strong Customer Authentication (SCA) Challenge if required by bank
+      if (res.success && res.data?.requiresAction && res.data.clientSecret) {
+        setStatusMessage('Card issuer requested 3D Secure verification. Please complete the bank challenge...');
+        const { error: actionError, paymentIntent } = await stripe.handleNextAction({
+          clientSecret: res.data.clientSecret,
+        });
+
+        if (actionError) {
+          throw new Error(actionError.message || '3D Secure bank authentication was declined or cancelled.');
+        }
+
+        if (paymentIntent && (paymentIntent.status === 'succeeded' || paymentIntent.status === 'requires_capture')) {
+          // Re-submit booking with verified paymentIntentId
+          setStatusMessage('Bank verification approved! Confirming reservation...');
+          const retryPayload = {
+            ...payload,
+            paymentDetails: {
+              paymentIntentId: paymentIntent.id,
+            },
+          };
+
+          const confirmRes = await fetch('/api/v1/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(retryPayload),
+          }).then((r) => r.json());
+
+          if (confirmRes.success && confirmRes.data) {
+            navigate(`/confirmation/${confirmRes.data.confirmationCode}`, {
+              state: {
+                booking: confirmRes.data,
+                property,
+                roomType,
+                ratePlan,
+                pricing: {
+                  nightlyPrice,
+                  totalPrice,
+                  taxAmount,
+                  resortFee,
+                  grandTotal,
+                },
+                checkInDate,
+                checkOutDate,
+                adults,
+                children,
+                totalNights,
+              },
+            });
+            return;
+          } else {
+            throw new Error(confirmRes.message || 'Unable to confirm reservation after authentication.');
+          }
+        } else {
+          throw new Error('Payment was not completed. Please try another card.');
+        }
+      }
 
       if (res.success && res.data) {
         navigate(`/confirmation/${res.data.confirmationCode}`, {
@@ -204,6 +264,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       setError(err.message || 'Network error occurred during booking.');
     } finally {
       setIsSubmitting(false);
+      setStatusMessage(null);
     }
   };
 
@@ -354,8 +415,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
             >
               {isSubmitting ? (
                 <span className="flex items-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Authorizing Payment...</span>
+                  <Loader2 className="w-4 h-4 animate-spin text-[#B08D57]" />
+                  <span>{statusMessage || 'Authorizing Payment...'}</span>
                 </span>
               ) : (
                 <>
@@ -441,22 +502,22 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
             {/* Price Breakdown */}
             <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#E5E0D8] text-xs space-y-2.5">
               <div className="flex justify-between text-[#736B63]">
-                <span>Room Subtotal ({totalNights} nts × ${nightlyPrice})</span>
-                <span className="font-mono text-[#1C1815]">${totalPrice.toFixed(2)}</span>
+                <span>Room Subtotal ({totalNights} nts × ${nightlyPrice || 0})</span>
+                <span className="font-mono text-[#1C1815]">${(totalPrice || 0).toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-[#736B63]">
                 <span>Lodging & Resort Taxes (12%)</span>
-                <span className="font-mono text-[#1C1815]">${taxAmount.toFixed(2)}</span>
+                <span className="font-mono text-[#1C1815]">${(taxAmount || 0).toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-[#736B63]">
                 <span>Resort & Amenity Fee</span>
-                <span className="font-mono text-[#1C1815]">${resortFee.toFixed(2)}</span>
+                <span className="font-mono text-[#1C1815]">${(resortFee || 0).toFixed(2)}</span>
               </div>
 
               <div className="flex justify-between items-center pt-3 border-t border-[#DDD7CD] text-sm">
                 <span className="text-[#1C1815] font-semibold">Total Due</span>
                 <span className="font-serif text-lg font-bold text-[#1C1815]">
-                  ${grandTotal.toFixed(2)} USD
+                  ${(grandTotal || 0).toFixed(2)} USD
                 </span>
               </div>
             </div>
@@ -489,22 +550,74 @@ export const CheckoutPage: React.FC = () => {
     totalNights?: number;
   } | null;
 
-  const property = stateData?.property || properties[0];
-  const roomType = stateData?.roomType;
-  const ratePlan = stateData?.ratePlan;
-  const checkInDate = stateData?.checkInDate || '2026-09-03';
-  const checkOutDate = stateData?.checkOutDate || '2026-09-05';
+  const property = stateData?.property || properties[0] || null;
+  const [resolvedRoomType, setResolvedRoomType] = useState<RoomType | undefined>(stateData?.roomType);
+  const [resolvedRatePlan, setResolvedRatePlan] = useState<RatePlan | undefined>(stateData?.ratePlan);
+  const loadedPropertyRef = useRef<string | null>(null);
+
+  const checkInDate = stateData?.checkInDate || '2026-09-26';
+  const checkOutDate = stateData?.checkOutDate || '2026-09-28';
   const adults = stateData?.adults || 2;
   const children = stateData?.children || 0;
   const totalNights = stateData?.totalNights || 2;
 
-  const nightlyPrice = roomType?.basePrice
-    ? Math.round(roomType.basePrice * (ratePlan?.priceModifier || 1.0))
+  useEffect(() => {
+    if (!property?.id) return;
+    if (loadedPropertyRef.current === property.id && resolvedRoomType && resolvedRatePlan) return;
+
+    let isMounted = true;
+    async function loadDefaults() {
+      try {
+        const res = await fetch(
+          `/api/v1/availability?propertyId=${property.id}&checkIn=${checkInDate}&checkOut=${checkOutDate}`
+        ).then((r) => r.json());
+        if (isMounted && res.success && res.data?.results?.length > 0) {
+          const firstResult = res.data.results[0];
+          setResolvedRoomType((prev) => (prev && prev.propertyId === property.id ? prev : firstResult.roomType));
+          setResolvedRatePlan((prev) => (prev && prev.propertyId === property.id ? prev : firstResult.nightlyRates?.[0]?.ratePlan));
+          loadedPropertyRef.current = property.id;
+        }
+      } catch (err) {
+        console.error('Failed to load room type / rate plan defaults:', err);
+      }
+    }
+
+    if (!resolvedRoomType || !resolvedRatePlan || resolvedRoomType.propertyId !== property.id || resolvedRatePlan.propertyId !== property.id) {
+      loadDefaults();
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [property?.id, checkInDate, checkOutDate]);
+
+  if (!property) {
+    return (
+      <div className="min-h-screen bg-[#F7F4EE] flex items-center justify-center p-6 text-[#1C1815]">
+        <div className="flex flex-col items-center gap-3 text-[#736B63]">
+          <Loader2 className="w-8 h-8 animate-spin text-[#B08D57]" />
+          <span className="text-sm font-medium">Preparing sanctuary checkout...</span>
+        </div>
+      </div>
+    );
+  }
+
+  const rawNightly = resolvedRoomType?.basePrice
+    ? Math.round(resolvedRoomType.basePrice * (resolvedRatePlan?.priceModifier || 1.0))
     : 380;
-  const totalPrice = stateData?.pricing?.totalPrice || nightlyPrice * totalNights;
-  const taxAmount = stateData?.pricing?.taxAmount || totalPrice * 0.12;
-  const resortFee = stateData?.pricing?.resortFee || 35 * totalNights;
-  const grandTotal = stateData?.pricing?.grandTotal || totalPrice + taxAmount + resortFee;
+  const nightlyPrice = Number.isFinite(rawNightly) && rawNightly > 0 ? rawNightly : 380;
+  const totalPrice = Number.isFinite(stateData?.pricing?.totalPrice)
+    ? stateData!.pricing!.totalPrice
+    : nightlyPrice * totalNights;
+  const taxAmount = Number.isFinite(stateData?.pricing?.taxAmount)
+    ? stateData!.pricing!.taxAmount
+    : totalPrice * 0.12;
+  const resortFee = Number.isFinite(stateData?.pricing?.resortFee)
+    ? stateData!.pricing!.resortFee
+    : 35 * totalNights;
+  const grandTotal = Number.isFinite(stateData?.pricing?.grandTotal)
+    ? stateData!.pricing!.grandTotal
+    : totalPrice + taxAmount + resortFee;
 
   return (
     <div className="min-h-screen bg-[#F7F4EE] text-[#1C1815] pb-20 font-sans selection:bg-[#B08D57]/20 selection:text-[#1C1815]">
@@ -535,8 +648,8 @@ export const CheckoutPage: React.FC = () => {
         <Elements stripe={stripePromise}>
           <CheckoutForm
             property={property}
-            roomType={roomType}
-            ratePlan={ratePlan}
+            roomType={resolvedRoomType}
+            ratePlan={resolvedRatePlan}
             checkInDate={checkInDate}
             checkOutDate={checkOutDate}
             adults={adults}

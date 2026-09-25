@@ -3,8 +3,8 @@ import { z } from 'zod';
 export const createBookingValidator = z.object({
   body: z.object({
     propertyId: z.string().min(1, 'Property ID is required'),
-    roomTypeId: z.string().min(1, 'Room Type ID is required'),
-    ratePlanId: z.string().min(1, 'Rate Plan ID is required'),
+    roomTypeId: z.string().optional(),
+    ratePlanId: z.string().optional(),
     checkInDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Check-in must be YYYY-MM-DD'),
     checkOutDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Check-out must be YYYY-MM-DD'),
     adultCount: z.number().int().min(1).default(2),
@@ -21,7 +21,8 @@ export const createBookingValidator = z.object({
     specialRequests: z.string().optional(),
     estimatedArrival: z.string().optional(),
     paymentDetails: z.object({
-      paymentMethodId: z.string().min(1, 'Payment Method ID is required'),
+      paymentMethodId: z.string().optional(),
+      paymentIntentId: z.string().optional(),
     }).optional(),
   }),
 });

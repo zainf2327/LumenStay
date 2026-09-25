@@ -14,7 +14,6 @@ export const config = {
   port: parseInt(process.env.PORT || '3001', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
   logLevel: process.env.LOG_LEVEL || 'info',
-  dbPath: process.env.DB_PATH || path.resolve(process.cwd(), 'data', 'lumenstay.db'),
   corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:5173',
   defaultTaxRate: parseFloat(process.env.DEFAULT_TAX_RATE || '0.12'),
   defaultResortFeePerNight: parseFloat(process.env.DEFAULT_RESORT_FEE || '35.0'),
@@ -46,13 +45,11 @@ export const config = {
     )
   ),
 
-  // Stripe Sandbox Configuration
-  stripeSecretKey: process.env.STRIPE_SECRET_KEY || 'sk_test_51MockLumenStayStripeSandboxKey2026',
-  stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY || 'pk_test_51MockLumenStayStripePublishableKey2026',
-  isStripeConfigured: Boolean(
-    process.env.STRIPE_SECRET_KEY &&
-    !process.env.STRIPE_SECRET_KEY.includes('Mock')
-  ),
+  // Stripe Live / Test Production Configuration
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY || '',
+  stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY || '',
+  stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET || '',
+  isStripeConfigured: Boolean(process.env.STRIPE_SECRET_KEY),
 
   // Resend Email Configuration
   resendApiKey: process.env.RESEND_API_KEY || '',

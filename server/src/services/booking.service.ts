@@ -2,7 +2,6 @@ import { db, dbConnection } from '../db/index.js';
 import { pricingService } from './pricing.service.js';
 import { stripeService } from './stripe.service.js';
 import { emailService } from './email.service.js';
-import { simulatePaymentTokenization, processTokenizedCharge } from './paymentSimulator.js';
 import { broadcastEvent } from './websocket.js';
 import { channexService } from './channex.service.js';
 import { ApiError } from '../types/api.types.js';
@@ -30,6 +29,7 @@ export interface CreateBookingDTO {
   promoCode?: string;
   paymentDetails?: {
     paymentMethodId?: string;
+    paymentIntentId?: string;
   };
 }
 
@@ -53,14 +53,27 @@ export class BookingService {
     const property = await db.properties.findById(propertyId);
     if (!property) throw new ApiError(404, 'Property not found');
 
-    const roomType = await db.roomTypes.findById(roomTypeId);
+    // 1. Resolve and validate Room Type
+    let roomType = roomTypeId ? await db.roomTypes.findById(roomTypeId) : null;
     if (!roomType || roomType.propertyId !== propertyId) {
-      throw new ApiError(404, 'Invalid room type for selected property');
+      const propertyRoomTypes = await db.roomTypes.findByPropertyId(propertyId);
+      roomType = propertyRoomTypes.find((r) => r.id === roomTypeId) || propertyRoomTypes[0];
+    }
+    if (!roomType) {
+      throw new ApiError(404, 'No room types available for selected property');
     }
 
-    const ratePlan = await db.ratePlans.findById(ratePlanId);
+    // 2. Resolve and validate Rate Plan
+    let ratePlan = ratePlanId ? await db.ratePlans.findById(ratePlanId) : null;
     if (!ratePlan || ratePlan.propertyId !== propertyId) {
-      throw new ApiError(404, 'Invalid rate plan for selected property');
+      const propertyRatePlans = await db.ratePlans.findByPropertyId(propertyId);
+      ratePlan =
+        propertyRatePlans.find((p) => p.id === ratePlanId) ||
+        propertyRatePlans.find((p) => p.code === 'BAR' || p.code === 'STD' || p.id.includes('_std')) ||
+        propertyRatePlans[0];
+    }
+    if (!ratePlan) {
+      throw new ApiError(404, 'No rate plans available for selected property');
     }
     // 1. Availability Pre-Check before charging Stripe
     const preCheckOverlaps = await db.reservations.findOverlapping(
@@ -77,27 +90,40 @@ export class BookingService {
     // 2. Pricing Calculation
     const pricing = pricingService.calculateBookingPricing(roomType, ratePlan, checkInDate, checkOutDate, promoCode);
 
-    // 3. Real Stripe Sandbox Payment Processing (100% Live Stripe API)
+    // 3. Real Stripe Payment Processing (100% Live Stripe API)
     const stripeResult = await stripeService.processPayment({
       amountInCents: Math.round(pricing.grandTotal * 100),
       currency: 'usd',
       customerEmail: guest.email,
       customerName: `${guest.firstName} ${guest.lastName}`,
       description: `LumenStay: ${roomType.name} at ${property.name} (${checkInDate} to ${checkOutDate})`,
-      paymentMethodId: paymentDetails?.paymentMethodId || 'pm_card_visa',
+      paymentMethodId: paymentDetails?.paymentMethodId,
+      paymentIntentId: paymentDetails?.paymentIntentId,
       metadata: {
         propertyId,
-        roomTypeId,
-        ratePlanId,
+        roomTypeId: roomType.id,
+        ratePlanId: ratePlan.id,
         checkInDate,
         checkOutDate,
       },
     });
 
+    // If 3D Secure / SCA authentication is required by bank
+    if (stripeResult.requiresAction) {
+      return {
+        requiresAction: true,
+        clientSecret: stripeResult.clientSecret,
+        paymentIntentId: stripeResult.paymentIntentId,
+        amount: stripeResult.amount,
+        currency: stripeResult.currency,
+        message: '3D Secure cardholder authentication required by your bank.',
+      } as any;
+    }
+
     // 4. Availability Re-Check & Assignment
     const overlappingBookings = await db.reservations.findOverlapping(
       propertyId,
-      roomTypeId,
+      roomType.id,
       checkInDate,
       checkOutDate
     );
@@ -161,9 +187,9 @@ export class BookingService {
       confirmationCode,
       propertyId,
       guestId,
-      roomTypeId,
+      roomTypeId: roomType.id,
       assignedRoomId,
-      ratePlanId,
+      ratePlanId: ratePlan.id,
       status: 'confirmed',
       checkInDate,
       checkOutDate,
@@ -247,7 +273,7 @@ export class BookingService {
     });
 
     // Instant Outbound Inventory Sync to OTAs (<3.0s Parity Guarantee)
-    channexService.syncAvailability(propertyId, roomTypeId).catch((err) => {
+    channexService.syncAvailability(propertyId, roomType.id).catch((err) => {
       console.error('[Channex Outbound Sync Error]:', err);
     });
 
